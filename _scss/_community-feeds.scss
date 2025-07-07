@@ -1,0 +1,55 @@
+// File: _community-feeds.scss
+
+// Variables
+$feed-bg:         #f9f9f9;
+$feed-border:     #e0e0e0;
+$feed-heading:    #333;
+$feed-link:       #0066cc;
+$feed-link-hover: darken($feed-link, 15%);
+
+// Container
+#community-feeds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+  
+  .feed {
+    flex: 1 1 320px;
+    background: $feed-bg;
+    border: 1px solid $feed-border;
+    border-radius: 4px;
+    padding: 1rem;
+
+    &__title {
+      margin: 0 0 1rem;
+      font-size: 1.25rem;
+      color: $feed-heading;
+    }
+
+    &__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      & > li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid $feed-border;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        a {
+          color: $feed-link;
+          text-decoration: none;
+
+          &:hover {
+            color: $feed-link-hover;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
