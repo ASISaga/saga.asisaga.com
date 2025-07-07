@@ -1,68 +1,54 @@
 name: Fetch Community Feeds
-
 on:
-  schedule:
-    - cron: '0 * * * *'   # run hourly
+  schedule: [{ cron: '0 * * * *' }]
   workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ${{ vars.WORKDIR }}
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
 
-    env:
-      # Directories & filenames from environment
-      WORKDIR:        scripts
-      DATA_DIR:       _data
-      LINKEDIN_JS:    fetchLinkedIn.js
-      REDDIT_JS:      fetchReddit.js
-      SUBREDDIT:      YourSagaSubreddit
-
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Cache NPM modules
         uses: actions/cache@v3
         with:
-          path:        ${{ env.WORKDIR }}/node_modules
-          key:         ${{ runner.os }}-node-${{ hashFiles(env.WORKDIR + '/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: ${{ vars.WORKDIR }}/node_modules
+          key:  ${{ runner.os }}-node-${{ hashFiles(vars.WORKDIR + '/package-lock.json') }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - uses: actions/setup-node@v4
+        with: { node-version: 18 }
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ${{ env.WORKDIR }}
 
       - name: Fetch LinkedIn Feed
-        working-directory: ${{ env.WORKDIR }}
         env:
           CLIENT_ID:               ${{ secrets.LINKEDIN_CLIENT_ID }}
           CLIENT_SECRET:           ${{ secrets.LINKEDIN_CLIENT_SECRET }}
           LINKEDIN_REFRESH_TOKEN:  ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
         run: |
-          node ${{ env.LINKEDIN_JS }} \
-            > ../${{ env.DATA_DIR }}/linkedin.json
+          node ${{ vars.LINKEDIN_JS }} \
+            > ../${{ vars.DATA_DIR }}/linkedin.json
 
       - name: Fetch Reddit Feed
-        working-directory: ${{ env.WORKDIR }}
         env:
           CLIENT_ID:             ${{ secrets.REDDIT_CLIENT_ID }}
           CLIENT_SECRET:         ${{ secrets.REDDIT_CLIENT_SECRET }}
           REDDIT_REFRESH_TOKEN:  ${{ secrets.REDDIT_REFRESH_TOKEN }}
-          SUBREDDIT:             ${{ env.SUBREDDIT }}
+          SUBREDDIT:             ${{ vars.SUBREDDIT }}
         run: |
-          node ${{ env.REDDIT_JS }} \
-            > ../${{ env.DATA_DIR }}/reddit.json
+          node ${{ vars.REDDIT_JS }} \
+            > ../${{ vars.DATA_DIR }}/reddit.json
 
       - name: Commit updated data
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "actions@github.com"
-          git add ${{ env.DATA_DIR }}/linkedin.json ${{ env.DATA_DIR }}/reddit.json
-          git diff --cached --exit-code || git commit -m "Update community feeds"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "actions@github.com"
+          git add ${{ vars.DATA_DIR }}/linkedin.json ${{ vars.DATA_DIR }}/reddit.json
+          git diff --quiet --cached || git commit -m "Update community feeds"
           git push
