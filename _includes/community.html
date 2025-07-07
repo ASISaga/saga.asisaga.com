@@ -1,0 +1,21 @@
+<section id="community-feeds">
+  <h2>LinkedIn Updates</h2>
+  <ul>
+    {% for post in site.data.linkedin.elements %}
+      <li>
+        <a href="{{ post.permalink }}">{{ post.text.text }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Reddit Hot Posts</h2>
+  <ul>
+    {% for child in site.data.reddit.data.children %}
+      <li>
+        <a href="https://reddit.com{{ child.data.permalink }}" target="_blank">
+          {{ child.data.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
