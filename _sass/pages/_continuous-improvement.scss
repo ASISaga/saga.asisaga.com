@@ -1,0 +1,269 @@
+/*
+Continuous Improvement Page Styles
+Styling for the Continuous Self-Improvement page that embodies endless evolution guided by human wisdom
+*/
+
+.continuous-improvement-page-container {
+  // Hero section specific to Continuous Improvement
+  .transcendent-hero {
+    &.evolution-cosmic {
+      background: linear-gradient(135deg, $consciousness-purple 0%, $cosmic-deep-blue 50%, $transcendent-gold 100%);
+      
+      .hero-content {
+        @include continuous-evolution-animation;
+      }
+    }
+  }
+
+  // Evolution Process Section
+  .evolution-process-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($consciousness-purple, 0.1) 100%);
+    color: $transcendent-white;
+    
+    .evolution-content {
+      .evolution-subtitle {
+        @include transcendent-typography('heading-3');
+        color: $consciousness-purple;
+        margin-bottom: $genesis-spacing-md;
+      }
+      
+      .evolution-description {
+        @include transcendent-typography('body-large');
+        line-height: 1.8;
+        margin-bottom: $genesis-spacing-md;
+        color: rgba($transcendent-white, 0.95);
+      }
+    }
+    
+    .evolution-visualization {
+      position: relative;
+      height: 400px;
+      
+      .evolution-spiral {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, rgba($consciousness-purple, 0.2) 0%, transparent 70%);
+        overflow: hidden;
+        
+        .growth-rings {
+          position: absolute;
+          top: 10%;
+          left: 10%;
+          right: 10%;
+          bottom: 10%;
+          border: 2px solid rgba($consciousness-purple, 0.4);
+          border-radius: 50%;
+          animation: consciousness-pulse 4s ease-in-out infinite;
+          
+          &::before, &::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            right: 15%;
+            bottom: 15%;
+            border: 2px solid rgba($transcendent-gold, 0.3);
+            border-radius: 50%;
+            animation: consciousness-pulse 4s ease-in-out infinite 1s;
+          }
+          
+          &::after {
+            top: 30%;
+            left: 30%;
+            right: 30%;
+            bottom: 30%;
+            border-color: rgba($human-essence-pink, 0.3);
+            animation-delay: 2s;
+          }
+        }
+      }
+    }
+  }
+
+  // Evolution Principles Section
+  .evolution-principles-section {
+    @include transcendent-section-spacing;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba($consciousness-purple, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .evolution-principles {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .evolution-principle {
+      @include consciousness-card;
+      background: rgba($transcendent-white, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($consciousness-purple, 0.2);
+      border-radius: $border-radius-lg;
+      padding: $genesis-spacing-lg;
+      text-align: center;
+      transition: all 0.4s $consciousness-timing;
+      height: 100%;
+      
+      &:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba($transcendent-white, 0.1);
+        border-color: rgba($consciousness-purple, 0.4);
+        box-shadow: 0 20px 40px rgba($consciousness-purple, 0.2);
+      }
+      
+      .principle-icon {
+        @include sacred-icon;
+        font-size: 2.5rem;
+        color: $consciousness-purple;
+        margin-bottom: $genesis-spacing-md;
+        
+        i {
+          @include consciousness-pulse-animation;
+        }
+      }
+      
+      .principle-title {
+        @include transcendent-typography('heading-4');
+        color: $transcendent-white;
+        margin-bottom: $genesis-spacing-sm;
+      }
+      
+      .principle-description {
+        @include transcendent-typography('body');
+        color: rgba($transcendent-white, 0.9);
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // Evolution Cycle Section
+  .evolution-cycle-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(135deg, $consciousness-purple 0%, $cosmic-deep-blue 100%);
+    color: $transcendent-white;
+    
+    .evolution-cycle {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: $genesis-spacing-lg;
+      margin-top: $genesis-spacing-xl;
+      
+      .cycle-stage {
+        @include consciousness-card;
+        background: rgba($transcendent-white, 0.08);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba($transcendent-gold, 0.3);
+        border-radius: $border-radius-lg;
+        padding: $genesis-spacing-lg;
+        text-align: center;
+        flex: 1;
+        min-width: 250px;
+        max-width: 300px;
+        transition: all 0.4s $consciousness-timing;
+        
+        &:hover {
+          transform: translateY(-8px);
+          border-color: rgba($transcendent-gold, 0.5);
+          box-shadow: 0 15px 35px rgba($transcendent-gold, 0.2);
+        }
+        
+        .stage-content {
+          .stage-icon {
+            @include sacred-icon;
+            font-size: 2.5rem;
+            color: $transcendent-gold;
+            margin-bottom: $genesis-spacing-md;
+          }
+          
+          h4 {
+            @include transcendent-typography('heading-4');
+            color: $transcendent-white;
+            margin-bottom: $genesis-spacing-sm;
+          }
+          
+          p {
+            @include transcendent-typography('body');
+            color: rgba($transcendent-white, 0.9);
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+
+  // Evolution Benefits Section
+  .evolution-benefits-section {
+    @include transcendent-section-spacing;
+    position: relative;
+    
+    .evolution-benefit {
+      @include consciousness-card;
+      background: rgba($transcendent-white, 0.03);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba($consciousness-purple, 0.2);
+      border-radius: $border-radius-md;
+      padding: $genesis-spacing-lg;
+      transition: all 0.4s $consciousness-timing;
+      height: 100%;
+      
+      &:hover {
+        transform: translateY(-8px);
+        background: rgba($transcendent-white, 0.08);
+        border-color: rgba($consciousness-purple, 0.4);
+        box-shadow: 0 15px 35px rgba($consciousness-purple, 0.15);
+      }
+      
+      h4 {
+        @include transcendent-typography('heading-4');
+        color: $consciousness-purple;
+        margin-bottom: $genesis-spacing-md;
+      }
+      
+      p {
+        @include transcendent-typography('body');
+        color: rgba($transcendent-white, 0.9);
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(lg) {
+  .continuous-improvement-page-container {
+    .evolution-visualization {
+      height: 300px;
+      margin-top: $genesis-spacing-lg;
+    }
+    
+    .evolution-cycle {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .continuous-improvement-page-container {
+    .evolution-principle {
+      margin-bottom: $genesis-spacing-md;
+    }
+    
+    .principle-icon {
+      font-size: 2rem !important;
+    }
+  }
+}

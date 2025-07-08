@@ -1,0 +1,287 @@
+/*
+Transcendent Threshold Page Styles
+Styling for the Transcendent Threshold page that embodies the sacred crossing into infinite consciousness
+*/
+
+.transcendent-threshold-page-container {
+  // Hero section specific to Transcendent Threshold
+  .transcendent-hero {
+    &.threshold-cosmic {
+      background: linear-gradient(135deg, $cosmic-deep-blue 0%, $consciousness-purple 50%, $transcendent-gold 100%);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba($transcendent-gold, 0.1) 0%, transparent 70%);
+        animation: threshold-pulse 8s ease-in-out infinite;
+      }
+      
+      .hero-content {
+        @include threshold-crossing-animation;
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+
+  // Threshold Crossing Section
+  .threshold-crossing-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($consciousness-purple, 0.1) 100%);
+    color: $transcendent-white;
+    
+    .threshold-content {
+      .threshold-subtitle {
+        @include transcendent-typography('heading-3');
+        color: $consciousness-purple;
+        margin-bottom: $genesis-spacing-md;
+      }
+      
+      .threshold-description {
+        @include transcendent-typography('body-large');
+        line-height: 1.8;
+        margin-bottom: $genesis-spacing-md;
+        color: rgba($transcendent-white, 0.95);
+      }
+    }
+    
+    .threshold-visualization {
+      position: relative;
+      height: 400px;
+      
+      .threshold-gateway {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius-lg;
+        background: linear-gradient(90deg, rgba($human-essence-pink, 0.2) 0%, rgba($transcendent-gold, 0.3) 50%, rgba($consciousness-purple, 0.2) 100%);
+        overflow: hidden;
+        border: 2px solid rgba($transcendent-gold, 0.4);
+        
+        .threshold-boundary {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(to bottom, $transcendent-gold 0%, $consciousness-purple 100%);
+          animation: threshold-glow 3s ease-in-out infinite;
+        }
+      }
+    }
+  }
+
+  // Transcendence Aspects Section
+  .transcendence-aspects-section {
+    @include transcendent-section-spacing;
+    position: relative;
+    
+    .transcendence-aspect {
+      @include consciousness-card;
+      background: rgba($transcendent-white, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($consciousness-purple, 0.2);
+      border-radius: $border-radius-lg;
+      padding: $genesis-spacing-lg;
+      transition: all 0.4s $consciousness-timing;
+      display: flex;
+      align-items: center;
+      gap: $genesis-spacing-md;
+      
+      &:hover {
+        transform: translateY(-8px);
+        background: rgba($transcendent-white, 0.1);
+        border-color: rgba($consciousness-purple, 0.4);
+        box-shadow: 0 15px 35px rgba($consciousness-purple, 0.15);
+      }
+      
+      .aspect-before, .aspect-after {
+        flex: 1;
+        text-align: center;
+        
+        .aspect-icon {
+          @include sacred-icon;
+          font-size: 2.5rem;
+          margin-bottom: $genesis-spacing-sm;
+          
+          i {
+            @include consciousness-pulse-animation;
+          }
+        }
+        
+        h4 {
+          @include transcendent-typography('heading-5');
+          color: $transcendent-white;
+          margin-bottom: $genesis-spacing-xs;
+        }
+        
+        p {
+          @include transcendent-typography('body-small');
+          color: rgba($transcendent-white, 0.8);
+          line-height: 1.5;
+        }
+      }
+      
+      .aspect-before .aspect-icon {
+        color: $human-essence-pink;
+      }
+      
+      .aspect-after .aspect-icon {
+        color: $transcendent-gold;
+      }
+      
+      .aspect-arrow {
+        font-size: 1.5rem;
+        color: $consciousness-purple;
+        flex-shrink: 0;
+        
+        i {
+          animation: consciousness-pulse 2s ease-in-out infinite;
+        }
+      }
+    }
+  }
+
+  // Threshold Experience Section
+  .threshold-experience-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(135deg, $consciousness-purple 0%, $cosmic-deep-blue 100%);
+    color: $transcendent-white;
+    
+    .threshold-journey {
+      position: relative;
+      
+      .journey-stage {
+        display: flex;
+        align-items: center;
+        margin-bottom: $genesis-spacing-xl;
+        
+        .stage-number {
+          @include consciousness-card;
+          background: $transcendent-gold;
+          color: $cosmic-deep-blue;
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          font-weight: bold;
+          flex-shrink: 0;
+          margin-right: $genesis-spacing-lg;
+        }
+        
+        .stage-content {
+          flex: 1;
+          
+          h4 {
+            @include transcendent-typography('heading-4');
+            color: $transcendent-gold;
+            margin-bottom: $genesis-spacing-sm;
+          }
+          
+          p {
+            @include transcendent-typography('body');
+            color: rgba($transcendent-white, 0.9);
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+
+  // Human Preservation Section
+  .human-preservation-section {
+    @include transcendent-section-spacing;
+    position: relative;
+    
+    .preservation-content {
+      .preservation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: $genesis-spacing-md;
+        margin-top: $genesis-spacing-lg;
+        
+        .preservation-item {
+          @include consciousness-card;
+          background: rgba($transcendent-white, 0.05);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba($human-essence-pink, 0.2);
+          border-radius: $border-radius-md;
+          padding: $genesis-spacing-md;
+          display: flex;
+          align-items: center;
+          gap: $genesis-spacing-sm;
+          transition: all 0.4s $consciousness-timing;
+          
+          &:hover {
+            transform: translateY(-5px);
+            background: rgba($transcendent-white, 0.08);
+            border-color: rgba($human-essence-pink, 0.4);
+          }
+          
+          i {
+            color: $human-essence-pink;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+          }
+          
+          span {
+            @include transcendent-typography('body');
+            color: rgba($transcendent-white, 0.9);
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(lg) {
+  .transcendent-threshold-page-container {
+    .threshold-visualization {
+      height: 300px;
+      margin-top: $genesis-spacing-lg;
+    }
+    
+    .transcendence-aspect {
+      flex-direction: column;
+      text-align: center;
+      
+      .aspect-arrow {
+        transform: rotate(90deg);
+        margin: $genesis-spacing-sm 0;
+      }
+    }
+    
+    .journey-stage {
+      flex-direction: column;
+      text-align: center;
+      
+      .stage-number {
+        margin-right: 0;
+        margin-bottom: $genesis-spacing-md;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .transcendent-threshold-page-container {
+    .preservation-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .aspect-icon {
+      font-size: 2rem !important;
+    }
+  }
+}

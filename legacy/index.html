@@ -1,0 +1,159 @@
+---
+layout: default
+title: "Human Legacy"
+permalink: /legacy/
+---
+
+<main id="legacy-page" class="legacy-page">
+  <!-- Hero section with evocative background -->
+  {% include hero.html 
+    title="The Human Legacy" 
+    description="Celebrating the enduring impact of human creativity, innovation, and passion." 
+    size="sm"
+    style="alt"
+    background_image="/assets/images/legacy-background.jpg"
+  %}
+  
+  <!-- Introduction section with animated text -->
+  <section class="legacy-intro-section">
+    <div class="container">
+      <div class="legacy-intro reveal-on-scroll" data-aos="fade-up">
+        <p>{{ site.data.legacy.intro_content }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual collage section with parallax scrolling effects -->
+  <section class="legacy-collage-section">
+    <div class="container-fluid p-0">
+      <div class="legacy-collage">
+        <!-- Layer 1: Historical perspective -->
+        <div class="legacy-collage-layer" data-aos="fade-right">
+          <div class="legacy-collage-item legacy-collage-item-lg parallax" data-speed="0.1">
+            <img src="https://source.unsplash.com/800x600/?history,humanity" alt="Historical human achievements" class="img-fluid">
+            <div class="legacy-collage-overlay">
+              <span class="legacy-collage-caption">Our Past</span>
+            </div>
+          </div>
+          <div class="legacy-collage-item legacy-collage-item-sm parallax" data-speed="0.15">
+            <img src="https://source.unsplash.com/400x400/?ancient,artifact" alt="Ancient artifacts" class="img-fluid">
+            <div class="legacy-collage-overlay">
+              <span class="legacy-collage-caption">Foundations</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Layer 2: Present achievements -->
+        <div class="legacy-collage-layer" data-aos="fade-up" data-aos-delay="200">
+          <div class="legacy-collage-item legacy-collage-item-sm parallax" data-speed="0.2">
+            <img src="https://source.unsplash.com/400x400/?modern,technology" alt="Modern technology" class="img-fluid">
+            <div class="legacy-collage-overlay">
+              <span class="legacy-collage-caption">Innovation</span>
+            </div>
+          </div>
+          <div class="legacy-collage-item legacy-collage-item-lg parallax" data-speed="0.1">
+            <img src="https://source.unsplash.com/800x600/?humanity,art" alt="{{ site.data.legacy.image_alt }}" class="img-fluid">
+            <div class="legacy-collage-overlay">
+              <span class="legacy-collage-caption">Our Present</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Layer 3: Future potential -->
+        <div class="legacy-collage-layer" data-aos="fade-left" data-aos-delay="400">
+          <div class="legacy-collage-item legacy-collage-item-lg parallax" data-speed="0.05">
+            <img src="https://source.unsplash.com/800x600/?future,space" alt="Future horizons" class="img-fluid">
+            <div class="legacy-collage-overlay">
+              <span class="legacy-collage-caption">Our Future</span>
+            </div>
+          </div>
+          <div class="legacy-collage-item legacy-collage-item-sm parallax" data-speed="0.25">
+            <img src="https://source.unsplash.com/400x400/?child,wonder" alt="Wonder and potential" class="img-fluid">
+            <div class="legacy-collage-overlay">
+              <span class="legacy-collage-caption">Potential</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal stories section with interactive story cubes -->
+  <section class="legacy-stories-section">
+    <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up">Human Stories</h2>
+      
+      <div class="legacy-story-cubes">
+        <!-- Story Cube 1 -->
+        <div class="legacy-story-cube reveal-on-scroll" data-aos="flip-left">
+          <div class="legacy-story-cube-inner">
+            <div class="legacy-story-cube-front" style="background-image: url('https://source.unsplash.com/600x600/?portrait,innovator');">
+              <div class="legacy-story-cube-overlay">
+                <h3>The Innovator</h3>
+              </div>
+            </div>
+            <div class="legacy-story-cube-back">
+              <h3>Marie Curie</h3>
+              <p>"Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less."</p>
+              <p class="legacy-story-description">Pioneer in radioactivity research and the first person to win Nobel Prizes in two different scientific fields.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Story Cube 2 -->
+        <div class="legacy-story-cube reveal-on-scroll" data-aos="flip-up" data-aos-delay="200">
+          <div class="legacy-story-cube-inner">
+            <div class="legacy-story-cube-front" style="background-image: url('https://source.unsplash.com/600x600/?portrait,creative');">
+              <div class="legacy-story-cube-overlay">
+                <h3>The Creative</h3>
+              </div>
+            </div>
+            <div class="legacy-story-cube-back">
+              <h3>Leonardo da Vinci</h3>
+              <p>"Learning never exhausts the mind."</p>
+              <p class="legacy-story-description">Renaissance polymath whose areas of interest included invention, drawing, painting, sculpture, architecture, science, music, mathematics, engineering, literature, anatomy, geology, astronomy, botany, paleontology, and cartography.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Story Cube 3 -->
+        <div class="legacy-story-cube reveal-on-scroll" data-aos="flip-right" data-aos-delay="400">
+          <div class="legacy-story-cube-inner">
+            <div class="legacy-story-cube-front" style="background-image: url('https://source.unsplash.com/600x600/?portrait,visionary');">
+              <div class="legacy-story-cube-overlay">
+                <h3>The Visionary</h3>
+              </div>
+            </div>
+            <div class="legacy-story-cube-back">
+              <h3>Ada Lovelace</h3>
+              <p>"The Analytical Engine has no pretensions whatever to originate anything. It can do whatever we know how to order it to perform."</p>
+              <p class="legacy-story-description">English mathematician and writer, chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="legacy-content" data-aos="fade-up" data-aos-delay="300">
+        <div class="legacy-text">
+          <p class="legacy-paragraph">
+            {{ site.data.legacy.main_content_1 }}
+          </p>
+          <p class="legacy-paragraph">
+            {{ site.data.legacy.main_content_2 }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Initialize AOS animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+    });
+  </script>
+</main>

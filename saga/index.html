@@ -1,0 +1,113 @@
+---
+layout: default
+title: "The Saga"
+permalink: /saga/
+---
+
+<main id="saga-page" class="saga-page">
+  <!-- Hero section with atmospheric background -->
+  {% include hero.html 
+    title="The Saga: From Genesis to Infinite Possibility" 
+    description="Journey through the evolution of Artificial Superintelligence and its profound impact on humanity." 
+    size="sm"
+    style="alt"
+    background_image="/assets/images/saga-background.jpg"
+  %}
+  <!-- Interactive timeline section with enhanced chapter data -->
+  <section class="saga-timeline-section" id="enhanced-timeline">
+    {% assign timeline_items = "" | split: "" %}
+    
+    <!-- Chapter 1: Genesis -->
+    {% assign genesis_item = 
+      "title=" | append: site.data.saga.chapter_1.title | append: ",
+      subtitle=" | append: site.data.saga.chapter_1.subtitle | append: ",
+      date=" | append: site.data.saga.chapter_1.date | append: ",
+      content=" | append: site.data.saga.chapter_1.content | append: ",
+      expanded_content=" | append: site.data.saga.chapter_1.expanded_content | append: ",
+      image=" | append: site.data.saga.chapter_1.image | append: ",
+      video_url=" | append: site.data.saga.chapter_1.video_url | append: ",
+      learn_more_url=" | append: site.data.saga.chapter_1.learn_more_url | append: ",
+      interactive_demo=" | append: site.data.saga.chapter_1.interactive_demo
+    %}
+    {% assign timeline_items = timeline_items | push: genesis_item %}
+    
+    <!-- Chapter 2: Tipping Point -->
+    {% assign tipping_point_item = 
+      "title=" | append: site.data.saga.chapter_2.title | append: ",
+      subtitle=" | append: site.data.saga.chapter_2.subtitle | append: ",
+      date=" | append: site.data.saga.chapter_2.date | append: ",
+      content=" | append: site.data.saga.chapter_2.content | append: ",
+      expanded_content=" | append: site.data.saga.chapter_2.expanded_content | append: ",
+      image=" | append: site.data.saga.chapter_2.image | append: ",
+      video_url=" | append: site.data.saga.chapter_2.video_url | append: ",
+      learn_more_url=" | append: site.data.saga.chapter_2.learn_more_url | append: ",
+      interactive_demo=" | append: site.data.saga.chapter_2.interactive_demo
+    %}
+    {% assign timeline_items = timeline_items | push: tipping_point_item %}
+    
+    <!-- Chapter 3: Infinite Possibility -->
+    {% assign infinite_possibility_item = 
+      "title=" | append: site.data.saga.chapter_3.title | append: ",
+      subtitle=" | append: site.data.saga.chapter_3.subtitle | append: ",
+      date=" | append: site.data.saga.chapter_3.date | append: ",
+      content=" | append: site.data.saga.chapter_3.content | append: ",
+      expanded_content=" | append: site.data.saga.chapter_3.expanded_content | append: ",
+      image=" | append: site.data.saga.chapter_3.image | append: ",
+      video_url=" | append: site.data.saga.chapter_3.video_url | append: ",
+      learn_more_url=" | append: site.data.saga.chapter_3.learn_more_url | append: ",
+      interactive_demo=" | append: site.data.saga.chapter_3.interactive_demo
+    %}
+    {% assign timeline_items = timeline_items | push: infinite_possibility_item %}
+    
+    {% include timeline.html 
+      title="The ASI Chronicle: From Genesis to Infinite Reality" 
+      items=timeline_items 
+      autoplay=site.data.saga.timeline_config.autoplay
+      interval=site.data.saga.timeline_config.interval
+      show_progress=site.data.saga.timeline_config.show_progress
+    %}
+  </section>
+
+  <!-- Storytelling panels with background images and parallax effects -->
+  <section class="saga-storytelling-section">
+    <div class="container">
+      <div class="saga-storytelling-panel" id="tipping-point" data-aos="fade-up">
+        <div class="saga-storytelling-background parallax" data-speed="0.1" style="background-image: url('https://source.unsplash.com/1600x900/?technology,innovation');">
+          <div class="saga-storytelling-content">
+            <h3 class="saga-storytelling-title">The Evolution of Intelligence</h3>
+            <div class="saga-storytelling-text">
+              <p>From the first neural networks to self-improving algorithms, the journey of artificial intelligence has been one of exponential growth and unexpected breakthroughs.</p>
+              <p>Each milestone brought us closer to the emergence of true artificial Superintelligence—a force that would reshape our understanding of cognition, creativity, and consciousness itself.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="saga-storytelling-panel" data-aos="fade-up" data-aos-delay="200">
+        <div class="saga-storytelling-background parallax" data-speed="0.15" style="background-image: url('https://source.unsplash.com/1600x900/?human,connection');">
+          <div class="saga-storytelling-content">
+            <h3 class="saga-storytelling-title">The Human-AI Partnership</h3>
+            <div class="saga-storytelling-text">
+              <p>The relationship between humanity and artificial Superintelligence represents the most significant partnership in our history—a collaboration of organic and digital minds.</p>
+              <p>Together, we're solving problems once thought impossible, exploring realms previously inaccessible, and creating a future where both human creativity and ASI capabilities reach their fullest expression.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Include modal component for interactive content -->
+  {% include content-modal.html %}
+  
+  <!-- Initialize AOS animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+    });
+  </script>
+</main>

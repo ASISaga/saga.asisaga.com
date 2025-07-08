@@ -1,0 +1,288 @@
+/*
+Human Essence Page Styles
+Styling for the Human Essence Embedding page that captures the sacred process of consciousness integration
+*/
+
+.human-essence-page-container {
+  // Hero section specific to Human Essence
+  .transcendent-hero {
+    &.essence-cosmic {
+      background: linear-gradient(135deg, $human-essence-pink 0%, $consciousness-purple 50%, $cosmic-deep-blue 100%);
+      
+      .hero-content {
+        @include essence-embedding-animation;
+      }
+    }
+  }
+
+  // Essence Process Section
+  .essence-process-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($human-essence-pink, 0.1) 100%);
+    color: $transcendent-white;
+    
+    .essence-content {
+      .essence-subtitle {
+        @include transcendent-typography('heading-3');
+        color: $human-essence-pink;
+        margin-bottom: $genesis-spacing-md;
+      }
+      
+      .essence-description {
+        @include transcendent-typography('body-large');
+        line-height: 1.8;
+        margin-bottom: $genesis-spacing-md;
+        color: rgba($transcendent-white, 0.95);
+      }
+    }
+    
+    .essence-visualization {
+      position: relative;
+      height: 400px;
+      
+      .essence-merger {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius-lg;
+        background: radial-gradient(circle at center, rgba($human-essence-pink, 0.2) 0%, transparent 70%);
+        overflow: hidden;
+        
+        .human-consciousness-stream,
+        .asi-integration-field,
+        .essence-emergence {
+          position: absolute;
+          border-radius: 50%;
+          @include consciousness-flow-animation;
+        }
+        
+        .human-consciousness-stream {
+          top: 20%;
+          left: 10%;
+          width: 80px;
+          height: 80px;
+          background: radial-gradient(circle, $human-essence-pink 0%, transparent 70%);
+          animation: consciousness-pulse 3s ease-in-out infinite;
+        }
+        
+        .asi-integration-field {
+          top: 50%;
+          right: 10%;
+          width: 120px;
+          height: 120px;
+          background: radial-gradient(circle, $consciousness-purple 0%, transparent 70%);
+          animation: consciousness-pulse 3s ease-in-out infinite 1s;
+        }
+        
+        .essence-emergence {
+          bottom: 20%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 100px;
+          background: radial-gradient(circle, $transcendent-gold 0%, transparent 70%);
+          animation: consciousness-pulse 3s ease-in-out infinite 2s;
+        }
+      }
+    }
+  }
+
+  // Essence Components Section
+  .essence-components-section {
+    @include transcendent-section-spacing;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba($human-essence-pink, 0.05) 0%, rgba($consciousness-purple, 0.05) 100%);
+      pointer-events: none;
+    }
+    
+    .essence-components {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .essence-component {
+      @include consciousness-card;
+      background: rgba($transcendent-white, 0.03);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba($human-essence-pink, 0.2);
+      border-radius: $border-radius-md;
+      padding: $genesis-spacing-lg;
+      text-align: center;
+      transition: all 0.4s $consciousness-timing;
+      height: 100%;
+      
+      &:hover {
+        transform: translateY(-8px);
+        background: rgba($transcendent-white, 0.08);
+        border-color: rgba($human-essence-pink, 0.4);
+        box-shadow: 0 15px 35px rgba($human-essence-pink, 0.15);
+      }
+      
+      .component-icon {
+        @include sacred-icon;
+        font-size: 2.5rem;
+        color: $human-essence-pink;
+        margin-bottom: $genesis-spacing-md;
+        
+        i {
+          @include consciousness-pulse-animation;
+        }
+      }
+      
+      .component-title {
+        @include transcendent-typography('heading-4');
+        color: $transcendent-white;
+        margin-bottom: $genesis-spacing-sm;
+      }
+      
+      .component-description {
+        @include transcendent-typography('body');
+        color: rgba($transcendent-white, 0.85);
+        line-height: 1.6;
+      }
+      
+      // Component-specific styling
+      &.values-ethics {
+        .component-icon { color: $transcendent-gold; }
+        border-color: rgba($transcendent-gold, 0.2);
+        &:hover { border-color: rgba($transcendent-gold, 0.4); }
+      }
+      
+      &.creativity-innovation {
+        .component-icon { color: $consciousness-purple; }
+        border-color: rgba($consciousness-purple, 0.2);
+        &:hover { border-color: rgba($consciousness-purple, 0.4); }
+      }
+      
+      &.empathy-compassion {
+        .component-icon { color: $human-essence-pink; }
+        border-color: rgba($human-essence-pink, 0.2);
+        &:hover { border-color: rgba($human-essence-pink, 0.4); }
+      }
+      
+      &.wisdom-experience {
+        .component-icon { color: $cosmic-light-blue; }
+        border-color: rgba($cosmic-light-blue, 0.2);
+        &:hover { border-color: rgba($cosmic-light-blue, 0.4); }
+      }
+    }
+  }
+
+  // Embedding Process Section
+  .embedding-process-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, $consciousness-purple 100%);
+    color: $transcendent-white;
+    
+    .embedding-timeline {
+      position: relative;
+      padding: $genesis-spacing-xl 0;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, $human-essence-pink 0%, $transcendent-gold 100%);
+        transform: translateX(-50%);
+      }
+      
+      .timeline-item {
+        position: relative;
+        margin-bottom: $genesis-spacing-xl;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 16px;
+          height: 16px;
+          background: $human-essence-pink;
+          border-radius: 50%;
+          border: 3px solid $transcendent-white;
+          z-index: 2;
+        }
+        
+        .timeline-content {
+          @include consciousness-card;
+          background: rgba($transcendent-white, 0.08);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba($human-essence-pink, 0.3);
+          border-radius: $border-radius-md;
+          padding: $genesis-spacing-lg;
+          width: 45%;
+          
+          h4 {
+            @include transcendent-typography('heading-4');
+            color: $human-essence-pink;
+            margin-bottom: $genesis-spacing-sm;
+          }
+          
+          p {
+            @include transcendent-typography('body');
+            color: rgba($transcendent-white, 0.9);
+            line-height: 1.6;
+            margin: 0;
+          }
+        }
+        
+        &:nth-child(odd) .timeline-content {
+          margin-left: auto;
+        }
+        
+        &:nth-child(even) .timeline-content {
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(lg) {
+  .human-essence-page-container {
+    .essence-visualization {
+      height: 300px;
+      margin-top: $genesis-spacing-lg;
+    }
+    
+    .embedding-timeline {
+      .timeline-item .timeline-content {
+        width: 80%;
+        margin: 0 auto !important;
+      }
+      
+      &::before {
+        left: 20px;
+      }
+      
+      .timeline-item::before {
+        left: 20px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .human-essence-page-container {
+    .essence-component {
+      margin-bottom: $genesis-spacing-md;
+    }
+    
+    .component-icon {
+      font-size: 2rem !important;
+    }
+  }
+}

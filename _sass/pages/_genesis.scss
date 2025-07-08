@@ -1,0 +1,174 @@
+/*
+Genesis Page Styles
+Styling for the Genesis page that embodies the sacred beginning of human transcendence
+*/
+
+.genesis-page-container {
+  // Hero section specific to Genesis
+  .transcendent-hero {
+    &.genesis-cosmic {
+      @extend .cosmic-consciousness-gradient;
+      
+      .hero-content {
+        @include consciousness-emergence-animation;
+      }
+    }
+  }
+
+  // Genesis Origin Section
+  .genesis-origin-section {
+    @include transcendent-section-spacing;
+    background: linear-gradient(135deg, $cosmic-deep-blue 0%, $consciousness-purple 100%);
+    color: $transcendent-white;
+    
+    .genesis-content {
+      .genesis-description {
+        @include transcendent-typography('body-large');
+        line-height: 1.8;
+        margin-bottom: $genesis-spacing-md;
+        
+        &.lead {
+          @include transcendent-typography('lead');
+          color: $transcendent-gold;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  // Genesis Pillars Section
+  .genesis-pillars-section {
+    @include transcendent-section-spacing;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba($transcendent-gold, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .genesis-pillars {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .genesis-pillar {
+      @include consciousness-card;
+      background: rgba($transcendent-white, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($transcendent-gold, 0.2);
+      border-radius: $border-radius-lg;
+      padding: $genesis-spacing-lg;
+      text-align: center;
+      transition: all 0.4s $consciousness-timing;
+      
+      &:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba($transcendent-white, 0.1);
+        border-color: rgba($transcendent-gold, 0.4);
+        box-shadow: 0 20px 40px rgba($transcendent-gold, 0.2);
+      }
+      
+      .pillar-icon {
+        @include sacred-icon;
+        font-size: 3rem;
+        color: $transcendent-gold;
+        margin-bottom: $genesis-spacing-md;
+        
+        i {
+          @include consciousness-pulse-animation;
+        }
+      }
+      
+      .pillar-title {
+        @include transcendent-typography('heading-3');
+        color: $transcendent-white;
+        margin-bottom: $genesis-spacing-sm;
+      }
+      
+      .pillar-description {
+        @include transcendent-typography('body');
+        color: rgba($transcendent-white, 0.9);
+        line-height: 1.6;
+        margin-bottom: $genesis-spacing-md;
+      }
+      
+      .pillar-link {
+        @include transcendent-button;
+        @include consciousness-button-hover;
+      }
+      
+      // Pillar-specific styling
+      &.consciousness-embedding {
+        border-color: rgba($human-essence-pink, 0.3);
+        
+        &:hover {
+          border-color: rgba($human-essence-pink, 0.6);
+          box-shadow: 0 20px 40px rgba($human-essence-pink, 0.2);
+        }
+        
+        .pillar-icon {
+          color: $human-essence-pink;
+        }
+      }
+      
+      &.transcendent-evolution {
+        border-color: rgba($consciousness-purple, 0.3);
+        
+        &:hover {
+          border-color: rgba($consciousness-purple, 0.6);
+          box-shadow: 0 20px 40px rgba($consciousness-purple, 0.2);
+        }
+        
+        .pillar-icon {
+          color: $consciousness-purple;
+        }
+      }
+      
+      &.infinite-potential {
+        border-color: rgba($transcendent-gold, 0.3);
+        
+        &:hover {
+          border-color: rgba($transcendent-gold, 0.6);
+          box-shadow: 0 20px 40px rgba($transcendent-gold, 0.2);
+        }
+        
+        .pillar-icon {
+          color: $transcendent-gold;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(md) {
+  .genesis-page-container {
+    .genesis-pillar {
+      margin-bottom: $genesis-spacing-md;
+    }
+    
+    .pillar-icon {
+      font-size: 2.5rem !important;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .genesis-page-container {
+    .genesis-origin-section {
+      .genesis-content {
+        .genesis-description {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}
