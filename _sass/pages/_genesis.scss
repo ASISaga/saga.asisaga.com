@@ -106,15 +106,15 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
       
       // Pillar-specific styling
       &.consciousness-embedding {
-        border-color: rgba($human-essence-pink, 0.3);
+        border-color: rgba($border-color, 0.3);
         
         &:hover {
-          border-color: rgba($human-essence-pink, 0.6);
-          box-shadow: 0 20px 40px rgba($human-essence-pink, 0.2);
+          border-color: rgba($border-color, 0.6);
+          box-shadow: 0 20px 40px rgba($border-color, 0.2);
         }
         
         .pillar-icon {
-          color: $human-essence-pink;
+          color: $border-color;
         }
       }
       

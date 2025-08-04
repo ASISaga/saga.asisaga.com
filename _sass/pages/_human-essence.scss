@@ -7,7 +7,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
   // Hero section specific to Human Essence
   .transcendent-hero {
     &.essence-cosmic {
-      background: linear-gradient(135deg, $human-essence-pink 0%, $transformation-purple 50%, $cosmic-deep-blue 100%);
+      background: linear-gradient(135deg, $border-color 0%, $transformation-purple 50%, $cosmic-deep-blue 100%);
       
       .hero-content {
         @include essence-embedding-animation;
@@ -18,13 +18,13 @@ Styling for the Human Essence Embedding page that captures the sacred process of
   // Essence Process Section
   .essence-process-section {
     @include transcendent-section-spacing;
-    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($human-essence-pink, 0.1) 100%);
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($border-color, 0.1) 100%);
     color: $transcendent-white;
     
     .essence-content {
       .essence-subtitle {
         @include transcendent-typography('heading-3');
-        color: $human-essence-pink;
+        color: $border-color;
         margin-bottom: $genesis-spacing-md;
       }
       
@@ -45,7 +45,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
         width: 100%;
         height: 100%;
         border-radius: $border-radius-lg;
-        background: radial-gradient(circle at center, rgba($human-essence-pink, 0.2) 0%, transparent 70%);
+        background: radial-gradient(circle at center, rgba($border-color, 0.2) 0%, transparent 70%);
         overflow: hidden;
         
         .human-consciousness-stream,
@@ -61,7 +61,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
           left: 10%;
           width: 80px;
           height: 80px;
-          background: radial-gradient(circle, $human-essence-pink 0%, transparent 70%);
+          background: radial-gradient(circle, $border-color 0%, transparent 70%);
           animation: consciousness-pulse 3s ease-in-out infinite;
         }
         
@@ -99,7 +99,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba($human-essence-pink, 0.05) 0%, rgba($transformation-purple, 0.05) 100%);
+      background: linear-gradient(135deg, rgba($border-color, 0.05) 0%, rgba($transformation-purple, 0.05) 100%);
       pointer-events: none;
     }
     
@@ -112,7 +112,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       @include consciousness-card;
       background: rgba($transcendent-white, 0.03);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba($human-essence-pink, 0.2);
+      border: 1px solid rgba($border-color, 0.2);
       border-radius: $border-radius-md;
       padding: $genesis-spacing-lg;
       text-align: center;
@@ -122,14 +122,14 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       &:hover {
         transform: translateY(-8px);
         background: rgba($transcendent-white, 0.08);
-        border-color: rgba($human-essence-pink, 0.4);
-        box-shadow: 0 15px 35px rgba($human-essence-pink, 0.15);
+        border-color: rgba($border-color, 0.4);
+        box-shadow: 0 15px 35px rgba($border-color, 0.15);
       }
       
       .component-icon {
         @include sacred-icon;
         font-size: 2.5rem;
-        color: $human-essence-pink;
+        color: $border-color;
         margin-bottom: $genesis-spacing-md;
         
         i {
@@ -163,9 +163,9 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       }
       
       &.empathy-compassion {
-        .component-icon { color: $human-essence-pink; }
-        border-color: rgba($human-essence-pink, 0.2);
-        &:hover { border-color: rgba($human-essence-pink, 0.4); }
+        .component-icon { color: $border-color; }
+        border-color: rgba($border-color, 0.2);
+        &:hover { border-color: rgba($border-color, 0.4); }
       }
       
       &.wisdom-experience {
@@ -193,7 +193,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
         top: 0;
         bottom: 0;
         width: 2px;
-        background: linear-gradient(to bottom, $human-essence-pink 0%, $luminous-gold 100%);
+        background: linear-gradient(to bottom, $border-color 0%, $luminous-gold 100%);
         transform: translateX(-50%);
       }
       
@@ -209,7 +209,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
           transform: translate(-50%, -50%);
           width: 16px;
           height: 16px;
-          background: $human-essence-pink;
+          background: $border-color;
           border-radius: 50%;
           border: 3px solid $transcendent-white;
           z-index: 2;
@@ -219,14 +219,14 @@ Styling for the Human Essence Embedding page that captures the sacred process of
           @include consciousness-card;
           background: rgba($transcendent-white, 0.08);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba($human-essence-pink, 0.3);
+          border: 1px solid rgba($border-color, 0.3);
           border-radius: $border-radius-md;
           padding: $genesis-spacing-lg;
           width: 45%;
           
           h4 {
             @include transcendent-typography('heading-4');
-            color: $human-essence-pink;
+            color: $border-color;
             margin-bottom: $genesis-spacing-sm;
           }
           
