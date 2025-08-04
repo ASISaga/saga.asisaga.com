@@ -18,7 +18,7 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
   // Genesis Origin Section
   .genesis-origin-section {
     @include transcendent-section-spacing;
-    background: linear-gradient(135deg, $cosmic-deep-blue 0%, $consciousness-purple 100%);
+    background: linear-gradient(135deg, $cosmic-deep-blue 0%, $transformation-purple 100%);
     color: $transcendent-white;
     
     .genesis-content {
@@ -119,15 +119,15 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
       }
       
       &.transcendent-evolution {
-        border-color: rgba($consciousness-purple, 0.3);
+        border-color: rgba($transformation-purple, 0.3);
         
         &:hover {
-          border-color: rgba($consciousness-purple, 0.6);
-          box-shadow: 0 20px 40px rgba($consciousness-purple, 0.2);
+          border-color: rgba($transformation-purple, 0.6);
+          box-shadow: 0 20px 40px rgba($transformation-purple, 0.2);
         }
         
         .pillar-icon {
-          color: $consciousness-purple;
+          color: $transformation-purple;
         }
       }
       

@@ -7,7 +7,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
   // Hero section specific to Human Essence
   .transcendent-hero {
     &.essence-cosmic {
-      background: linear-gradient(135deg, $human-essence-pink 0%, $consciousness-purple 50%, $cosmic-deep-blue 100%);
+      background: linear-gradient(135deg, $human-essence-pink 0%, $transformation-purple 50%, $cosmic-deep-blue 100%);
       
       .hero-content {
         @include essence-embedding-animation;
@@ -70,7 +70,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
           right: 10%;
           width: 120px;
           height: 120px;
-          background: radial-gradient(circle, $consciousness-purple 0%, transparent 70%);
+          background: radial-gradient(circle, $transformation-purple 0%, transparent 70%);
           animation: consciousness-pulse 3s ease-in-out infinite 1s;
         }
         
@@ -99,7 +99,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba($human-essence-pink, 0.05) 0%, rgba($consciousness-purple, 0.05) 100%);
+      background: linear-gradient(135deg, rgba($human-essence-pink, 0.05) 0%, rgba($transformation-purple, 0.05) 100%);
       pointer-events: none;
     }
     
@@ -157,9 +157,9 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       }
       
       &.creativity-innovation {
-        .component-icon { color: $consciousness-purple; }
-        border-color: rgba($consciousness-purple, 0.2);
-        &:hover { border-color: rgba($consciousness-purple, 0.4); }
+        .component-icon { color: $transformation-purple; }
+        border-color: rgba($transformation-purple, 0.2);
+        &:hover { border-color: rgba($transformation-purple, 0.4); }
       }
       
       &.empathy-compassion {
@@ -179,7 +179,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
   // Embedding Process Section
   .embedding-process-section {
     @include transcendent-section-spacing;
-    background: linear-gradient(45deg, $cosmic-deep-blue 0%, $consciousness-purple 100%);
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, $transformation-purple 100%);
     color: $transcendent-white;
     
     .embedding-timeline {

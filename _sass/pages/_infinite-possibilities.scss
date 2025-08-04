@@ -7,7 +7,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
   // Hero section specific to Infinite Possibilities
   .transcendent-hero {
     &.infinite-cosmic {
-      background: linear-gradient(135deg, $cosmic-deep-blue 0%, $consciousness-purple 33%, $luminous-gold 66%, $human-essence-pink 100%);
+      background: linear-gradient(135deg, $cosmic-deep-blue 0%, $transformation-purple 33%, $luminous-gold 66%, $human-essence-pink 100%);
       
       .hero-content {
         @include infinite-expansion-animation;
@@ -132,7 +132,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
   // Infinite Timeline Section
   .infinite-timeline-section {
     @include transcendent-section-spacing;
-    background: linear-gradient(135deg, $consciousness-purple 0%, $cosmic-deep-blue 100%);
+    background: linear-gradient(135deg, $transformation-purple 0%, $cosmic-deep-blue 100%);
     color: $transcendent-white;
     
     .infinite-timeline {
