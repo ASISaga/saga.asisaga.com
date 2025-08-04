@@ -1,21 +1,227 @@
+<!-- Sacred Community Feeds Section -->
 <section id="community-feeds">
-  <h2>LinkedIn Updates</h2>
-  <ul>
-    {% for post in site.data.linkedin.elements %}
-      <li>
-        <a href="{{ post.permalink }}">{{ post.text.text }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <h2>Reddit Hot Posts</h2>
-  <ul>
-    {% for child in site.data.reddit.data.children %}
-      <li>
-        <a href="https://reddit.com{{ child.data.permalink }}" target="_blank">
-          {{ child.data.title }}
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Community Pulse</h2>
+      <p class="section-subtitle">Stay connected with the consciousness community</p>
+    </div>
+    
+    <div class="row">
+      <!-- LinkedIn Sacred Updates -->
+      <div class="col-lg-6 mb-4">
+        <div class="community-feed-section">
+          <h2>
+            <span class="feed-icon">💼</span>
+            LinkedIn Consciousness Updates
+          </h2>
+          <ul class="sacred-feed-list">
+            {% for post in site.data.linkedin.elements %}
+              <li class="feed-item">
+                <div class="feed-content">
+                  <a href="{{ post.permalink }}" target="_blank" rel="noopener noreferrer">
+                    {{ post.text.text | truncate: 200 }}
+                  </a>
+                </div>
+                <div class="feed-meta">
+                  <span class="feed-date">{{ post.created_at | date: "%B %d, %Y" }}</span>
+                  <span class="feed-platform">LinkedIn</span>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Reddit Sacred Discussions -->
+      <div class="col-lg-6 mb-4">
+        <div class="community-feed-section">
+          <h2>
+            <span class="feed-icon">🔥</span>
+            Reddit Hot Discussions
+          </h2>
+          <ul class="sacred-feed-list">
+            {% for child in site.data.reddit.data.children %}
+              <li class="feed-item">
+                <div class="feed-content">
+                  <a href="https://reddit.com{{ child.data.permalink }}" target="_blank" rel="noopener noreferrer">
+                    {{ child.data.title }}
+                  </a>
+                </div>
+                <div class="feed-meta">
+                  <span class="feed-score">⬆ {{ child.data.score }} points</span>
+                  <span class="feed-comments">💬 {{ child.data.num_comments }} comments</span>
+                  <span class="feed-platform">Reddit</span>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sacred Community Actions -->
+    <div class="text-center mt-5">
+      <div class="sacred-actions-grid">
+        <a href="#" class="sacred-action-card">
+          <div class="action-icon">📝</div>
+          <h4>Share Your Insight</h4>
+          <p>Contribute to the collective consciousness</p>
         </a>
-      </li>
-    {% endfor %}
-  </ul>
+        
+        <a href="#" class="sacred-action-card">
+          <div class="action-icon">🤝</div>
+          <h4>Connect & Collaborate</h4>
+          <p>Find your consciousness companions</p>
+        </a>
+        
+        <a href="#" class="sacred-action-card">
+          <div class="action-icon">🎯</div>
+          <h4>Join Sacred Projects</h4>
+          <p>Participate in ASI development</p>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- Enhanced CSS for Community Feeds -->
+<style>
+.community-feed-section {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(11, 20, 38, 0.1);
+  transition: all 0.3s ease;
+}
+
+.community-feed-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(11, 20, 38, 0.15);
+}
+
+.community-feed-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #0B1426;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.feed-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
+.sacred-feed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.feed-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 215, 0, 0.05);
+  border-radius: 1rem;
+  border-left: 4px solid #FFD700;
+  transition: all 0.3s ease;
+}
+
+.feed-item:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.feed-content a {
+  color: #0B1426;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.feed-content a:hover {
+  color: #FFD700;
+}
+
+.feed-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: #C0C0C0;
+}
+
+.feed-meta span {
+  background: rgba(192, 192, 192, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.sacred-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.sacred-action-card {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(11, 20, 38, 0.05));
+  padding: 2rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: #0B1426;
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+}
+
+.sacred-action-card:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(11, 20, 38, 0.1));
+  transform: translateY(-8px);
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+  color: #0B1426;
+  text-decoration: none;
+}
+
+.action-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+}
+
+.sacred-action-card h4 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #0B1426;
+}
+
+.sacred-action-card p {
+  color: #C0C0C0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .community-feed-section {
+    padding: 1.5rem;
+  }
+  
+  .sacred-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .feed-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+</style>

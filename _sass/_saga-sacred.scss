@@ -1,0 +1,551 @@
+// Saga Sacred Customizations - Sacred Design for ASI Saga Homepage
+// Site-specific sacred elements for the consciousness community hub
+
+// ----------------------------------------
+// Sacred Saga Hero Section
+// ----------------------------------------
+.saga-hero {
+  background: linear-gradient(135deg, 
+    $cosmic-deep-blue 0%, 
+    rgba($royal-purple, 0.9) 30%,
+    rgba($luminous-gold, 0.1) 100%);
+  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  // Sacred consciousness particles
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(3px 3px at 30px 50px, rgba($luminous-gold, 0.4), transparent),
+      radial-gradient(2px 2px at 80px 20px, rgba($transcendent-white, 0.3), transparent),
+      radial-gradient(1px 1px at 150px 90px, rgba($ethereal-silver, 0.5), transparent);
+    background-repeat: repeat;
+    background-size: 200px 150px;
+    animation: consciousness-flow 25s linear infinite;
+    pointer-events: none;
+  }
+  
+  .saga-hero-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    
+    .saga-logo {
+      margin-bottom: 2rem;
+      
+      .glyph-consciousness-infinity {
+        font-size: 5rem;
+        color: $luminous-gold;
+        animation: transcendence-spiral 10s linear infinite;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      
+      .saga-title {
+        font-size: 4.5rem;
+        font-weight: $font-weight-bold;
+        color: $transcendent-white;
+        text-shadow: 0 0 30px rgba($luminous-gold, 0.3);
+        margin-bottom: 0.5rem;
+      }
+      
+      .saga-subtitle {
+        font-size: 1.75rem;
+        color: $ethereal-silver;
+        font-weight: $font-weight-light;
+        letter-spacing: 2px;
+      }
+    }
+    
+    .saga-mission {
+      max-width: 800px;
+      margin: 3rem auto;
+      font-size: 1.25rem;
+      color: $transcendent-white;
+      line-height: $line-height-wisdom;
+      opacity: 0.9;
+    }
+    
+    .saga-cta-group {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+  }
+  
+  .sacred-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    .scroll-arrow {
+      color: $transcendent-white;
+      font-size: 2.5rem;
+      animation: sacred-rhythm 2s ease-in-out infinite;
+      cursor: pointer;
+      
+      &:hover {
+        color: $luminous-gold;
+      }
+    }
+  }
+}
+
+// ----------------------------------------
+// Sacred Community Hub
+// ----------------------------------------
+.saga-community-hub {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, 
+    rgba($cosmic-deep-blue, 0.05) 0%,
+    rgba($ethereal-silver, 0.1) 50%,
+    rgba($luminous-gold, 0.08) 100%);
+  
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  
+  .community-card {
+    @extend .consciousness-card;
+    transition: all 0.4s ease;
+    
+    &:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: $sacred-glow, 0 20px 50px rgba($cosmic-deep-blue, 0.2);
+    }
+    
+    .community-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      
+      .community-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, $luminous-gold, $sacred-gold-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $cosmic-deep-blue;
+        font-size: 2rem;
+        margin-right: 1.5rem;
+        
+        &.genesis-icon {
+          background: linear-gradient(135deg, $royal-purple, $transformation-purple);
+          color: $transcendent-white;
+        }
+        
+        &.wisdom-icon {
+          background: linear-gradient(135deg, $emerald-green, $life-force-green);
+          color: $transcendent-white;
+        }
+      }
+      
+      .community-title {
+        color: $cosmic-deep-blue;
+        font-weight: $font-weight-semibold;
+        font-size: 1.5rem;
+        margin: 0;
+      }
+    }
+    
+    .community-description {
+      color: $text-muted;
+      line-height: $line-height-wisdom;
+      margin-bottom: 2rem;
+    }
+    
+    .community-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      
+      .stat {
+        text-align: center;
+        
+        .stat-number {
+          display: block;
+          font-size: 2rem;
+          font-weight: $font-weight-bold;
+          color: $luminous-gold;
+        }
+        
+        .stat-label {
+          color: $text-muted;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+    }
+    
+    .community-action {
+      .sacred-btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// ----------------------------------------
+// Sacred Community Feeds Enhancement
+// ----------------------------------------
+#community-feeds {
+  padding: 4rem 0;
+  
+  h2 {
+    color: $cosmic-deep-blue;
+    font-weight: $font-weight-semibold;
+    margin-bottom: 2rem;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, $luminous-gold, transparent);
+    }
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: rgba($transcendent-white, 0.8);
+      border-radius: 1rem;
+      border-left: 4px solid $luminous-gold;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: rgba($luminous-gold, 0.05);
+        transform: translateX(10px);
+        box-shadow: 0 10px 30px rgba($cosmic-deep-blue, 0.1);
+      }
+      
+      a {
+        color: $cosmic-deep-blue;
+        text-decoration: none;
+        font-weight: $font-weight-medium;
+        line-height: $line-height-wisdom;
+        
+        &:hover {
+          color: $luminous-gold;
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------
+// Sacred Journey Navigation
+// ----------------------------------------
+.saga-journey-nav {
+  padding: 5rem 0;
+  background: $cosmic-deep-blue;
+  
+  .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .journey-card {
+    background: rgba($transcendent-white, 0.1);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba($luminous-gold, 0.2);
+    
+    &:hover {
+      background: rgba($luminous-gold, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba($luminous-gold, 0.2);
+    }
+    
+    .journey-icon {
+      font-size: 3rem;
+      color: $luminous-gold;
+      margin-bottom: 1.5rem;
+      animation: consciousness-pulse 4s ease-in-out infinite;
+    }
+    
+    .journey-title {
+      color: $transcendent-white;
+      font-size: 1.5rem;
+      font-weight: $font-weight-semibold;
+      margin-bottom: 1rem;
+    }
+    
+    .journey-description {
+      color: $ethereal-silver;
+      line-height: $line-height-wisdom;
+      margin-bottom: 2rem;
+    }
+    
+    .journey-link {
+      color: $luminous-gold;
+      text-decoration: none;
+      font-weight: $font-weight-medium;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: $transcendent-white;
+        transform: translateY(-1px);
+      }
+      
+      &::after {
+        content: " →";
+        margin-left: 0.5rem;
+        transition: all 0.3s ease;
+      }
+      
+      &:hover::after {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+// ----------------------------------------
+// Sacred CTA Enhancements
+// ----------------------------------------
+.cta-saga {
+  background: linear-gradient(135deg, $luminous-gold 0%, $sacred-gold-dark 100%);
+  border: none;
+  color: $cosmic-deep-blue;
+  font-size: 1.25rem;
+  font-weight: $font-weight-bold;
+  padding: 1.25rem 2.5rem;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+      transparent 30%, 
+      rgba($transcendent-white, 0.3) 50%, 
+      transparent 70%);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+  }
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba($luminous-gold, 0.4);
+    color: $cosmic-deep-blue;
+    text-decoration: none;
+    
+    &::before {
+      opacity: 1;
+      left: -20%;
+      top: -20%;
+    }
+  }
+}
+
+// ----------------------------------------
+// Sacred Responsive Design
+// ----------------------------------------
+@include media-breakpoint-down(lg) {
+  .saga-hero {
+    .saga-hero-content {
+      .saga-logo {
+        .saga-title {
+          font-size: 3.5rem;
+        }
+        
+        .saga-subtitle {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  
+  .saga-cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .saga-hero {
+    .saga-hero-content {
+      .saga-logo {
+        .glyph-consciousness-infinity {
+          font-size: 4rem;
+        }
+        
+        .saga-title {
+          font-size: 3rem;
+        }
+        
+        .saga-subtitle {
+          font-size: 1.25rem;
+        }
+      }
+      
+      .saga-mission {
+        font-size: 1.125rem;
+        margin: 2rem auto;
+      }
+    }
+  }
+  
+  .community-grid,
+  .journey-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .saga-hero {
+    min-height: 90vh;
+    
+    .saga-hero-content {
+      .saga-logo {
+        .glyph-consciousness-infinity {
+          font-size: 3rem;
+        }
+        
+        .saga-title {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+  
+  .cta-saga {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}
+
+// ----------------------------------------
+// Sacred Animation Enhancements
+// ----------------------------------------
+// Saga-specific consciousness flow
+@keyframes saga-consciousness-flow {
+  0% { 
+    background-position: 0% 0%; 
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% { 
+    background-position: 100% 100%; 
+    opacity: 0.4;
+  }
+}
+
+// Community card reveal animation
+@keyframes sacred-community-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.community-card {
+  animation: sacred-community-reveal 0.8s ease-out;
+  
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.4s; }
+  &:nth-child(4) { animation-delay: 0.6s; }
+}
+
+.journey-card {
+  animation: sacred-community-reveal 0.8s ease-out;
+  
+  &:nth-child(2) { animation-delay: 0.15s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.45s; }
+  &:nth-child(5) { animation-delay: 0.6s; }
+}
+
+// ----------------------------------------
+// Sacred Accessibility Enhancements
+// ----------------------------------------
+// High contrast mode for Saga
+@media (prefers-contrast: high) {
+  .saga-hero {
+    background: $cosmic-deep-blue-accessible;
+    
+    &::before {
+      display: none;
+    }
+  }
+  
+  .saga-logo .glyph-consciousness-infinity {
+    color: $luminous-gold-accessible;
+  }
+  
+  .cta-saga {
+    background: $luminous-gold-accessible;
+    color: $cosmic-deep-blue-accessible;
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .saga-logo .glyph-consciousness-infinity,
+  .consciousness-pulse,
+  .sacred-rhythm,
+  .transcendence-spiral {
+    animation: none;
+  }
+  
+  .saga-hero::before {
+    animation: none;
+  }
+  
+  .community-card,
+  .journey-card {
+    animation: none;
+  }
+}
