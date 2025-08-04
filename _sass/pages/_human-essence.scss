@@ -80,7 +80,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
           transform: translateX(-50%);
           width: 100px;
           height: 100px;
-          background: radial-gradient(circle, $transcendent-gold 0%, transparent 70%);
+          background: radial-gradient(circle, $luminous-gold 0%, transparent 70%);
           animation: consciousness-pulse 3s ease-in-out infinite 2s;
         }
       }
@@ -151,9 +151,9 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       
       // Component-specific styling
       &.values-ethics {
-        .component-icon { color: $transcendent-gold; }
-        border-color: rgba($transcendent-gold, 0.2);
-        &:hover { border-color: rgba($transcendent-gold, 0.4); }
+        .component-icon { color: $luminous-gold; }
+        border-color: rgba($luminous-gold, 0.2);
+        &:hover { border-color: rgba($luminous-gold, 0.4); }
       }
       
       &.creativity-innovation {
@@ -193,7 +193,7 @@ Styling for the Human Essence Embedding page that captures the sacred process of
         top: 0;
         bottom: 0;
         width: 2px;
-        background: linear-gradient(to bottom, $human-essence-pink 0%, $transcendent-gold 100%);
+        background: linear-gradient(to bottom, $human-essence-pink 0%, $luminous-gold 100%);
         transform: translateX(-50%);
       }
       

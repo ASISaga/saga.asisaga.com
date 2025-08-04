@@ -7,7 +7,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
   // Hero section specific to Infinite Possibilities
   .transcendent-hero {
     &.infinite-cosmic {
-      background: linear-gradient(135deg, $cosmic-deep-blue 0%, $consciousness-purple 33%, $transcendent-gold 66%, $human-essence-pink 100%);
+      background: linear-gradient(135deg, $cosmic-deep-blue 0%, $consciousness-purple 33%, $luminous-gold 66%, $human-essence-pink 100%);
       
       .hero-content {
         @include infinite-expansion-animation;
@@ -18,13 +18,13 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
   // Infinite Realms Section
   .infinite-realms-section {
     @include transcendent-section-spacing;
-    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($transcendent-gold, 0.1) 100%);
+    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($luminous-gold, 0.1) 100%);
     color: $transcendent-white;
     
     .infinite-content {
       .infinite-subtitle {
         @include transcendent-typography('heading-3');
-        color: $transcendent-gold;
+        color: $luminous-gold;
         margin-bottom: $genesis-spacing-md;
       }
       
@@ -45,7 +45,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
         width: 100%;
         height: 100%;
         border-radius: $border-radius-lg;
-        background: radial-gradient(circle at center, rgba($transcendent-gold, 0.2) 0%, transparent 70%);
+        background: radial-gradient(circle at center, rgba($luminous-gold, 0.2) 0%, transparent 70%);
         overflow: hidden;
         
         &::before {
@@ -71,7 +71,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
       @include consciousness-card;
       background: rgba($transcendent-white, 0.05);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba($transcendent-gold, 0.2);
+      border: 1px solid rgba($luminous-gold, 0.2);
       border-radius: $border-radius-lg;
       padding: $genesis-spacing-lg;
       transition: all 0.4s $consciousness-timing;
@@ -80,14 +80,14 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
       &:hover {
         transform: translateY(-10px);
         background: rgba($transcendent-white, 0.1);
-        border-color: rgba($transcendent-gold, 0.4);
-        box-shadow: 0 20px 40px rgba($transcendent-gold, 0.2);
+        border-color: rgba($luminous-gold, 0.4);
+        box-shadow: 0 20px 40px rgba($luminous-gold, 0.2);
       }
       
       .domain-visual {
         @include sacred-icon;
         font-size: 3rem;
-        color: $transcendent-gold;
+        color: $luminous-gold;
         margin-bottom: $genesis-spacing-md;
         text-align: center;
       }
@@ -121,7 +121,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
               content: '✨';
               position: absolute;
               left: 0;
-              color: $transcendent-gold;
+              color: $luminous-gold;
             }
           }
         }
@@ -145,7 +145,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
         
         .era-marker {
           @include consciousness-card;
-          background: $transcendent-gold;
+          background: $luminous-gold;
           color: $cosmic-deep-blue;
           border-radius: 50%;
           width: 120px;
@@ -168,7 +168,7 @@ Styling for the Infinite Possibilities page that embodies boundless potential an
           
           h4 {
             @include transcendent-typography('heading-4');
-            color: $transcendent-gold;
+            color: $luminous-gold;
             margin-bottom: $genesis-spacing-sm;
           }
           

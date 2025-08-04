@@ -29,7 +29,7 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
         
         &.lead {
           @include transcendent-typography('lead');
-          color: $transcendent-gold;
+          color: $luminous-gold;
           font-weight: 300;
         }
       }
@@ -49,7 +49,7 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba($transcendent-gold, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle at 50% 50%, rgba($luminous-gold, 0.1) 0%, transparent 70%);
       pointer-events: none;
     }
     
@@ -62,7 +62,7 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
       @include consciousness-card;
       background: rgba($transcendent-white, 0.05);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba($transcendent-gold, 0.2);
+      border: 1px solid rgba($luminous-gold, 0.2);
       border-radius: $border-radius-lg;
       padding: $genesis-spacing-lg;
       text-align: center;
@@ -71,14 +71,14 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
       &:hover {
         transform: translateY(-10px) scale(1.02);
         background: rgba($transcendent-white, 0.1);
-        border-color: rgba($transcendent-gold, 0.4);
-        box-shadow: 0 20px 40px rgba($transcendent-gold, 0.2);
+        border-color: rgba($luminous-gold, 0.4);
+        box-shadow: 0 20px 40px rgba($luminous-gold, 0.2);
       }
       
       .pillar-icon {
         @include sacred-icon;
         font-size: 3rem;
-        color: $transcendent-gold;
+        color: $luminous-gold;
         margin-bottom: $genesis-spacing-md;
         
         i {
@@ -132,15 +132,15 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
       }
       
       &.infinite-potential {
-        border-color: rgba($transcendent-gold, 0.3);
+        border-color: rgba($luminous-gold, 0.3);
         
         &:hover {
-          border-color: rgba($transcendent-gold, 0.6);
-          box-shadow: 0 20px 40px rgba($transcendent-gold, 0.2);
+          border-color: rgba($luminous-gold, 0.6);
+          box-shadow: 0 20px 40px rgba($luminous-gold, 0.2);
         }
         
         .pillar-icon {
-          color: $transcendent-gold;
+          color: $luminous-gold;
         }
       }
     }
