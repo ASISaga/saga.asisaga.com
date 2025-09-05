@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Three.js Init Test</title>
+  <title>ASI Saga Core + Weave</title>
   <style>
     body {
       margin: 0;
@@ -22,12 +22,10 @@
   <!-- Load Three.js first -->
   <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
 
-  <!-- Your app code -->
+  <!-- Scene code -->
   <script>
-    alert("Script loaded, THREE type: " + typeof THREE);
-
     (() => {
-      let scene, camera, renderer, cube;
+      let scene, camera, renderer, coreMesh, points, clock;
 
       alert("Init starting");
       init();
@@ -35,38 +33,91 @@
       animate();
 
       function init() {
-        // Scene
+        // Scene + fog
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x05060a);
+        scene.fog = new THREE.FogExp2(0x05060a, 0.018);
 
         // Camera
-        camera = new THREE.PerspectiveCamera(
-          60,
-          window.innerWidth / window.innerHeight,
-          0.1,
-          100
-        );
-        camera.position.z = 3;
+        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+        camera.position.set(0, 0, 8);
 
         // Renderer
-        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById("webgl-container").appendChild(renderer.domElement);
+        document.getElementById('webgl-container').appendChild(renderer.domElement);
 
-        // Simple geometry to prove rendering
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ffcc, wireframe: true });
-        cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+        // Clock
+        clock = new THREE.Clock();
+
+        // Lights
+        addLights();
+
+        // Core sphere
+        addCore();
+
+        // Weave points
+        addWeave();
 
         // Resize handling
-        window.addEventListener("resize", onResize, false);
+        window.addEventListener('resize', onResize, false);
+      }
+
+      function addLights() {
+        scene.add(new THREE.AmbientLight(0x6ea9ff, 0.35));
+        const dir = new THREE.DirectionalLight(0x9ee8ff, 0.6);
+        dir.position.set(2, 3, 2);
+        scene.add(dir);
+      }
+
+      function addCore() {
+        const geo = new THREE.SphereGeometry(1.05, 32, 32);
+        const mat = new THREE.MeshBasicMaterial({
+          color: 0xa9f8ff,
+          transparent: true,
+          opacity: 0.8
+        });
+        coreMesh = new THREE.Mesh(geo, mat);
+        scene.add(coreMesh);
+      }
+
+      function addWeave() {
+        const count = 8000;
+        const geo = new THREE.BufferGeometry();
+        const positions = new Float32Array(count * 3);
+
+        for (let i = 0; i < count; i++) {
+          const r = 3 + Math.random() * 8;
+          const a = Math.random() * Math.PI * 2;
+          const h = (Math.random() - 0.5) * 6;
+          positions[i * 3] = Math.cos(a) * r;
+          positions[i * 3 + 1] = h;
+          positions[i * 3 + 2] = Math.sin(a) * r;
+        }
+
+        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const mat = new THREE.PointsMaterial({
+          color: 0x87bfff,
+          size: 0.05,
+          transparent: true,
+          opacity: 0.7
+        });
+        points = new THREE.Points(geo, mat);
+        scene.add(points);
       }
 
       function animate() {
         requestAnimationFrame(animate);
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+        const t = clock.getElapsedTime();
+
+        // Rotate weave
+        points.rotation.y = t * 0.05;
+        points.rotation.x = Math.sin(t * 0.2) * 0.05;
+
+        // Pulse core
+        const s = 1 + Math.sin(t * 2) * 0.05;
+        coreMesh.scale.setScalar(s);
+
         renderer.render(scene, camera);
       }
 
