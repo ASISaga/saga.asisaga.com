@@ -113,13 +113,17 @@ class Home3DAnimation {
   // bandWidth: controls thickness of the band (0.0 = equator only, 1.0 = full sphere)
   randomOnJupiterBand(radius, bandWidth = 0.5) {
     const theta = Math.random() * 2 * Math.PI; // longitude
-    // phi: latitude, restrict to a band around the equator
-    // phi in [π/2 - band, π/2 + band]
-    const band = bandWidth * Math.PI / 2; // e.g. 0.5 covers ±45° from equator
-    const phi = (Math.PI / 2 - band) + Math.random() * (2 * band);
+    // Restrict cos(phi) to a band around the equator for uniform area distribution
+    // bandWidth = 0.5 means ±45° from equator
+    const band = bandWidth; // 0.5 covers ±45° from equator
+    const minCosPhi = Math.cos(Math.PI / 2 - band * Math.PI / 2);
+    const maxCosPhi = Math.cos(Math.PI / 2 + band * Math.PI / 2);
+    // For equator, minCosPhi ~ 0.707, maxCosPhi ~ -0.707
+    const cosPhi = minCosPhi + Math.random() * (maxCosPhi - minCosPhi);
+    const phi = Math.acos(cosPhi);
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.sin(phi) * Math.sin(theta);
-    const z = radius * Math.cos(phi);
+    const z = radius * cosPhi;
     return new THREE.Vector3(x, y, z);
   }
 
