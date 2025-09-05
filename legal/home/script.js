@@ -132,7 +132,7 @@ class Home3DAnimation {
     this.particlePositions[index * 3 + 1] = targetVector.y * startRadius / this.coreRadius;
     this.particlePositions[index * 3 + 2] = targetVector.z * startRadius / this.coreRadius;
 
-  this.particleSpeeds[index] = (0.75 + Math.random() * 0.75) * 0.5; // reduce speed to 50%
+  this.particleSpeeds[index] = (0.75 + Math.random() * 0.75) * 0.25; // reduce speed to 50%
     this.particleDelays[index] = Math.random() * 2.2;
     this.particleStates[index] = 2;
     this.particleDwellAt[index] = 0;
