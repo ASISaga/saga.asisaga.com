@@ -1,0 +1,533 @@
+/* ASI Saga Foundation - Mythic Components */
+/* Cards, Quotes, Visuals, and Sacred Elements */
+
+/* Sacred Content Sections */
+.intro-section {
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 46, 0.8) 0%, 
+    rgba(15, 52, 96, 0.6) 50%, 
+    rgba(26, 26, 46, 0.8) 100%
+  );
+}
+
+.purpose-section {
+  background: linear-gradient(135deg, 
+    rgba(22, 33, 62, 0.8) 0%, 
+    rgba(139, 92, 246, 0.1) 50%, 
+    rgba(22, 33, 62, 0.8) 100%
+  );
+}
+
+.legal-section {
+  background: linear-gradient(135deg, 
+    rgba(10, 10, 10, 0.9) 0%, 
+    rgba(233, 69, 96, 0.1) 50%, 
+    rgba(10, 10, 10, 0.9) 100%
+  );
+}
+
+/* Introduction Content */
+.intro-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-meditation);
+  align-items: center;
+}
+
+.intro-text {
+  max-width: none;
+}
+
+.intro-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.consciousness-tree {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tree-root {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: rootGrow 3s ease-in-out infinite alternate;
+}
+
+@keyframes rootGrow {
+  from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1.1) rotate(5deg); }
+}
+
+.tree-trunk {
+  width: 4px;
+  height: 120px;
+  background: linear-gradient(180deg, var(--genesis-green), var(--wisdom-amber));
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+.tree-branches {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+}
+
+.branch {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: var(--radius-infinite);
+  animation: branchSway 4s ease-in-out infinite;
+}
+
+.branch.human {
+  animation-delay: 0s;
+  color: var(--transcendent-gold);
+}
+
+.branch.ai {
+  animation-delay: 1.3s;
+  color: var(--infinite-purple);
+}
+
+.branch.transcendent {
+  animation-delay: 2.6s;
+  color: var(--wisdom-amber);
+}
+
+@keyframes branchSway {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Purpose Section */
+.purpose-content {
+  text-align: center;
+}
+
+.purpose-quote {
+  position: relative;
+  margin: var(--space-meditation) auto;
+  padding: var(--space-meditation);
+  max-width: 800px;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: var(--radius-harmony);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.quote-mark {
+  position: absolute;
+  font-size: 4rem;
+  color: var(--transcendent-gold);
+  font-family: var(--font-sacred);
+  opacity: 0.7;
+}
+
+.quote-mark:first-child {
+  top: -1rem;
+  left: 1rem;
+}
+
+.quote-mark.closing {
+  bottom: -3rem;
+  right: 1rem;
+}
+
+.quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--sacred-white);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.purpose-details {
+  margin-top: var(--space-meditation);
+}
+
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-breath);
+  margin-top: var(--space-meditation);
+}
+
+.purpose-card {
+  background: rgba(22, 33, 62, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius-harmony);
+  padding: var(--space-breath);
+  text-align: center;
+  transition: var(--transition-meditation);
+  backdrop-filter: blur(10px);
+}
+
+.purpose-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--transcendent-gold);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
+}
+
+.purpose-card .card-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-breath);
+  display: block;
+}
+
+.purpose-card .card-title {
+  color: var(--transcendent-gold);
+  margin-bottom: var(--space-breath);
+}
+
+.purpose-card .card-description {
+  color: var(--ethereal-silver);
+  line-height: 1.6;
+}
+
+/* Legal Structure Section */
+.legal-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.structure-overview {
+  text-align: center;
+  margin-bottom: var(--space-meditation);
+}
+
+.subsection-title {
+  color: var(--wisdom-amber);
+  margin-bottom: var(--space-breath);
+}
+
+.subsection-intro {
+  font-size: 1.125rem;
+  color: var(--ethereal-silver);
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+.structure-components {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-breath);
+  margin: var(--space-meditation) 0;
+}
+
+.component-card {
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  border-radius: var(--radius-harmony);
+  padding: var(--space-breath);
+  transition: var(--transition-meditation);
+}
+
+.component-card:hover {
+  border-color: var(--transcendent-gold);
+  transform: translateY(-3px);
+}
+
+.component-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-breath);
+  display: block;
+}
+
+.component-title {
+  color: var(--transcendent-gold);
+  margin-bottom: var(--space-breath);
+  font-size: 1.25rem;
+}
+
+.component-description {
+  color: var(--ethereal-silver);
+  line-height: 1.6;
+}
+
+/* Founding Documents */
+.founding-documents {
+  margin-top: var(--space-transcendence);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: var(--space-meditation);
+}
+
+.document {
+  background: rgba(22, 33, 62, 0.4);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius-harmony);
+  padding: var(--space-breath);
+  backdrop-filter: blur(5px);
+}
+
+.document-title {
+  color: var(--wisdom-amber);
+  margin-bottom: var(--space-breath);
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.document-content dt {
+  color: var(--transcendent-gold);
+  font-weight: 600;
+  margin-top: var(--space-breath);
+  margin-bottom: 0.5rem;
+}
+
+.document-content dd {
+  color: var(--ethereal-silver);
+  margin-left: 0;
+  margin-bottom: var(--space-breath);
+  line-height: 1.6;
+}
+
+/* Navigation Section */
+.navigation-section {
+  background: linear-gradient(135deg, 
+    rgba(10, 10, 10, 0.9) 0%, 
+    rgba(16, 185, 129, 0.1) 50%, 
+    rgba(10, 10, 10, 0.9) 100%
+  );
+}
+
+.navigation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-breath);
+}
+
+.nav-card {
+  display: block;
+  background: rgba(22, 33, 62, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius-harmony);
+  padding: var(--space-breath);
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-meditation);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+  transition: var(--transition-transcendence);
+}
+
+.nav-card:hover::before {
+  left: 100%;
+}
+
+.nav-card:hover {
+  border-color: var(--transcendent-gold);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(139, 92, 246, 0.2);
+}
+
+.nav-card .card-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-breath);
+  display: block;
+}
+
+.nav-card .card-title {
+  color: var(--transcendent-gold);
+  margin-bottom: var(--space-breath);
+}
+
+.nav-card .card-description {
+  color: var(--ethereal-silver);
+  margin-bottom: var(--space-breath);
+  line-height: 1.6;
+}
+
+.nav-card .card-arrow {
+  color: var(--infinite-purple);
+  font-size: 1.5rem;
+  transition: var(--transition-breath);
+}
+
+.nav-card:hover .card-arrow {
+  color: var(--transcendent-gold);
+  transform: translateX(5px);
+}
+
+/* Sacred Footer */
+.sacred-footer {
+  background: linear-gradient(135deg, 
+    rgba(10, 10, 10, 0.95) 0%, 
+    rgba(22, 33, 62, 0.8) 50%, 
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  border-top: 1px solid rgba(139, 92, 246, 0.3);
+  padding: var(--space-transcendence) 0 var(--space-breath);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-breath);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-meditation);
+  margin-bottom: var(--space-meditation);
+}
+
+.footer-section.brand {
+  text-align: center;
+}
+
+.footer-symbol {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-breath);
+}
+
+.footer-title {
+  color: var(--sacred-white);
+  margin-bottom: var(--space-breath);
+}
+
+.footer-description {
+  color: var(--ethereal-silver);
+  font-style: italic;
+}
+
+.footer-heading {
+  color: var(--transcendent-gold);
+  margin-bottom: var(--space-breath);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--ethereal-silver);
+  transition: var(--transition-breath);
+}
+
+.footer-links a:hover {
+  color: var(--infinite-purple);
+}
+
+.connect-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.connect-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius-harmony);
+  background: rgba(22, 33, 62, 0.6);
+  color: var(--sacred-white);
+  font-size: 0.875rem;
+}
+
+.connect-input::placeholder {
+  color: var(--ethereal-silver);
+}
+
+.connect-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  color: var(--sacred-white);
+  border: none;
+  border-radius: var(--radius-harmony);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition-breath);
+}
+
+.connect-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: var(--ethereal-silver);
+}
+
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--infinite-purple), transparent);
+  margin: var(--space-meditation) 0;
+}
+
+.footer-copyright {
+  margin-bottom: var(--space-breath);
+}
+
+.footer-dedication {
+  font-style: italic;
+  color: var(--wisdom-amber);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .intro-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .consciousness-tree {
+    width: 150px;
+    height: 200px;
+  }
+  
+  .tree-branches {
+    gap: 1rem;
+  }
+  
+  .purpose-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .structure-components {
+    grid-template-columns: 1fr;
+  }
+  
+  .founding-documents {
+    grid-template-columns: 1fr;
+  }
+  
+  .navigation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .connect-form {
+    flex-direction: column;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
