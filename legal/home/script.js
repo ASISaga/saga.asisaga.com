@@ -109,14 +109,13 @@ class Home3DAnimation {
 
   // Generate a random point uniformly on a sphere
   // Generate a random point in a thick equatorial band (Jupiter-like)
-  // radius: sphere radius
-  // bandWidth: controls thickness of the band (0.0 = equator only, 1.0 = full sphere)
-  randomOnJupiterBand(radius, bandWidth = 0.5) {
+  // No points above arctic circle or below antarctic circle (±66.5° latitude)
+  randomOnJupiterBand(radius) {
     const theta = Math.random() * 2 * Math.PI; // longitude
-    // Band is centered at equator, covers ±bandWidth * π/2
-    const bandAngle = bandWidth * Math.PI / 2; // e.g. 0.5 covers ±45°
-    const minPhi = Math.PI / 2 - bandAngle;
-    const maxPhi = Math.PI / 2 + bandAngle;
+    // Arctic/Antarctic circles: latitude ±66.5°
+    const arcticLat = 66.5 * Math.PI / 180; // radians
+    const minPhi = Math.PI / 2 - arcticLat; // lower bound (north)
+    const maxPhi = Math.PI / 2 + arcticLat; // upper bound (south)
     // Sample cos(phi) uniformly for even density
     const minCosPhi = Math.cos(minPhi);
     const maxCosPhi = Math.cos(maxPhi);
@@ -130,10 +129,9 @@ class Home3DAnimation {
 
   // Seed a particle with a new target and initial position
   seedParticle(index, now) {
-    // Jupiter band parameters
-    const bandWidth = 0.5; // 0.5 = ±45° from equator
+    // Jupiter band: no points above arctic/antarctic circles
     const sphereRadius = this.coreRadius * 1.2;
-    const targetVector = this.randomOnJupiterBand(sphereRadius, bandWidth);
+    const targetVector = this.randomOnJupiterBand(sphereRadius);
     this.particleTargets[index * 3 + 0] = targetVector.x;
     this.particleTargets[index * 3 + 1] = targetVector.y;
     this.particleTargets[index * 3 + 2] = targetVector.z;
