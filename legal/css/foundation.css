@@ -19,6 +19,13 @@
   --infinite-purple: #7c3aed;
   --consciousness-blue: #1d4ed8;
   
+  /* Futuristic Colors - Light Theme */
+  --cyber-glow: rgba(124, 58, 237, 0.1);
+  --neural-blue: rgba(29, 78, 216, 0.08);
+  --quantum-gold: rgba(217, 119, 6, 0.12);
+  --consciousness-aura: rgba(5, 150, 105, 0.08);
+  --holographic-shimmer: rgba(255, 255, 255, 0.7);
+  
   /* Sacred Typography */
   --font-sacred: 'Crimson Text', serif;
   --font-foundation: 'Inter', sans-serif;
@@ -37,11 +44,13 @@
   --radius-harmony: 0.75rem;
   --radius-infinite: 50%;
   --border-consciousness: 2px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
   
   /* Sacred Transitions */
   --transition-breath: 0.3s ease-in-out;
   --transition-meditation: 0.6s ease-in-out;
   --transition-transcendence: 1.2s ease-in-out;
+  --transition-quantum: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Foundation Reset & Base */
@@ -61,8 +70,47 @@ body {
   font-size: var(--font-size-body);
   line-height: 1.7;
   color: var(--sacred-text);
-  background: var(--sacred-white);
+  background: 
+    radial-gradient(circle at 20% 80%, var(--consciousness-aura) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--neural-blue) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--quantum-gold) 0%, transparent 50%),
+    var(--sacred-white);
+  background-attachment: fixed;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Futuristic Starfield Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(1px 1px at 25% 15%, var(--infinite-purple), transparent),
+    radial-gradient(1px 1px at 75% 35%, var(--consciousness-blue), transparent),
+    radial-gradient(1px 1px at 45% 65%, var(--transcendent-gold), transparent),
+    radial-gradient(2px 2px at 85% 85%, var(--genesis-green), transparent),
+    radial-gradient(1px 1px at 15% 75%, var(--wisdom-amber), transparent),
+    radial-gradient(1px 1px at 65% 25%, var(--infinite-purple), transparent),
+    radial-gradient(1px 1px at 35% 85%, var(--consciousness-blue), transparent);
+  background-size: 800px 800px, 600px 600px, 900px 900px, 700px 700px, 500px 500px, 1000px 1000px, 650px 650px;
+  background-position: 0 0, 200px 200px, 100px 100px, 300px 300px, 150px 150px, 50px 50px, 250px 250px;
+  animation: stellarDrift 120s linear infinite;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes stellarDrift {
+  from { 
+    transform: translate3d(0, 0, 0) rotate(0deg); 
+  }
+  to { 
+    transform: translate3d(-100px, -100px, 0) rotate(360deg); 
+  }
 }
 
 /* Sacred Text Elements */

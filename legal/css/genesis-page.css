@@ -1,0 +1,347 @@
+/* Genesis Page - Specific Styles */
+/* Genesis-specific styles */
+.genesis-hero {
+    background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.3) 0%, 
+        rgba(139, 92, 246, 0.2) 30%,
+        rgba(233, 69, 96, 0.1) 60%,
+        rgba(251, 191, 36, 0.3) 100%
+    );
+}
+
+.genesis-constellation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(4px 4px at 25% 15%, var(--genesis-green), transparent),
+        radial-gradient(3px 3px at 75% 35%, var(--infinite-purple), transparent),
+        radial-gradient(2px 2px at 45% 65%, var(--transcendent-gold), transparent),
+        radial-gradient(5px 5px at 85% 85%, var(--wisdom-amber), transparent),
+        radial-gradient(1px 1px at 15% 75%, var(--ethereal-silver), transparent);
+    background-size: 300px 300px;
+    animation: genesisFlow 30s linear infinite;
+}
+
+@keyframes genesisFlow {
+    from { transform: translateX(0) translateY(0) rotate(0deg); }
+    to { transform: translateX(-300px) translateY(-300px) rotate(360deg); }
+}
+
+.genesis-symbol {
+    font-size: 4rem;
+    animation: genesisGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes genesisGlow {
+    from { 
+        filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+        transform: scale(1) rotate(0deg);
+    }
+    to { 
+        filter: drop-shadow(0 0 50px rgba(251, 191, 36, 0.9));
+        transform: scale(1.08) rotate(10deg);
+    }
+}
+
+.genesis-visualization {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--space-meditation) 0;
+    position: relative;
+    min-height: 400px;
+}
+
+.consciousness-matrix {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matrix-core {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--genesis-green), var(--infinite-purple));
+    border-radius: var(--radius-infinite);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--sacred-white);
+    animation: matrixPulse 3s ease-in-out infinite;
+    position: relative;
+    z-index: 3;
+}
+
+@keyframes matrixPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+    50% { transform: scale(1.1); box-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
+}
+
+.matrix-ring {
+    position: absolute;
+    border: 2px solid;
+    border-radius: var(--radius-infinite);
+    opacity: 0.6;
+}
+
+.ring-1 {
+    width: 120px;
+    height: 120px;
+    border-color: var(--genesis-green);
+    animation: ringRotate 10s linear infinite;
+}
+
+.ring-2 {
+    width: 180px;
+    height: 180px;
+    border-color: var(--infinite-purple);
+    animation: ringRotate 15s linear infinite reverse;
+}
+
+.ring-3 {
+    width: 240px;
+    height: 240px;
+    border-color: var(--transcendent-gold);
+    animation: ringRotate 20s linear infinite;
+}
+
+@keyframes ringRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.consciousness-node {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--wisdom-amber), var(--transcendent-gold));
+    border-radius: var(--radius-infinite);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--cosmic-void);
+    animation: nodeFloat 4s ease-in-out infinite;
+    cursor: pointer;
+    transition: var(--transition-breath);
+}
+
+.consciousness-node:hover {
+    transform: scale(1.2);
+    filter: brightness(1.3);
+}
+
+@keyframes nodeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.node-human { top: 20px; left: 50%; transform: translateX(-50%); }
+.node-ai { bottom: 20px; left: 50%; transform: translateX(-50%); }
+.node-wisdom { left: 20px; top: 50%; transform: translateY(-50%); }
+.node-creativity { right: 20px; top: 50%; transform: translateY(-50%); }
+
+.pathway-section {
+    background: linear-gradient(135deg, 
+        rgba(10, 10, 10, 0.9) 0%, 
+        rgba(22, 33, 62, 0.8) 50%, 
+        rgba(10, 10, 10, 0.9) 100%
+    );
+}
+
+.pathway-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-breath);
+    margin: var(--space-meditation) 0;
+}
+
+.pathway-step {
+    background: rgba(22, 33, 62, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-meditation);
+}
+
+.pathway-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+    transition: var(--transition-transcendence);
+}
+
+.pathway-step:hover {
+    border-color: var(--genesis-green);
+    transform: translateY(-5px);
+}
+
+.pathway-step:hover::before {
+    left: 100%;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--genesis-green), var(--infinite-purple));
+    border-radius: var(--radius-infinite);
+    font-weight: 600;
+    color: var(--sacred-white);
+    margin-bottom: var(--space-breath);
+}
+
+.step-title {
+    color: var(--transcendent-gold);
+    margin-bottom: var(--space-breath);
+}
+
+.step-description {
+    color: var(--ethereal-silver);
+    line-height: 1.6;
+    margin-bottom: var(--space-breath);
+}
+
+.consciousness-embedding {
+    margin: var(--space-transcendence) 0;
+}
+
+.embedding-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-breath);
+}
+
+.embedding-aspect {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    text-align: center;
+    transition: var(--transition-meditation);
+}
+
+.embedding-aspect:hover {
+    border-color: var(--wisdom-amber);
+    background: rgba(139, 92, 246, 0.15);
+}
+
+.aspect-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-breath);
+    display: block;
+}
+
+.aspect-title {
+    color: var(--wisdom-amber);
+    margin-bottom: var(--space-breath);
+}
+
+.aspect-description {
+    color: var(--ethereal-silver);
+    line-height: 1.6;
+}
+
+.transcendent-metric {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--genesis-green);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    margin: var(--space-breath) 0;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    color: var(--genesis-green);
+    font-weight: 600;
+}
+
+.metric-value {
+    color: var(--wisdom-amber);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.metric-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--genesis-green), var(--wisdom-amber));
+    border-radius: 3px;
+    transition: width 2s ease-out;
+    position: relative;
+}
+
+.metric-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: metricShine 2s ease-in-out infinite;
+}
+
+@keyframes metricShine {
+    0% { left: -30%; }
+    100% { left: 100%; }
+}
+
+.genesis-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-breath);
+    margin: var(--space-meditation) 0;
+}
+
+.control-panel {
+    background: rgba(22, 33, 62, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    text-align: center;
+}
+
+.control-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-breath);
+    color: var(--infinite-purple);
+}
+
+.control-title {
+    color: var(--transcendent-gold);
+    margin-bottom: var(--space-breath);
+}
+
+.control-status {
+    color: var(--ethereal-silver);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-breath);
+}
