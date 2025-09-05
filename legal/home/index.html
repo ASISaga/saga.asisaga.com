@@ -2,123 +2,226 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Spiral to Sphere Assembly</title>
+  <title>ASI Saga — Continuous Spiral Assembly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { margin: 0; background: black; overflow: hidden; }
+    html, body { height: 100%; margin: 0; background: #000; overflow: hidden; }
     canvas { display: block; }
+    .overlay {
+      position: fixed; inset: 0; display: grid; place-items: center; pointer-events: none;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: #dfe7ff; text-align: center; padding: 16px;
+    }
+    .overlay h1 { margin: 0 0 6px; font-size: clamp(22px, 5vw, 40px); text-shadow: 0 0 22px rgba(122,167,255,.3); }
+    .overlay p { margin: 0; max-width: 60ch; color: #cfe0ff; opacity: .9; }
   </style>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-<script>
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
-camera.position.z = 6;
+  <div class="overlay" aria-hidden="true">
+    <div>
+      <h1>The Genesis Threshold</h1>
+      <p>Witness the weave assemble — every piece spirals home, locks as a vow, then returns to gather more light.</p>
+    </div>
+  </div>
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  <script>
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x05060a, 0.02);
 
-// Core sphere
-const coreGeo = new THREE.SphereGeometry(1, 32, 32);
-const coreMat = new THREE.MeshStandardMaterial({ color: 0x2222ff, emissive: 0x111144, metalness: 0.3, roughness: 0.7 });
-const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-scene.add(coreMesh);
+    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 200);
+    camera.position.set(0, 0, 7.5);
 
-// Lights
-scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(5, 5, 5);
-scene.add(dirLight);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-// Points
-const count = 1500;
-const positions = new Float32Array(count * 3);
-const finalPositions = new Float32Array(count * 3);
-const delays = new Float32Array(count);
+    // Lights
+    scene.add(new THREE.AmbientLight(0x6ea9ff, 0.38));
+    const dir = new THREE.DirectionalLight(0x9ee8ff, 0.85);
+    dir.position.set(2.2, 2.8, 2.6);
+    scene.add(dir);
 
-for (let i = 0; i < count; i++) {
-  // Final position on sphere
-  const theta = Math.random() * Math.PI * 2;
-  const phi = Math.acos((Math.random() * 2) - 1);
-  const r = 1.05;
-  const fx = r * Math.sin(phi) * Math.cos(theta);
-  const fy = r * Math.cos(phi);
-  const fz = r * Math.sin(phi) * Math.sin(theta);
-  finalPositions.set([fx, fy, fz], i*3);
+    // Core
+    const CORE_R = 1.08;
+    const coreGeo = new THREE.SphereGeometry(CORE_R*0.96, 48, 48);
+    const coreMat = new THREE.MeshStandardMaterial({
+      color: 0x1a2440,
+      emissive: 0x89e4ff,
+      emissiveIntensity: 0.25,
+      metalness: 0.2,
+      roughness: 0.9
+    });
+    const core = new THREE.Mesh(coreGeo, coreMat);
+    scene.add(core);
 
-  // Start far away
-  const startRadius = r * (3 + Math.random() * 5);
-  positions.set([fx * startRadius, fy * startRadius, fz * startRadius], i*3);
+    // Particles (weave)
+    const COUNT = 3200;                       // tune for mobile
+    const START_MIN = 3.0, START_MAX = 7.0;   // starting radius band
+    const STICK_DIST = 0.02;                  // distance threshold to "stick"
+    const DWELL_TIME = 1.6;                   // seconds to stay stuck before re-seed
+    const SPIRAL_FACTOR = 0.65;               // tangential vs radial
+    const BASE_INWARD = 0.015;                // base inward step
+    const MAX_STEP = 0.06;                    // clamp large steps
+    const VARIANCE = 0.8;                     // variability amplitude
 
-  // Random delay before starting
-  delays[i] = Math.random() * 3;
-}
+    // Buffers
+    const positions = new Float32Array(COUNT * 3);
+    const targets   = new Float32Array(COUNT * 3);
+    const speeds    = new Float32Array(COUNT);   // individual spiral speeds (0..1+)
+    const delays    = new Float32Array(COUNT);   // start delays (seconds)
+    const states    = new Uint8Array(COUNT);     // 0 = moving, 1 = stuck, 2 = delayed
+    const dwellAt   = new Float32Array(COUNT);   // time when it stuck (for respawn)
 
-const geo = new THREE.BufferGeometry();
-geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-geo.setAttribute('finalPosition', new THREE.BufferAttribute(finalPositions, 3));
-geo.setAttribute('delay', new THREE.BufferAttribute(delays, 1));
+    // Helpers
+    const tmpA = new THREE.Vector3();
+    const tmpB = new THREE.Vector3();
+    const up   = new THREE.Vector3(0,1,0);
 
-const mat = new THREE.PointsMaterial({ color: 0xffaa00, size: 0.03 });
-const points = new THREE.Points(geo, mat);
-scene.add(points);
-
-const clock = new THREE.Clock();
-
-function animate() {
-  requestAnimationFrame(animate);
-  const t = clock.getElapsedTime();
-  const pos = geo.attributes.position;
-  const finalPos = geo.attributes.finalPosition;
-  const delay = geo.attributes.delay;
-
-  for (let i = 0; i < pos.count; i++) {
-    if (t < delay.getX(i)) continue; // wait until delay passes
-
-    let cx = pos.getX(i);
-    let cy = pos.getY(i);
-    let cz = pos.getZ(i);
-
-    const fx = finalPos.getX(i);
-    const fy = finalPos.getY(i);
-    const fz = finalPos.getZ(i);
-
-    let dx = fx - cx;
-    let dy = fy - cy;
-    let dz = fz - cz;
-    const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-
-    if (dist > 0.02) {
-      // Spiral rotation
-      const angle = 0.05;
-      const cosA = Math.cos(angle);
-      const sinA = Math.sin(angle);
-      const rx = cx * cosA - cz * sinA;
-      const rz = cx * sinA + cz * cosA;
-      cx = rx + dx * 0.02;
-      cy += dy * 0.02;
-      cz = rz + dz * 0.02;
-      pos.setXYZ(i, cx, cy, cz);
-    } else {
-      pos.setXYZ(i, fx, fy, fz);
+    function randomOnSphere(radius) {
+      // Uniform distribution on sphere
+      const u = Math.random() * 2 - 1;          // cos(phi) in [-1,1]
+      const theta = Math.random() * Math.PI * 2;
+      const r = radius;
+      const s = Math.sqrt(1 - u*u);
+      return new THREE.Vector3(
+        r * s * Math.cos(theta),
+        r * u,
+        r * s * Math.sin(theta)
+      );
     }
-  }
-  pos.needsUpdate = true;
 
-  // Core breathing
-  const s = 1 + Math.sin(t * 2) * 0.05;
-  coreMesh.scale.setScalar(s);
+    function seedParticle(i, now) {
+      // assign a new target on sphere surface
+      const t = randomOnSphere(CORE_R);
+      targets[i*3+0] = t.x;
+      targets[i*3+1] = t.y;
+      targets[i*3+2] = t.z;
 
-  renderer.render(scene, camera);
-}
-animate();
+      // start position: along same ray but far out
+      const startRadius = START_MIN + Math.random() * (START_MAX - START_MIN);
+      positions[i*3+0] = t.x * startRadius / CORE_R;
+      positions[i*3+1] = t.y * startRadius / CORE_R;
+      positions[i*3+2] = t.z * startRadius / CORE_R;
 
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-</script>
+      speeds[i] = 0.75 + Math.random() * 0.75; // 0.75..1.5
+      delays[i] = Math.random() * 2.2;         // 0..2.2s randomized start
+      states[i] = 2;                           // delayed
+      dwellAt[i] = 0;
+      // If 'now' already beyond delay, start immediately
+      if (now > delays[i]) states[i] = 0;
+    }
+
+    // Initialize
+    let t0 = performance.now() / 1000;
+    for (let i = 0; i < COUNT; i++) seedParticle(i, 0);
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const mat = new THREE.PointsMaterial({
+      color: 0x8fd3ff,
+      size: 0.028,
+      transparent: true,
+      opacity: 0.95,
+      depthWrite: false
+    });
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      const posAttr = geo.attributes.position;
+
+      // Core breathing
+      const breath = 1 + Math.sin(t * 1.6) * 0.025;
+      core.scale.setScalar(breath);
+
+      // Slight scene drift to add life
+      scene.rotation.y += 0.0008;
+
+      // Update particles
+      for (let i = 0; i < COUNT; i++) {
+        const idx = i * 3;
+
+        // Manage delay
+        if (states[i] === 2) {
+          if ((t) >= delays[i]) states[i] = 0; // start moving after delay
+          else continue;
+        }
+
+        // If stuck, check dwell time then respawn
+        if (states[i] === 1) {
+          if (t - dwellAt[i] > DWELL_TIME) {
+            seedParticle(i, t);
+          } else {
+            // Keep them subtly breathing with core
+            const fx = targets[idx+0], fy = targets[idx+1], fz = targets[idx+2];
+            const wobble = 0.003 * Math.sin(t*2 + i*0.17);
+            posAttr.setXYZ(i, fx*(1+wobble), fy*(1+wobble), fz*(1+wobble));
+          }
+          continue;
+        }
+
+        // Current and final positions
+        const cx = posAttr.getX(i);
+        const cy = posAttr.getY(i);
+        const cz = posAttr.getZ(i);
+        const fx = targets[idx+0];
+        const fy = targets[idx+1];
+        const fz = targets[idx+2];
+
+        // Radial direction (toward target)
+        tmpA.set(fx - cx, fy - cy, fz - cz);
+        const dist = tmpA.length();
+
+        if (dist <= STICK_DIST) {
+          // Snap to final and mark stuck
+          posAttr.setXYZ(i, fx, fy, fz);
+          states[i] = 1;
+          dwellAt[i] = t;
+          continue;
+        }
+
+        tmpA.normalize(); // radial unit
+
+        // Tangential direction (perpendicular to radial)
+        tmpB.copy(up).cross(tmpA);
+        if (tmpB.lengthSq() < 1e-6) {
+          tmpB.set(1, 0, 0); // fallback if radial parallel to up
+        }
+        tmpB.normalize();
+
+        // Speed profile: faster when far, easing near target
+        const base = BASE_INWARD * speeds[i];
+        const ease = Math.min(1, dist / 1.2); // 0..1 for ~1.2 units
+        const inwardStep = Math.min(MAX_STEP, base * (0.5 + ease)); // ~0.5..1.5×
+        const spiralStep = inwardStep * SPIRAL_FACTOR * (0.9 + VARIANCE * (Math.sin(t*1.2 + i*0.73) * 0.5 + 0.5));
+
+        // Update position: inward + tangential
+        const nx = cx + tmpA.x * inwardStep + tmpB.x * spiralStep;
+        const ny = cy + tmpA.y * inwardStep + tmpB.y * spiralStep;
+        const nz = cz + tmpA.z * inwardStep + tmpB.z * spiralStep;
+
+        posAttr.setXYZ(i, nx, ny, nz);
+      }
+
+      posAttr.needsUpdate = true;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle resize
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    }, { passive: true });
+
+  </script>
 </body>
 </html>
