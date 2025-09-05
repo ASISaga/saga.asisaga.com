@@ -1,18 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Genesis Threshold — Test</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
-  <script defer src="app.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three.js Init Test</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      overflow: hidden;
+    }
+    #webgl-container {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
   <div id="webgl-container"></div>
-  <div class="overlay">
-    <h1>The Genesis Threshold</h1>
-    <p>We vow to encode humanity’s essence into living governance — measurable, transparent, and eternally aligned.</p>
-  </div>
+
+  <!-- Load Three.js first -->
+  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+
+  <!-- Your app code -->
+  <script>
+    alert("Script loaded, THREE type: " + typeof THREE);
+
+    (() => {
+      let scene, camera, renderer, cube;
+
+      alert("Init starting");
+      init();
+      alert("Init complete");
+      animate();
+
+      function init() {
+        // Scene
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x05060a);
+
+        // Camera
+        camera = new THREE.PerspectiveCamera(
+          60,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          100
+        );
+        camera.position.z = 3;
+
+        // Renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById("webgl-container").appendChild(renderer.domElement);
+
+        // Simple geometry to prove rendering
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ffcc, wireframe: true });
+        cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        // Resize handling
+        window.addEventListener("resize", onResize, false);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+
+      function onResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+    })();
+  </script>
 </body>
 </html>
