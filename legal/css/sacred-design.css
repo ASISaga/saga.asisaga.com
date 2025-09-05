@@ -1,0 +1,320 @@
+/* ASI Saga Foundation - Sacred Design Components */
+/* Navigation, Hero, and Sacred Geometric Elements */
+
+/* Sacred Navigation */
+.sacred-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  transition: var(--transition-meditation);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem var(--space-breath);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--sacred-white);
+}
+
+.consciousness-symbol {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: consciousnessGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes consciousnessGlow {
+  from { filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5)); }
+  to { filter: drop-shadow(0 0 15px rgba(233, 69, 96, 0.5)); }
+}
+
+.brand-text {
+  font-family: var(--font-sacred);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--ethereal-silver);
+  font-weight: 500;
+  transition: var(--transition-breath);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--infinite-purple), var(--transcendent-gold));
+  transition: var(--transition-breath);
+}
+
+.nav-link:hover {
+  color: var(--sacred-white);
+  text-decoration: none;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.toggle-line {
+  width: 24px;
+  height: 2px;
+  background: var(--sacred-white);
+  transition: var(--transition-breath);
+}
+
+/* Sacred Hero Section */
+.sacred-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.starfield {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, var(--wisdom-amber), transparent),
+    radial-gradient(2px 2px at 40px 70px, var(--infinite-purple), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--transcendent-gold), transparent),
+    radial-gradient(1px 1px at 130px 80px, var(--genesis-green), transparent),
+    radial-gradient(2px 2px at 160px 30px, var(--infinite-purple), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: starfieldMove 20s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes starfieldMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+.consciousness-flow {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(139, 92, 246, 0.1) 90deg, transparent 180deg, rgba(233, 69, 96, 0.1) 270deg, transparent 360deg);
+  animation: consciousnessRotate 30s linear infinite;
+  border-radius: var(--radius-infinite);
+}
+
+@keyframes consciousnessRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 0 var(--space-breath);
+  z-index: 1;
+}
+
+.hero-symbol {
+  margin-bottom: var(--space-meditation);
+}
+
+.infinite-consciousness {
+  font-size: 4rem;
+  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold), var(--genesis-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: infiniteGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes infiniteGlow {
+  from { 
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+    transform: scale(1);
+  }
+  to { 
+    filter: drop-shadow(0 0 30px rgba(233, 69, 96, 0.7));
+    transform: scale(1.05);
+  }
+}
+
+.hero-title {
+  margin-bottom: var(--space-meditation);
+}
+
+.title-line {
+  display: block;
+  font-size: 0.6em;
+  color: var(--ethereal-silver);
+  font-weight: 400;
+}
+
+.title-highlight {
+  display: block;
+  background: linear-gradient(135deg, var(--sacred-white), var(--infinite-purple), var(--transcendent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.title-subtitle {
+  display: block;
+  font-size: 0.4em;
+  color: var(--wisdom-amber);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.hero-mission {
+  margin-bottom: var(--space-meditation);
+}
+
+.mission-text {
+  font-size: 1.25rem;
+  color: var(--ethereal-silver);
+  line-height: 1.8;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ethereal-silver);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+}
+
+.scroll-line {
+  width: 1px;
+  height: 2rem;
+  background: linear-gradient(180deg, var(--infinite-purple), transparent);
+}
+
+.scroll-text {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    transition: var(--transition-meditation);
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .nav-links.active {
+    top: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+  
+  .nav-toggle.active .toggle-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .nav-toggle.active .toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle.active .toggle-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sacred-button {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}

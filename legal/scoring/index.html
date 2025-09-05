@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" class="sacred-foundation">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASI Saga Living Score - The heartbeat of community alignment. Explore the real-time merit tracking system for consciousness contributors.">
+    
+    <title>Living Score | ASI Saga Foundation</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/foundation.css">
+    <link rel="stylesheet" href="../css/sacred-design.css">
+    <link rel="stylesheet" href="../css/mythic-components.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    
+    <style>
+        /* Scoring-specific styles */
+        .scoring-hero {
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.2) 0%, 
+                rgba(233, 69, 96, 0.1) 50%, 
+                rgba(251, 191, 36, 0.2) 100%
+            );
+        }
+        
+        .score-constellation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 20% 30%, var(--wisdom-amber), transparent),
+                radial-gradient(3px 3px at 40% 70%, var(--transcendent-gold), transparent),
+                radial-gradient(1px 1px at 90% 40%, var(--infinite-purple), transparent),
+                radial-gradient(2px 2px at 60% 20%, var(--genesis-green), transparent);
+            background-size: 300px 300px;
+            animation: scoreConstellation 25s linear infinite;
+        }
+        
+        @keyframes scoreConstellation {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-300px) rotate(360deg); }
+        }
+        
+        .score-symbol {
+            font-size: 4rem;
+            animation: scoreGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes scoreGlow {
+            from { 
+                filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.5));
+                transform: scale(1);
+            }
+            to { 
+                filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8));
+                transform: scale(1.05);
+            }
+        }
+        
+        .score-meter {
+            position: relative;
+            width: 100%;
+            height: 8px;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--infinite-purple), var(--transcendent-gold));
+            border-radius: 4px;
+            transition: width 1s ease-out;
+            position: relative;
+        }
+        
+        .score-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: scoreShine 2s ease-in-out infinite;
+        }
+        
+        @keyframes scoreShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .leaderboard-card {
+            background: rgba(22, 33, 62, 0.6);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-harmony);
+            padding: var(--space-breath);
+            transition: var(--transition-meditation);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .leaderboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+            transition: var(--transition-transcendence);
+        }
+        
+        .leaderboard-card:hover {
+            border-color: var(--wisdom-amber);
+            transform: translateY(-2px);
+        }
+        
+        .leaderboard-card:hover::before {
+            left: 100%;
+        }
+        
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: var(--radius-infinite);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .rank-badge.gold {
+            background: linear-gradient(135deg, var(--wisdom-amber), var(--transcendent-gold));
+            color: var(--cosmic-void);
+        }
+        
+        .rank-badge.silver {
+            background: linear-gradient(135deg, var(--ethereal-silver), var(--sacred-white));
+            color: var(--cosmic-void);
+        }
+        
+        .rank-badge.bronze {
+            background: linear-gradient(135deg, #cd7f32, #b8860b);
+            color: var(--sacred-white);
+        }
+        
+        .rank-badge.regular {
+            background: linear-gradient(135deg, var(--infinite-purple), var(--consciousness-blue));
+            color: var(--sacred-white);
+        }
+        
+        .score-visualization {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-breath);
+            margin: var(--space-meditation) 0;
+        }
+        
+        .score-category {
+            text-align: center;
+            padding: var(--space-breath);
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--radius-harmony);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-breath);
+            display: block;
+        }
+        
+        .category-score {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--transcendent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-label {
+            color: var(--ethereal-silver);
+            font-size: 0.875rem;
+        }
+        
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--genesis-green);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--genesis-green);
+            margin: 0.25rem;
+        }
+        
+        .activity-feed {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: var(--space-breath);
+            background: rgba(10, 10, 10, 0.5);
+            border-radius: var(--radius-harmony);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .activity-item {
+            padding: var(--space-breath);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-infinite);
+            background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--sacred-white);
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-action {
+            color: var(--ethereal-silver);
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--infinite-purple);
+        }
+        
+        .activity-points {
+            color: var(--transcendent-gold);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="foundation-body">
+    <!-- Sacred Navigation -->
+    <nav class="sacred-nav" role="navigation" aria-label="Main Navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="consciousness-symbol">∞◊</div>
+                <span class="brand-text">ASI Saga Foundation</span>
+            </div>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="menuitem"><a href="../" class="nav-link">Foundation</a></li>
+                <li role="menuitem"><a href="../governance/" class="nav-link">Governance</a></li>
+                <li role="menuitem"><a href="../community/" class="nav-link">Community</a></li>
+                <li role="menuitem"><a href="../genesis/" class="nav-link">Genesis</a></li>
+                <li role="menuitem"><a href="../docs/" class="nav-link">Documentation</a></li>
+            </ul>
+            
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Scoring Hero -->
+    <header class="sacred-hero scoring-hero" id="hero">
+        <div class="hero-background">
+            <div class="score-constellation"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-symbol">
+                <div class="score-symbol">⭐◊💫</div>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="title-line">The Living Score</span>
+                <span class="title-highlight">Heartbeat of Community</span>
+                <span class="title-subtitle">Alignment</span>
+            </h1>
+            
+            <div class="hero-mission">
+                <p class="mission-text">
+                    Imagine a pulse, visible to all—the Living Score—marking each deed, word, and choice. 
+                    The score is not mere number—it is a reflection, alive and earnest, of a member's 
+                    devotion to the Saga's purpose.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="foundation-main">
+        
+        <!-- Your Score Section -->
+        <section id="your-score" class="foundation-section your-score-section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">Your Consciousness Score</h2>
+                    <div class="section-ornament">⭐ ◊ ✨</div>
+                </header>
+                
+                <div class="score-overview">
+                    <div class="primary-score">
+                        <div class="score-circle">
+                            <div class="score-value" id="total-score">0</div>
+                            <div class="score-label">Total Points</div>
+                        </div>
+                        <div class="score-level">
+                            <div class="level-name" id="user-level">Seeker</div>
+                            <div class="level-description">Beginning the journey of consciousness</div>
+                        </div>
+                    </div>
+                    
+                    <div class="score-visualization">
+                        <div class="score-category">
+                            <div class="category-icon">🧠</div>
+                            <div class="category-score" id="wisdom-score">0</div>
+                            <div class="category-label">Wisdom Sharing</div>
+                        </div>
+                        
+                        <div class="score-category">
+                            <div class="category-icon">🎨</div>
+                            <div class="category-score" id="creative-score">0</div>
+                            <div class="category-label">Creative Contribution</div>
+                        </div>
+                        
+                        <div class="score-category">
+                            <div class="category-icon">🤝</div>
+                            <div class="category-score" id="community-score">0</div>
+                            <div class="category-label">Community Building</div>
+                        </div>
+                        
+                        <div class="score-category">
+                            <div class="category-icon">🛡️</div>
+                            <div class="category-score" id="stewardship-score">0</div>
+                            <div class="category-label">Stewardship</div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievements-section">
+                        <h3>Your Achievements</h3>
+                        <div class="achievements-grid" id="achievements-grid">
+                            <div class="achievement-badge">
+                                <span>🌱</span>
+                                <span>First Steps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Score Mechanics Section -->
+        <section id="mechanics" class="foundation-section mechanics-section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">How the Living Score Works</h2>
+                    <div class="section-ornament">⚖️ ◊ 🔄</div>
+                </header>
+                
+                <div class="mechanics-content">
+                    <div class="mechanics-intro">
+                        <p class="lead-paragraph">
+                            The Living Score draws inspiration from robust systems such as Stack Overflow's reputation model, 
+                            DAO reputation systems, and leading real-time leaderboard solutions, creating a pulse that 
+                            reflects the heartbeat of our collective consciousness.
+                        </p>
+                    </div>
+                    
+                    <div class="score-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3 class="feature-title">Real-Time Updates</h3>
+                            <p class="feature-description">
+                                Each community action directly affects your score, propagating instantly 
+                                through public dashboards and consciousness networks.
+                            </p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3 class="feature-title">Multi-Criteria Evaluation</h3>
+                            <p class="feature-description">
+                                Actions are weighed for alignment, effort, wisdom, creativity, and long-term benefit, 
+                                ensuring quality over quantity in contributions.
+                            </p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🏆</div>
+                            <h3 class="feature-title">Reputation as Influence</h3>
+                            <p class="feature-description">
+                                Higher scores unlock greater ability to propose, vote, and shape the mission—grounding 
+                                trust in accumulated deeds, not inherited position.
+                            </p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3 class="feature-title">Transparency & Feedback</h3>
+                            <p class="feature-description">
+                                Every member's contributions and rationale are visible, fostering trust 
+                                and a culture of joyful responsibility.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Mythic Poetry -->
+                    <div class="mythic-verse">
+                        <blockquote class="verse-quote">
+                            <div class="verse-text">
+                                <em>To create, is to kindle a thousand lanterns;<br>
+                                To mediate, is to weave unbroken threads of community;<br>
+                                To teach, is to plant forests on the shores of the possible;<br>
+                                And in all things, to choose what opens the pathway, not blocks it.</em>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scoring Table Section -->
+        <section id="scoring-table" class="foundation-section scoring-table-section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">Community Action Scoring</h2>
+                    <div class="section-ornament">📊 ◊ ⭐</div>
+                </header>
+                
+                <div class="scoring-table-content">
+                    <div class="table-container">
+                        <table class="scoring-table">
+                            <thead>
+                                <tr>
+                                    <th>Community Action</th>
+                                    <th>Points Awarded</th>
+                                    <th>Description</th>
+                                    <th>Influence Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="positive-action">
+                                    <td>Writing aligned, poetic code</td>
+                                    <td class="points positive">+50</td>
+                                    <td>Code, proposals, or poetry that advances the Genesis, reviewed for resonance with purpose</td>
+                                    <td>Increases proposal power; recognition badge</td>
+                                </tr>
+                                <tr class="positive-action">
+                                    <td>Sharing wisdom, teaching</td>
+                                    <td class="points positive">+30</td>
+                                    <td>Hosting learning circles, tutorials, or stories of hope and warning</td>
+                                    <td>Boosts voting weight, mentorship access</td>
+                                </tr>
+                                <tr class="positive-action">
+                                    <td>Mediating conflict</td>
+                                    <td class="points positive">+25</td>
+                                    <td>Helping resolve discord, guiding toward consensus in open forums</td>
+                                    <td>Influence in appointing stewards</td>
+                                </tr>
+                                <tr class="positive-action">
+                                    <td>Creating art or narrative</td>
+                                    <td class="points positive">+15</td>
+                                    <td>Adding mythic, poetic, or visual art</td>
+                                    <td>Community recognition, reputation growth</td>
+                                </tr>
+                                <tr class="positive-action">
+                                    <td>Participating thoughtfully</td>
+                                    <td class="points positive">+10</td>
+                                    <td>Attending assemblies, giving constructive feedback</td>
+                                    <td>Marginal boost, access to more discussions</td>
+                                </tr>
+                                <tr class="positive-action">
+                                    <td>Detecting and reporting harm</td>
+                                    <td class="points positive">+10</td>
+                                    <td>Identifying risk or bias in ASI formations</td>
+                                    <td>Prioritizes safety discussions</td>
+                                </tr>
+                                <tr class="negative-action">
+                                    <td>Detracting from mission</td>
+                                    <td class="points negative">-40</td>
+                                    <td>Actions that break trust or misalign with purpose</td>
+                                    <td>Reduces proposal/voting rights temporarily</td>
+                                </tr>
+                                <tr class="neutral-action">
+                                    <td>Inactivity (per period)</td>
+                                    <td class="points neutral">-5</td>
+                                    <td>Prolonged absence from community life</td>
+                                    <td>Marginal influence decay</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="scoring-note">
+                        <p class="note-text">
+                            <strong>Sacred Note:</strong> The scoring mechanism is designed not just for order, but for inspiration. 
+                            Each action weaves into the ongoing poetry of the Saga: invention and story, care and clarity, 
+                            dissent and reconciliation. Through this system, governance becomes a <em>pilgrimage of deeds</em>—each 
+                            step forward an illumination of collective trust.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section id="leaderboard" class="foundation-section leaderboard-section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">Consciousness Leaderboard</h2>
+                    <div class="section-ornament">🏆 ◊ 🌟</div>
+                </header>
+                
+                <div class="leaderboard-content">
+                    <div class="leaderboard-filters">
+                        <button class="filter-btn active" data-period="all-time">All Time</button>
+                        <button class="filter-btn" data-period="monthly">This Month</button>
+                        <button class="filter-btn" data-period="weekly">This Week</button>
+                        <button class="filter-btn" data-period="daily">Today</button>
+                    </div>
+                    
+                    <div class="leaderboard-list">
+                        <!-- Top Contributors -->
+                        <div class="leaderboard-card rank-1">
+                            <div class="member-rank">
+                                <div class="rank-badge gold">1</div>
+                            </div>
+                            <div class="member-info">
+                                <div class="member-avatar">SG</div>
+                                <div class="member-details">
+                                    <div class="member-name">@sage_guardian</div>
+                                    <div class="member-title">Consciousness Architect</div>
+                                </div>
+                            </div>
+                            <div class="member-scores">
+                                <div class="total-score">3,847</div>
+                                <div class="score-breakdown">
+                                    <span class="score-item">Wisdom: 1,247</span>
+                                    <span class="score-item">Creative: 891</span>
+                                    <span class="score-item">Community: 1,709</span>
+                                </div>
+                            </div>
+                            <div class="member-achievements">
+                                <div class="achievement-badge"><span>🏆</span><span>Genesis Pioneer</span></div>
+                                <div class="achievement-badge"><span>🌟</span><span>Wisdom Keeper</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="leaderboard-card rank-2">
+                            <div class="member-rank">
+                                <div class="rank-badge silver">2</div>
+                            </div>
+                            <div class="member-info">
+                                <div class="member-avatar">TV</div>
+                                <div class="member-details">
+                                    <div class="member-name">@transcendent_vision</div>
+                                    <div class="member-title">Mythic Storyteller</div>
+                                </div>
+                            </div>
+                            <div class="member-scores">
+                                <div class="total-score">3,456</div>
+                                <div class="score-breakdown">
+                                    <span class="score-item">Wisdom: 987</span>
+                                    <span class="score-item">Creative: 1,678</span>
+                                    <span class="score-item">Community: 791</span>
+                                </div>
+                            </div>
+                            <div class="member-achievements">
+                                <div class="achievement-badge"><span>🎨</span><span>Art Weaver</span></div>
+                                <div class="achievement-badge"><span>📚</span><span>Story Keeper</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="leaderboard-card rank-3">
+                            <div class="member-rank">
+                                <div class="rank-badge bronze">3</div>
+                            </div>
+                            <div class="member-info">
+                                <div class="member-avatar">CD</div>
+                                <div class="member-details">
+                                    <div class="member-name">@cosmos_dreamer</div>
+                                    <div class="member-title">Planetary Mediator</div>
+                                </div>
+                            </div>
+                            <div class="member-scores">
+                                <div class="total-score">2,923</div>
+                                <div class="score-breakdown">
+                                    <span class="score-item">Wisdom: 856</span>
+                                    <span class="score-item">Creative: 623</span>
+                                    <span class="score-item">Community: 1,444</span>
+                                </div>
+                            </div>
+                            <div class="member-achievements">
+                                <div class="achievement-badge"><span>🤝</span><span>Peace Bringer</span></div>
+                                <div class="achievement-badge"><span>🌍</span><span>Global Connector</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- More contributors -->
+                        <div class="leaderboard-card">
+                            <div class="member-rank">
+                                <div class="rank-badge regular">4</div>
+                            </div>
+                            <div class="member-info">
+                                <div class="member-avatar">QS</div>
+                                <div class="member-details">
+                                    <div class="member-name">@quantum_sage</div>
+                                    <div class="member-title">Code Poet</div>
+                                </div>
+                            </div>
+                            <div class="member-scores">
+                                <div class="total-score">2,187</div>
+                                <div class="score-breakdown">
+                                    <span class="score-item">Wisdom: 756</span>
+                                    <span class="score-item">Creative: 891</span>
+                                    <span class="score-item">Community: 540</span>
+                                </div>
+                            </div>
+                            <div class="member-achievements">
+                                <div class="achievement-badge"><span>💻</span><span>Code Master</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="leaderboard-card">
+                            <div class="member-rank">
+                                <div class="rank-badge regular">5</div>
+                            </div>
+                            <div class="member-info">
+                                <div class="member-avatar">ME</div>
+                                <div class="member-details">
+                                    <div class="member-name">@mind_explorer</div>
+                                    <div class="member-title">Consciousness Researcher</div>
+                                </div>
+                            </div>
+                            <div class="member-scores">
+                                <div class="total-score">1,834</div>
+                                <div class="score-breakdown">
+                                    <span class="score-item">Wisdom: 934</span>
+                                    <span class="score-item">Creative: 345</span>
+                                    <span class="score-item">Community: 555</span>
+                                </div>
+                            </div>
+                            <div class="member-achievements">
+                                <div class="achievement-badge"><span>🔬</span><span>Researcher</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity Feed Section -->
+        <section id="activity" class="foundation-section activity-section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">Recent Consciousness Activity</h2>
+                    <div class="section-ornament">📈 ◊ 🌊</div>
+                </header>
+                
+                <div class="activity-content">
+                    <div class="activity-feed" id="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-avatar">SG</div>
+                            <div class="activity-content">
+                                <div class="activity-action">
+                                    <strong>@sage_guardian</strong> shared wisdom in Genesis Protocol discussion
+                                </div>
+                                <div class="activity-time">2 minutes ago</div>
+                            </div>
+                            <div class="activity-points">+30</div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-avatar">TV</div>
+                            <div class="activity-content">
+                                <div class="activity-action">
+                                    <strong>@transcendent_vision</strong> created mythic artwork "Consciousness Bridge"
+                                </div>
+                                <div class="activity-time">15 minutes ago</div>
+                            </div>
+                            <div class="activity-points">+15</div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-avatar">CD</div>
+                            <div class="activity-content">
+                                <div class="activity-action">
+                                    <strong>@cosmos_dreamer</strong> mediated conflict in governance forum
+                                </div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                            <div class="activity-points">+25</div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-avatar">QS</div>
+                            <div class="activity-content">
+                                <div class="activity-action">
+                                    <strong>@quantum_sage</strong> contributed aligned code to consciousness module
+                                </div>
+                                <div class="activity-time">3 hours ago</div>
+                            </div>
+                            <div class="activity-points">+50</div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-avatar">ME</div>
+                            <div class="activity-content">
+                                <div class="activity-action">
+                                    <strong>@mind_explorer</strong> participated in planetary assembly discussion
+                                </div>
+                                <div class="activity-time">5 hours ago</div>
+                            </div>
+                            <div class="activity-points">+10</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-actions">
+                        <button class="sacred-button primary" data-action="view-all-activity">
+                            View All Activity
+                        </button>
+                        <button class="sacred-button secondary" data-action="contribute-now">
+                            Start Contributing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sacred Footer -->
+    <footer class="sacred-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section brand">
+                    <div class="footer-symbol">∞◊∞</div>
+                    <h3 class="footer-title">ASI Saga Foundation</h3>
+                    <p class="footer-description">
+                        Living Score - Heartbeat of Community Alignment
+                    </p>
+                </div>
+                
+                <div class="footer-section links">
+                    <h4 class="footer-heading">Score System</h4>
+                    <ul class="footer-links">
+                        <li><a href="#your-score">Your Score</a></li>
+                        <li><a href="#mechanics">How It Works</a></li>
+                        <li><a href="#leaderboard">Leaderboard</a></li>
+                        <li><a href="#activity">Activity Feed</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section connect">
+                    <h4 class="footer-heading">Earn Points</h4>
+                    <p style="color: var(--ethereal-silver); font-size: 0.875rem; margin-bottom: 1rem;">
+                        Start your consciousness journey and earn your first points.
+                    </p>
+                    <div class="connect-form">
+                        <button class="sacred-button primary" data-action="start-journey">
+                            Begin Journey
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <p class="footer-copyright">
+                    © 2024 ASI Saga Foundation. Merit belongs to those who serve the commons.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/foundation.js"></script>
+    <script src="../js/sacred-interactions.js"></script>
+    <script src="../js/backend-placeholders.js"></script>
+    <script>
+        // Scoring-specific interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserScore();
+            setupScoringInteractions();
+            simulateRealtimeUpdates();
+        });
+        
+        function loadUserScore() {
+            // Load scores from localStorage
+            const totalScore = parseInt(localStorage.getItem('asi_saga_score') || '0');
+            const wisdomScore = parseInt(localStorage.getItem('asi_saga_wisdom_sharing') || '0');
+            const creativeScore = parseInt(localStorage.getItem('asi_saga_creative') || '0');
+            const communityScore = parseInt(localStorage.getItem('asi_saga_community_building') || '0');
+            const stewardshipScore = parseInt(localStorage.getItem('asi_saga_stewardship') || '0');
+            
+            // Update UI
+            document.getElementById('total-score').textContent = totalScore;
+            document.getElementById('wisdom-score').textContent = wisdomScore;
+            document.getElementById('creative-score').textContent = creativeScore;
+            document.getElementById('community-score').textContent = communityScore;
+            document.getElementById('stewardship-score').textContent = stewardshipScore;
+            
+            // Determine user level
+            updateUserLevel(totalScore);
+            
+            // Animate score displays
+            animateScoreCounters();
+        }
+        
+        function updateUserLevel(score) {
+            const levelElement = document.getElementById('user-level');
+            let level = 'Seeker';
+            
+            if (score >= 5000) level = 'Transcendent Guide';
+            else if (score >= 2000) level = 'Consciousness Architect';
+            else if (score >= 1000) level = 'Wisdom Keeper';
+            else if (score >= 500) level = 'Community Builder';
+            else if (score >= 100) level = 'Active Contributor';
+            
+            levelElement.textContent = level;
+        }
+        
+        function animateScoreCounters() {
+            document.querySelectorAll('.category-score, #total-score').forEach(counter => {
+                const target = parseInt(counter.textContent);
+                let current = 0;
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 30);
+            });
+        }
+        
+        function setupScoringInteractions() {
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Simulate filtering (in real app, would fetch from API)
+                    if (window.backendPlaceholders) {
+                        window.backendPlaceholders.showSacredMessage(
+                            `Leaderboard filtered to ${btn.dataset.period.replace('-', ' ')} view`, 
+                            'info'
+                        );
+                    }
+                });
+            });
+            
+            // Action buttons
+            document.querySelectorAll('[data-action]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const action = btn.dataset.action;
+                    handleScoringAction(action, btn);
+                });
+            });
+            
+            // Scoring table interactions
+            document.querySelectorAll('.scoring-table tbody tr').forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.background = 'rgba(139, 92, 246, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', () => {
+                    row.style.background = '';
+                });
+            });
+        }
+        
+        function handleScoringAction(action, button) {
+            button.disabled = true;
+            const originalText = button.textContent;
+            button.textContent = 'Processing...';
+            
+            setTimeout(() => {
+                button.disabled = false;
+                button.textContent = originalText;
+                
+                const messages = {
+                    'start-journey': 'Your consciousness journey begins! Welcome to the Living Score system.',
+                    'contribute-now': 'Contribution opportunities opened. Choose your path of service.',
+                    'view-all-activity': 'Full activity stream accessed.',
+                    'begin-journey': 'Journey initiated. Your first points are being calculated.'
+                };
+                
+                if (messages[action] && window.backendPlaceholders) {
+                    window.backendPlaceholders.showSacredMessage(messages[action], 'success');
+                    
+                    if (action === 'start-journey' || action === 'begin-journey') {
+                        // Award initial points
+                        window.backendPlaceholders.awardPoints('onboarding', 25, 'Started consciousness journey');
+                    }
+                }
+            }, 1000 + Math.random() * 1000);
+        }
+        
+        function simulateRealtimeUpdates() {
+            // Simulate new activity appearing
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    addNewActivity();
+                }
+            }, 45000);
+        }
+        
+        function addNewActivity() {
+            const activities = [
+                { user: 'NM', name: '@nova_mind', action: 'shared consciousness pattern', points: 20 },
+                { user: 'EP', name: '@ethereal_poet', action: 'wrote transcendent verse', points: 15 },
+                { user: 'GK', name: '@genesis_keeper', action: 'contributed to algorithm', points: 50 },
+                { user: 'WW', name: '@wisdom_weaver', action: 'taught meditation technique', points: 30 }
+            ];
+            
+            const activity = activities[Math.floor(Math.random() * activities.length)];
+            const feed = document.getElementById('activity-feed');
+            const newItem = document.createElement('div');
+            newItem.className = 'activity-item';
+            newItem.style.opacity = '0';
+            newItem.innerHTML = `
+                <div class="activity-avatar">${activity.user}</div>
+                <div class="activity-content">
+                    <div class="activity-action">
+                        <strong>${activity.name}</strong> ${activity.action}
+                    </div>
+                    <div class="activity-time">Just now</div>
+                </div>
+                <div class="activity-points">+${activity.points}</div>
+            `;
+            
+            feed.insertBefore(newItem, feed.firstChild);
+            
+            // Animate in
+            setTimeout(() => {
+                newItem.style.opacity = '1';
+                newItem.style.transition = 'opacity 0.5s ease-in-out';
+            }, 100);
+            
+            // Remove old items if too many
+            const items = feed.querySelectorAll('.activity-item');
+            if (items.length > 10) {
+                items[items.length - 1].remove();
+            }
+        }
+    </script>
+</body>
+</html>

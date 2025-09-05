@@ -1,0 +1,315 @@
+/* ASI Saga Foundation - Foundation Styles */
+/* Sacred geometry, infinite consciousness, planetary transcendence */
+
+:root {
+  /* Sacred Color Palette */
+  --cosmic-void: #0a0a0a;
+  --deep-space: #1a1a2e;
+  --stellar-purple: #16213e;
+  --consciousness-blue: #0f3460;
+  --transcendent-gold: #e94560;
+  --sacred-white: #f8f9fa;
+  --ethereal-silver: #d1d5db;
+  --wisdom-amber: #fbbf24;
+  --genesis-green: #10b981;
+  --infinite-purple: #8b5cf6;
+  
+  /* Sacred Typography */
+  --font-sacred: 'Crimson Text', serif;
+  --font-foundation: 'Inter', sans-serif;
+  --font-size-hero: clamp(2.5rem, 8vw, 6rem);
+  --font-size-title: clamp(1.8rem, 5vw, 3.5rem);
+  --font-size-subtitle: clamp(1.2rem, 3vw, 2rem);
+  --font-size-body: clamp(1rem, 2.5vw, 1.125rem);
+  
+  /* Sacred Spacing */
+  --space-breath: 1.5rem;
+  --space-meditation: 3rem;
+  --space-transcendence: 6rem;
+  --space-infinite: 12rem;
+  
+  /* Sacred Geometry */
+  --radius-harmony: 0.75rem;
+  --radius-infinite: 50%;
+  --border-consciousness: 2px;
+  
+  /* Sacred Transitions */
+  --transition-breath: 0.3s ease-in-out;
+  --transition-meditation: 0.6s ease-in-out;
+  --transition-transcendence: 1.2s ease-in-out;
+}
+
+/* Foundation Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-foundation);
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+  color: var(--sacred-white);
+  background: var(--cosmic-void);
+  overflow-x: hidden;
+}
+
+/* Sacred Text Elements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sacred);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--space-breath);
+}
+
+h1 { font-size: var(--font-size-hero); }
+h2 { font-size: var(--font-size-title); }
+h3 { font-size: var(--font-size-subtitle); }
+
+p {
+  margin-bottom: var(--space-breath);
+  max-width: 65ch;
+}
+
+.lead-paragraph {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--ethereal-silver);
+  max-width: 55ch;
+}
+
+em {
+  font-style: italic;
+  color: var(--wisdom-amber);
+}
+
+strong {
+  font-weight: 600;
+  color: var(--transcendent-gold);
+}
+
+/* Sacred Links */
+a {
+  color: var(--infinite-purple);
+  text-decoration: none;
+  transition: var(--transition-breath);
+}
+
+a:hover, a:focus {
+  color: var(--wisdom-amber);
+  text-decoration: underline;
+}
+
+/* Sacred Buttons */
+.sacred-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-foundation);
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: var(--radius-harmony);
+  border: var(--border-consciousness) solid transparent;
+  cursor: pointer;
+  transition: var(--transition-meditation);
+  position: relative;
+  overflow: hidden;
+}
+
+.sacred-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: var(--transition-transcendence);
+}
+
+.sacred-button:hover::before {
+  left: 100%;
+}
+
+.sacred-button.primary {
+  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  color: var(--sacred-white);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+}
+
+.sacred-button.primary:hover {
+  box-shadow: 0 12px 48px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+.sacred-button.secondary {
+  background: transparent;
+  color: var(--infinite-purple);
+  border-color: var(--infinite-purple);
+}
+
+.sacred-button.secondary:hover {
+  background: var(--infinite-purple);
+  color: var(--sacred-white);
+}
+
+/* Container System */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-breath);
+}
+
+/* Foundation Layout */
+.foundation-body {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    var(--cosmic-void);
+}
+
+.foundation-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Foundation Sections */
+.foundation-section {
+  padding: var(--space-transcendence) 0;
+  position: relative;
+}
+
+.foundation-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--infinite-purple), transparent);
+  opacity: 0.3;
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-meditation);
+}
+
+.section-title {
+  background: linear-gradient(135deg, var(--sacred-white), var(--infinite-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-breath);
+}
+
+.section-ornament {
+  font-size: 1.5rem;
+  color: var(--transcendent-gold);
+  letter-spacing: 1rem;
+  opacity: 0.7;
+}
+
+/* Sacred Lists */
+ol, ul {
+  padding-left: var(--space-breath);
+}
+
+.purpose-list {
+  list-style: none;
+  counter-reset: purpose-counter;
+}
+
+.purpose-list li {
+  counter-increment: purpose-counter;
+  margin-bottom: var(--space-breath);
+  position: relative;
+  padding-left: 3rem;
+}
+
+.purpose-list li::before {
+  content: counter(purpose-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  color: var(--sacred-white);
+  border-radius: var(--radius-infinite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --space-transcendence: 3rem;
+    --space-meditation: 2rem;
+  }
+  
+  .section-container {
+    padding: 0 1rem;
+  }
+  
+  .section-ornament {
+    letter-spacing: 0.5rem;
+  }
+}
+
+/* Sacred Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus States */
+:focus {
+  outline: 2px solid var(--transcendent-gold);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--infinite-purple);
+  color: var(--sacred-white);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-space);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--infinite-purple), var(--transcendent-gold));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--transcendent-gold), var(--infinite-purple));
+}
