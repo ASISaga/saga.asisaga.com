@@ -1,7 +1,11 @@
+alert("Script loaded");
+
 (() => {
   let scene, camera, renderer, coreMesh, points, clock;
 
+  alert("Init starting");
   init();
+  alert("Init complete");
   animate();
 
   function init() {
@@ -76,6 +80,7 @@
   }
 
   function animate() {
+    alert("Animating frame");
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
 
