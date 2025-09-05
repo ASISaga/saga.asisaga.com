@@ -1,0 +1,299 @@
+/* Community Page - Specific Styles */
+/* Community-specific styles */
+.community-hero {
+    background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.2) 0%, 
+        rgba(139, 92, 246, 0.1) 50%, 
+        rgba(233, 69, 96, 0.2) 100%
+    );
+}
+
+.community-constellation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(3px 3px at 30% 20%, var(--genesis-green), transparent),
+        radial-gradient(2px 2px at 70% 40%, var(--infinite-purple), transparent),
+        radial-gradient(1px 1px at 50% 80%, var(--transcendent-gold), transparent),
+        radial-gradient(2px 2px at 80% 70%, var(--wisdom-amber), transparent);
+    background-size: 250px 250px;
+    animation: communityFlow 20s linear infinite;
+}
+
+@keyframes communityFlow {
+    from { transform: translateX(0) translateY(0); }
+    to { transform: translateX(-250px) translateY(-250px); }
+}
+
+.community-symbol {
+    font-size: 4rem;
+    animation: communityGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes communityGlow {
+    from { 
+        filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+        transform: scale(1);
+    }
+    to { 
+        filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8));
+        transform: scale(1.05);
+    }
+}
+
+.action-taxonomy {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-breath);
+    margin: var(--space-meditation) 0;
+}
+
+.action-category {
+    background: rgba(22, 33, 62, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    transition: var(--transition-meditation);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+    transition: var(--transition-transcendence);
+}
+
+.action-category:hover {
+    border-color: var(--genesis-green);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2);
+}
+
+.action-category:hover::before {
+    left: 100%;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: var(--space-breath);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--genesis-green), var(--infinite-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.category-title {
+    color: var(--transcendent-gold);
+    margin: 0;
+}
+
+.category-description {
+    color: var(--ethereal-silver);
+    margin-bottom: var(--space-breath);
+    line-height: 1.6;
+}
+
+.action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    transition: var(--transition-breath);
+}
+
+.action-item:last-child {
+    border-bottom: none;
+}
+
+.action-item:hover {
+    background: rgba(16, 185, 129, 0.05);
+    padding-left: 0.5rem;
+    border-radius: 4px;
+}
+
+.action-icon {
+    font-size: 1.2rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+.action-text {
+    flex: 1;
+    color: var(--sacred-white);
+}
+
+.action-points {
+    color: var(--wisdom-amber);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.poetry-section {
+    background: rgba(22, 33, 62, 0.4);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-meditation);
+    margin: var(--space-transcendence) 0;
+    text-align: center;
+}
+
+.poetry-verse {
+    font-family: var(--font-sacred);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--wisdom-amber);
+    margin-bottom: var(--space-breath);
+}
+
+.poetry-attribution {
+    color: var(--ethereal-silver);
+    font-size: 0.875rem;
+}
+
+.participation-portal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-breath);
+    margin: var(--space-meditation) 0;
+}
+
+.portal-card {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(233, 69, 96, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    text-align: center;
+    transition: var(--transition-meditation);
+    cursor: pointer;
+}
+
+.portal-card:hover {
+    border-color: var(--transcendent-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(233, 69, 96, 0.2);
+}
+
+.portal-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-breath);
+    display: block;
+    animation: portalPulse 3s ease-in-out infinite;
+}
+
+@keyframes portalPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+.portal-title {
+    color: var(--transcendent-gold);
+    margin-bottom: var(--space-breath);
+}
+
+.portal-description {
+    color: var(--ethereal-silver);
+    line-height: 1.6;
+    margin-bottom: var(--space-breath);
+}
+
+.progress-tracker {
+    background: rgba(22, 33, 62, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-harmony);
+    padding: var(--space-breath);
+    margin: var(--space-meditation) 0;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-breath);
+}
+
+.progress-title {
+    color: var(--transcendent-gold);
+    margin: 0;
+}
+
+.progress-score {
+    color: var(--wisdom-amber);
+    font-weight: 600;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(139, 92, 246, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--genesis-green), var(--wisdom-amber));
+    border-radius: 4px;
+    transition: width 1s ease-out;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+.recent-contributions {
+    margin-top: var(--space-breath);
+}
+
+.contribution-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    color: var(--ethereal-silver);
+    font-size: 0.875rem;
+}
+
+.contribution-item:last-child {
+    border-bottom: none;
+}
+
+.contribution-points {
+    color: var(--genesis-green);
+    font-weight: 600;
+}
