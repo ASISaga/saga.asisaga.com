@@ -9,28 +9,35 @@ alert("Script loaded");
   animate();
 
   function init() {
+    alert("Step 1: Creating scene");
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x05060a, 0.018);
 
-    camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      200
-    );
+    alert("Step 2: Creating camera");
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
     camera.position.set(0, 0, 8);
 
+    alert("Step 3: Creating renderer");
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    alert("Step 4: Appending renderer");
     document.getElementById('webgl-container').appendChild(renderer.domElement);
 
+    alert("Step 5: Creating clock");
     clock = new THREE.Clock();
 
+    alert("Step 6: Adding lights");
     addLights();
+
+    alert("Step 7: Adding core");
     addCore();
+
+    alert("Step 8: Adding weave");
     addWeave();
 
+    alert("Step 9: Adding resize listener");
     window.addEventListener('resize', onResize, false);
   }
 
@@ -43,11 +50,7 @@ alert("Script loaded");
 
   function addCore() {
     const geo = new THREE.SphereGeometry(1.05, 32, 32);
-    const mat = new THREE.MeshBasicMaterial({
-      color: 0xa9f8ff,
-      transparent: true,
-      opacity: 0.8
-    });
+    const mat = new THREE.MeshBasicMaterial({ color: 0xa9f8ff, transparent: true, opacity: 0.8 });
     coreMesh = new THREE.Mesh(geo, mat);
     scene.add(coreMesh);
   }
@@ -56,7 +59,6 @@ alert("Script loaded");
     const count = 8000;
     const geo = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
-
     for (let i = 0; i < count; i++) {
       const r = 3 + Math.random() * 8;
       const a = Math.random() * Math.PI * 2;
@@ -65,16 +67,8 @@ alert("Script loaded");
       positions[i * 3 + 1] = h;
       positions[i * 3 + 2] = Math.sin(a) * r;
     }
-
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const mat = new THREE.PointsMaterial({
-      color: 0x87bfff,
-      size: 0.05,
-      transparent: true,
-      opacity: 0.7
-    });
-
+    const mat = new THREE.PointsMaterial({ color: 0x87bfff, size: 0.05, transparent: true, opacity: 0.7 });
     points = new THREE.Points(geo, mat);
     scene.add(points);
   }
@@ -83,15 +77,10 @@ alert("Script loaded");
     alert("Animating frame");
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
-
-    // Rotate weave
     points.rotation.y = t * 0.05;
     points.rotation.x = Math.sin(t * 0.2) * 0.05;
-
-    // Pulse core
     const s = 1 + Math.sin(t * 2) * 0.05;
     coreMesh.scale.setScalar(s);
-
     renderer.render(scene, camera);
   }
 
