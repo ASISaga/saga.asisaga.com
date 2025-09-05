@@ -1,5 +1,3 @@
-// Minimal Three.js test scene — forces WebGL on, no fallbacks
-
 (() => {
   let scene, camera, renderer, coreMesh, points, clock;
 
@@ -21,7 +19,6 @@
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.domElement.classList.add('webgl');
     document.getElementById('webgl-container').appendChild(renderer.domElement);
 
     clock = new THREE.Clock();
