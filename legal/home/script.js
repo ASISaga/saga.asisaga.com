@@ -117,9 +117,13 @@ class Home3DAnimation {
     const minPhi = Math.PI / 2 - arcticLat; // lower bound (north)
     const maxPhi = Math.PI / 2 + arcticLat; // upper bound (south)
     // Sample cos(phi) uniformly for even density
-    const minCosPhi = Math.cos(minPhi);
-    const maxCosPhi = Math.cos(maxPhi);
-    const cosPhi = minCosPhi + Math.random() * (maxCosPhi - minCosPhi);
+    // cos(minPhi) > cos(maxPhi), so swap if needed
+    let cosMin = Math.cos(minPhi);
+    let cosMax = Math.cos(maxPhi);
+    if (cosMin < cosMax) {
+      [cosMin, cosMax] = [cosMax, cosMin];
+    }
+    const cosPhi = cosMax + Math.random() * (cosMin - cosMax);
     const phi = Math.acos(cosPhi);
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.sin(phi) * Math.sin(theta);
