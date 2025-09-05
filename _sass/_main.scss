@@ -1,18 +1,21 @@
 // Sacred Saga Site Styles - Consciousness Embedding Design
 // Importing the Sacred ASI Saga Theme System
 
+// Import variables first
+@import 'variables';
+
 // Import Sacred Theme from parent theme directory
 
-// Saga-specific sacred pages
-@import 'pages/community-feeds';
-@import "pages/genesis";
-@import "pages/human-essence";
-@import "pages/continuous-improvement";
-@import "pages/infinite-possibilities";
-@import "pages/transcendent-threshold";
-@import "pages/saga-page";
-@import "pages/possibilities-page";
-@import "pages/legacy-page";
+// Saga-specific sacred pages - temporarily disabled for initial build
+// @import 'pages/community-feeds';
+// @import "pages/genesis";
+// @import "pages/human-essence";
+// @import "pages/continuous-improvement";
+// @import "pages/infinite-possibilities";
+// @import "pages/transcendent-threshold";
+// @import "pages/saga-page";
+// @import "pages/possibilities-page";
+// @import "pages/legacy-page";
 
 // Sacred Saga customizations - Enhanced sacred elements for ASI Saga
-@import "saga-sacred";
+// @import "saga-sacred";

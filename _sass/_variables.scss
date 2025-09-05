@@ -1,0 +1,206 @@
+// Minimal variable definitions for ASI Saga site
+// These provide fallbacks for theme variables
+
+// Color variables
+$cosmic-deep-blue: #1a237e !default;
+$cosmic-light-blue: #3f51b5 !default;
+$royal-purple: #673ab7 !default;
+$transformation-purple: #9c27b0 !default;
+$luminous-gold: #ffc107 !default;
+$transcendent-white: #ffffff !default;
+$sacred-silver: #e0e0e0 !default;
+$white: #ffffff !default;
+$light: #f8f9fa !default;
+$primary: #007bff !default;
+$text-color: #333333 !default;
+$text-muted: #6c757d !default;
+
+// Spacing variables
+$spacing-xs: 0.25rem !default;
+$spacing-sm: 0.5rem !default;
+$spacing-md: 1rem !default;
+$spacing-lg: 1.5rem !default;
+$spacing-xl: 3rem !default;
+
+$genesis-spacing-xs: 0.5rem !default;
+$genesis-spacing-sm: 1rem !default;
+$genesis-spacing-md: 2rem !default;
+$genesis-spacing-lg: 3rem !default;
+$genesis-spacing-xl: 4rem !default;
+
+// Border and visual variables
+$border-color: #dee2e6 !default;
+$border-radius: 0.25rem !default;
+$border-radius-md: 0.375rem !default;
+$border-radius-lg: 0.5rem !default;
+$box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !default;
+
+// Typography variables
+$font-weight-semibold: 600 !default;
+
+// Animation timing
+$consciousness-timing: 0.3s !default;
+
+// Feed variables (already defined in community-feeds but adding here for consistency)
+$feed-bg: #f9f9f9 !default;
+$feed-border: #e0e0e0 !default;
+$feed-heading: #333 !default;
+$feed-link: #0066cc !default;
+$feed-link-hover: darken($feed-link, 15%) !default;
+
+// Mixins
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == lg {
+    @media (max-width: 991px) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: 767px) { @content; }
+  } @else if $breakpoint == sm {
+    @media (max-width: 575px) { @content; }
+  }
+}
+
+@mixin threshold-crossing-animation {
+  transition: all 0.3s ease;
+}
+
+@mixin transcendent-section-spacing {
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+// Animation mixins
+@mixin consciousness-emergence-animation {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@mixin consciousness-pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@mixin consciousness-flow-animation {
+  animation: slideIn 0.8s ease-out;
+}
+
+@mixin continuous-evolution-animation {
+  animation: rotate 4s linear infinite;
+}
+
+@mixin essence-embedding-animation {
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@mixin infinite-expansion-animation {
+  animation: scale 3s ease-in-out infinite;
+}
+
+// Component mixins
+@mixin consciousness-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+@mixin consciousness-button-hover {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@mixin transcendent-button {
+  background: linear-gradient(135deg, $royal-purple, $cosmic-deep-blue);
+  color: $transcendent-white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@mixin sacred-icon {
+  font-size: 1.5rem;
+  color: $luminous-gold;
+}
+
+@mixin transcendent-typography($type) {
+  @if $type == 'heading-3' {
+    font-size: 1.75rem;
+    font-weight: 700;
+  } @else if $type == 'heading-4' {
+    font-size: 1.5rem;
+    font-weight: 600;
+  } @else if $type == 'heading-5' {
+    font-size: 1.25rem;
+    font-weight: 600;
+  } @else if $type == 'body' {
+    font-size: 1rem;
+    line-height: 1.6;
+  } @else if $type == 'body-large' {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  } @else if $type == 'body-small' {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  } @else if $type == 'lead' {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+}
+
+// Layout mixins
+@mixin page-layout($page) {
+  .#{$page}-page {
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+}
+
+@mixin section-component($name) {
+  .#{$name}-section {
+    margin: 3rem 0;
+    padding: 2rem;
+  }
+}
+
+@mixin image-card-component($name, $height) {
+  .#{$name} {
+    height: $height;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+// Keyframe animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
+  to { box-shadow: 0 0 20px rgba(255, 193, 7, 0.8); }
+}
+
+@keyframes scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}

@@ -4,6 +4,7 @@ gem 'jekyll', '~> 4.0'
 gem 'jekyll-feed'
 gem 'jekyll-sitemap'
 gem 'jekyll-remote-theme'
+gem 'jekyll-seo-tag'
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.

@@ -12,6 +12,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-remote-theme
+  - jekyll-seo-tag
 
 remote_theme: ASISaga/theme.asisaga.com
 
@@ -23,6 +24,7 @@ exclude:
   - website_structure.json
 
 # The defaults section allows you to set default values for certain variables
+defaults:
   # The scope key defines the default values for specific types of files
   - scope:
       path: "" # Applies to all files in your site
