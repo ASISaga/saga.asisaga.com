@@ -5,35 +5,15 @@
   <title>ASI Saga — Grand Spiral Assembly</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000;
-      overflow: hidden;
-    }
+    html, body { height: 100%; margin: 0; background: #000; overflow: hidden; }
     canvas { display: block; }
     .overlay {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      pointer-events: none;
+      position: fixed; inset: 0; display: grid; place-items: center; pointer-events: none;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      color: #dfe7ff;
-      text-align: center;
-      padding: 16px;
+      color: #dfe7ff; text-align: center; padding: 16px;
     }
-    .overlay h1 {
-      margin: 0 0 6px;
-      font-size: clamp(22px, 5vw, 40px);
-      text-shadow: 0 0 22px rgba(122,167,255,.3);
-    }
-    .overlay p {
-      margin: 0;
-      max-width: 60ch;
-      color: #cfe0ff;
-      opacity: .9;
-    }
+    .overlay h1 { margin: 0 0 6px; font-size: clamp(22px, 5vw, 40px); text-shadow: 0 0 22px rgba(122,167,255,.3); }
+    .overlay p { margin: 0; max-width: 60ch; color: #cfe0ff; opacity: .9; }
   </style>
 </head>
 <body>
@@ -63,8 +43,8 @@
     dir.position.set(2.2, 2.8, 2.6);
     scene.add(dir);
 
-    // Core sphere
-    const CORE_R = 1.5; // sphere size unchanged
+    // Core
+    const CORE_R = 2.0; // bigger sphere
     const coreGeo = new THREE.SphereGeometry(CORE_R*0.96, 48, 48);
     const coreMat = new THREE.MeshStandardMaterial({
       color: 0x1a2440,
@@ -76,14 +56,14 @@
     const core = new THREE.Mesh(coreGeo, coreMat);
     scene.add(core);
 
-    // Particle parameters
+    // Particles
     const COUNT = 3200;
-    const START_MIN = 4.0, START_MAX = 7.0;
+    const START_MIN = 5.0, START_MAX = 9.0; // start further out
     const STICK_DIST = 0.03;
     const DWELL_TIME = 2.5;
     const SPIRAL_FACTOR = 0.55;
-    const BASE_INWARD = 0.003; // slower inward speed
-    const MAX_STEP = 0.012;    // smaller step cap
+    const BASE_INWARD = 0.006; // slower inward
+    const MAX_STEP = 0.025;    // clamp slower
     const VARIANCE = 0.6;
 
     const positions = new Float32Array(COUNT * 3);
@@ -119,7 +99,7 @@
       positions[i*3+1] = t.y * startRadius / CORE_R;
       positions[i*3+2] = t.z * startRadius / CORE_R;
 
-      speeds[i] = 0.3 + Math.random() * 0.3; // slower overall
+      speeds[i] = 0.6 + Math.random() * 0.5; // slower speeds
       delays[i] = Math.random() * 2.5;
       states[i] = 2;
       dwellAt[i] = 0;
@@ -132,7 +112,7 @@
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const mat = new THREE.PointsMaterial({
       color: 0x8fd3ff,
-      size: 0.08, // bigger particles
+      size: 0.04, // slightly bigger points
       transparent: true,
       opacity: 0.95,
       depthWrite: false
@@ -155,50 +135,4 @@
 
       for (let i = 0; i < COUNT; i++) {
         const idx = i * 3;
-        if (states[i] === 2) {
-          if (t > delays[i]) states[i] = 0;
-          continue;
-        }
-        tmpA.set(positions[idx], positions[idx+1], positions[idx+2]);
-        tmpB.set(targets[idx], targets[idx+1], targets[idx+2]);
-
-        if (states[i] === 0) {
-          const toTarget = tmpB.clone().sub(tmpA);
-          const dist = toTarget.length();
-          if (dist < STICK_DIST) {
-            states[i] = 1;
-            dwellAt[i] = t;
-            positions[idx] = tmpB.x;
-            positions[idx+1] = tmpB.y;
-            positions[idx+2] = tmpB.z;
-            continue;
-          }
-          const inward = toTarget.normalize().multiplyScalar(BASE_INWARD * speeds[i]);
-          const tangent = tmpB.clone().cross(up).normalize().multiplyScalar(SPIRAL_FACTOR * BASE_INWARD * speeds[i]);
-          const step = inward.add(tangent);
-          if (step.length() > MAX_STEP) step.setLength(MAX_STEP);
-          tmpA.add(step);
-          positions[idx] = tmpA.x;
-          positions[idx+1] = tmpA.y;
-          positions[idx+2] = tmpA.z;
-        } else if (states[i] === 1) {
-          if (t - dwellAt[i] > DWELL_TIME) {
-            seedParticle(i, t);
-          }
-        }
-      }
-
-      posAttr.needsUpdate = true;
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = innerWidth / innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(innerWidth, innerHeight);
-    });
-  </script>
-</body>
-</html>
+        if (states[i] ===
