@@ -2,17 +2,22 @@
 /* Sacred geometry, infinite consciousness, planetary transcendence */
 
 :root {
-  /* Sacred Color Palette */
-  --cosmic-void: #0a0a0a;
-  --deep-space: #1a1a2e;
-  --stellar-purple: #16213e;
-  --consciousness-blue: #0f3460;
-  --transcendent-gold: #e94560;
-  --sacred-white: #f8f9fa;
-  --ethereal-silver: #d1d5db;
-  --wisdom-amber: #fbbf24;
-  --genesis-green: #10b981;
-  --infinite-purple: #8b5cf6;
+  /* Sacred Color Palette - Light Theme */
+  --sacred-white: #ffffff;
+  --pure-light: #fefefe;
+  --ethereal-silver: #f8fafc;
+  --wisdom-whisper: #f1f5f9;
+  --consciousness-mist: #e2e8f0;
+  --deep-wisdom: #334155;
+  --sacred-text: #1e293b;
+  --infinite-depth: #0f172a;
+  
+  /* Sacred Accent Colors (used subtly) */
+  --transcendent-gold: #d97706;
+  --wisdom-amber: #f59e0b;
+  --genesis-green: #059669;
+  --infinite-purple: #7c3aed;
+  --consciousness-blue: #1d4ed8;
   
   /* Sacred Typography */
   --font-sacred: 'Crimson Text', serif;
@@ -55,8 +60,8 @@ body {
   font-family: var(--font-foundation);
   font-size: var(--font-size-body);
   line-height: 1.7;
-  color: var(--sacred-white);
-  background: var(--cosmic-void);
+  color: var(--sacred-text);
+  background: var(--sacred-white);
   overflow-x: hidden;
 }
 
@@ -80,29 +85,29 @@ p {
 .lead-paragraph {
   font-size: 1.25rem;
   font-weight: 300;
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   max-width: 55ch;
 }
 
 em {
   font-style: italic;
-  color: var(--wisdom-amber);
+  color: var(--transcendent-gold);
 }
 
 strong {
   font-weight: 600;
-  color: var(--transcendent-gold);
+  color: var(--infinite-purple);
 }
 
 /* Sacred Links */
 a {
-  color: var(--infinite-purple);
+  color: var(--consciousness-blue);
   text-decoration: none;
   transition: var(--transition-breath);
 }
 
 a:hover, a:focus {
-  color: var(--wisdom-amber);
+  color: var(--transcendent-gold);
   text-decoration: underline;
 }
 
@@ -140,24 +145,24 @@ a:hover, a:focus {
 }
 
 .sacred-button.primary {
-  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(135deg, var(--consciousness-blue), var(--infinite-purple));
   color: var(--sacred-white);
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.2);
 }
 
 .sacred-button.primary:hover {
-  box-shadow: 0 12px 48px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 6px 24px rgba(29, 78, 216, 0.3);
   transform: translateY(-2px);
 }
 
 .sacred-button.secondary {
   background: transparent;
-  color: var(--infinite-purple);
-  border-color: var(--infinite-purple);
+  color: var(--consciousness-blue);
+  border-color: var(--consciousness-blue);
 }
 
 .sacred-button.secondary:hover {
-  background: var(--infinite-purple);
+  background: var(--consciousness-blue);
   color: var(--sacred-white);
 }
 
@@ -172,10 +177,10 @@ a:hover, a:focus {
 .foundation-body {
   min-height: 100vh;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-    var(--cosmic-void);
+    radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(5, 150, 105, 0.03) 0%, transparent 50%),
+    var(--sacred-white);
 }
 
 .foundation-main {
@@ -196,8 +201,8 @@ a:hover, a:focus {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--infinite-purple), transparent);
-  opacity: 0.3;
+  background: linear-gradient(90deg, transparent, var(--consciousness-mist), transparent);
+  opacity: 0.6;
 }
 
 /* Section Headers */
@@ -207,7 +212,7 @@ a:hover, a:focus {
 }
 
 .section-title {
-  background: linear-gradient(135deg, var(--sacred-white), var(--infinite-purple));
+  background: linear-gradient(135deg, var(--infinite-depth), var(--consciousness-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -218,7 +223,7 @@ a:hover, a:focus {
   font-size: 1.5rem;
   color: var(--transcendent-gold);
   letter-spacing: 1rem;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* Sacred Lists */
@@ -245,7 +250,7 @@ ol, ul {
   top: 0;
   width: 2rem;
   height: 2rem;
-  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(135deg, var(--consciousness-blue), var(--infinite-purple));
   color: var(--sacred-white);
   border-radius: var(--radius-infinite);
   display: flex;
@@ -286,13 +291,13 @@ ol, ul {
 
 /* Focus States */
 :focus {
-  outline: 2px solid var(--transcendent-gold);
+  outline: 2px solid var(--consciousness-blue);
   outline-offset: 2px;
 }
 
 /* Selection */
 ::selection {
-  background: var(--infinite-purple);
+  background: var(--consciousness-blue);
   color: var(--sacred-white);
 }
 
@@ -302,14 +307,14 @@ ol, ul {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--deep-space);
+  background: var(--ethereal-silver);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(180deg, var(--consciousness-blue), var(--infinite-purple));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--transcendent-gold), var(--infinite-purple));
+  background: linear-gradient(180deg, var(--infinite-purple), var(--consciousness-blue));
 }

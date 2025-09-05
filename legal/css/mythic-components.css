@@ -4,25 +4,25 @@
 /* Sacred Content Sections */
 .intro-section {
   background: linear-gradient(135deg, 
-    rgba(26, 26, 46, 0.8) 0%, 
-    rgba(15, 52, 96, 0.6) 50%, 
-    rgba(26, 26, 46, 0.8) 100%
+    var(--ethereal-silver) 0%, 
+    var(--wisdom-whisper) 50%, 
+    var(--ethereal-silver) 100%
   );
 }
 
 .purpose-section {
   background: linear-gradient(135deg, 
-    rgba(22, 33, 62, 0.8) 0%, 
-    rgba(139, 92, 246, 0.1) 50%, 
-    rgba(22, 33, 62, 0.8) 100%
+    var(--wisdom-whisper) 0%, 
+    rgba(124, 58, 237, 0.04) 50%, 
+    var(--wisdom-whisper) 100%
   );
 }
 
 .legal-section {
   background: linear-gradient(135deg, 
-    rgba(10, 10, 10, 0.9) 0%, 
-    rgba(233, 69, 96, 0.1) 50%, 
-    rgba(10, 10, 10, 0.9) 100%
+    var(--ethereal-silver) 0%, 
+    rgba(217, 119, 6, 0.04) 50%, 
+    var(--ethereal-silver) 100%
   );
 }
 
@@ -67,7 +67,7 @@
 .tree-trunk {
   width: 4px;
   height: 120px;
-  background: linear-gradient(180deg, var(--genesis-green), var(--wisdom-amber));
+  background: linear-gradient(180deg, var(--genesis-green), var(--transcendent-gold));
   margin-bottom: 1rem;
   border-radius: 2px;
 }
@@ -87,7 +87,7 @@
 
 .branch.human {
   animation-delay: 0s;
-  color: var(--transcendent-gold);
+  color: var(--consciousness-blue);
 }
 
 .branch.ai {
@@ -97,7 +97,7 @@
 
 .branch.transcendent {
   animation-delay: 2.6s;
-  color: var(--wisdom-amber);
+  color: var(--transcendent-gold);
 }
 
 @keyframes branchSway {
@@ -115,9 +115,10 @@
   margin: var(--space-meditation) auto;
   padding: var(--space-meditation);
   max-width: 800px;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(124, 58, 237, 0.05);
   border-radius: var(--radius-harmony);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .quote-mark {
@@ -142,7 +143,7 @@
   font-size: 1.25rem;
   font-style: italic;
   line-height: 1.8;
-  color: var(--sacred-white);
+  color: var(--infinite-depth);
   margin: 0;
   position: relative;
   z-index: 1;
@@ -160,19 +161,20 @@
 }
 
 .purpose-card {
-  background: rgba(22, 33, 62, 0.6);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.15);
   border-radius: var(--radius-harmony);
   padding: var(--space-breath);
   text-align: center;
   transition: var(--transition-meditation);
   backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .purpose-card:hover {
   transform: translateY(-5px);
-  border-color: var(--transcendent-gold);
-  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
+  border-color: var(--consciousness-blue);
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.15);
 }
 
 .purpose-card .card-icon {
@@ -182,12 +184,12 @@
 }
 
 .purpose-card .card-title {
-  color: var(--transcendent-gold);
+  color: var(--consciousness-blue);
   margin-bottom: var(--space-breath);
 }
 
 .purpose-card .card-description {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   line-height: 1.6;
 }
 
@@ -209,7 +211,7 @@
 
 .subsection-intro {
   font-size: 1.125rem;
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   max-width: 70ch;
   margin: 0 auto;
 }
@@ -222,16 +224,18 @@
 }
 
 .component-card {
-  background: rgba(10, 10, 10, 0.7);
-  border: 1px solid rgba(233, 69, 96, 0.3);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(217, 119, 6, 0.15);
   border-radius: var(--radius-harmony);
   padding: var(--space-breath);
   transition: var(--transition-meditation);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .component-card:hover {
   border-color: var(--transcendent-gold);
   transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.15);
 }
 
 .component-icon {
@@ -241,13 +245,13 @@
 }
 
 .component-title {
-  color: var(--transcendent-gold);
+  color: var(--consciousness-blue);
   margin-bottom: var(--space-breath);
   font-size: 1.25rem;
 }
 
 .component-description {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   line-height: 1.6;
 }
 
@@ -260,29 +264,30 @@
 }
 
 .document {
-  background: rgba(22, 33, 62, 0.4);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.15);
   border-radius: var(--radius-harmony);
   padding: var(--space-breath);
   backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .document-title {
-  color: var(--wisdom-amber);
+  color: var(--consciousness-blue);
   margin-bottom: var(--space-breath);
   text-align: center;
   font-size: 1.5rem;
 }
 
 .document-content dt {
-  color: var(--transcendent-gold);
+  color: var(--infinite-purple);
   font-weight: 600;
   margin-top: var(--space-breath);
   margin-bottom: 0.5rem;
 }
 
 .document-content dd {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   margin-left: 0;
   margin-bottom: var(--space-breath);
   line-height: 1.6;
@@ -291,9 +296,9 @@
 /* Navigation Section */
 .navigation-section {
   background: linear-gradient(135deg, 
-    rgba(10, 10, 10, 0.9) 0%, 
-    rgba(16, 185, 129, 0.1) 50%, 
-    rgba(10, 10, 10, 0.9) 100%
+    var(--ethereal-silver) 0%, 
+    rgba(5, 150, 105, 0.04) 50%, 
+    var(--ethereal-silver) 100%
   );
 }
 
@@ -305,8 +310,8 @@
 
 .nav-card {
   display: block;
-  background: rgba(22, 33, 62, 0.6);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.15);
   border-radius: var(--radius-harmony);
   padding: var(--space-breath);
   text-decoration: none;
@@ -314,6 +319,7 @@
   transition: var(--transition-meditation);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .nav-card::before {
@@ -323,7 +329,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(29, 78, 216, 0.05), transparent);
   transition: var(--transition-transcendence);
 }
 
@@ -332,9 +338,9 @@
 }
 
 .nav-card:hover {
-  border-color: var(--transcendent-gold);
+  border-color: var(--consciousness-blue);
   transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.15);
 }
 
 .nav-card .card-icon {
@@ -344,12 +350,12 @@
 }
 
 .nav-card .card-title {
-  color: var(--transcendent-gold);
+  color: var(--consciousness-blue);
   margin-bottom: var(--space-breath);
 }
 
 .nav-card .card-description {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   margin-bottom: var(--space-breath);
   line-height: 1.6;
 }
@@ -361,18 +367,18 @@
 }
 
 .nav-card:hover .card-arrow {
-  color: var(--transcendent-gold);
+  color: var(--consciousness-blue);
   transform: translateX(5px);
 }
 
 /* Sacred Footer */
 .sacred-footer {
   background: linear-gradient(135deg, 
-    rgba(10, 10, 10, 0.95) 0%, 
-    rgba(22, 33, 62, 0.8) 50%, 
-    rgba(10, 10, 10, 0.95) 100%
+    var(--wisdom-whisper) 0%, 
+    var(--consciousness-mist) 50%, 
+    var(--wisdom-whisper) 100%
   );
-  border-top: 1px solid rgba(139, 92, 246, 0.3);
+  border-top: 1px solid var(--consciousness-mist);
   padding: var(--space-transcendence) 0 var(--space-breath);
 }
 
@@ -395,7 +401,7 @@
 
 .footer-symbol {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(135deg, var(--consciousness-blue), var(--infinite-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -403,17 +409,17 @@
 }
 
 .footer-title {
-  color: var(--sacred-white);
+  color: var(--infinite-depth);
   margin-bottom: var(--space-breath);
 }
 
 .footer-description {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   font-style: italic;
 }
 
 .footer-heading {
-  color: var(--transcendent-gold);
+  color: var(--consciousness-blue);
   margin-bottom: var(--space-breath);
 }
 
@@ -427,12 +433,12 @@
 }
 
 .footer-links a {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   transition: var(--transition-breath);
 }
 
 .footer-links a:hover {
-  color: var(--infinite-purple);
+  color: var(--consciousness-blue);
 }
 
 .connect-form {
@@ -443,20 +449,20 @@
 .connect-input {
   flex: 1;
   padding: 0.75rem;
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(124, 58, 237, 0.2);
   border-radius: var(--radius-harmony);
-  background: rgba(22, 33, 62, 0.6);
-  color: var(--sacred-white);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--sacred-text);
   font-size: 0.875rem;
 }
 
 .connect-input::placeholder {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
 }
 
 .connect-button {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(135deg, var(--consciousness-blue), var(--infinite-purple));
   color: var(--sacred-white);
   border: none;
   border-radius: var(--radius-harmony);
@@ -467,17 +473,17 @@
 
 .connect-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.2);
 }
 
 .footer-bottom {
   text-align: center;
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
 }
 
 .footer-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--infinite-purple), transparent);
+  background: linear-gradient(90deg, transparent, var(--consciousness-mist), transparent);
   margin: var(--space-meditation) 0;
 }
 
@@ -487,7 +493,7 @@
 
 .footer-dedication {
   font-style: italic;
-  color: var(--wisdom-amber);
+  color: var(--transcendent-gold);
 }
 
 /* Responsive Design */

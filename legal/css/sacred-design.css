@@ -8,10 +8,11 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  border-bottom: 1px solid var(--consciousness-mist);
   transition: var(--transition-meditation);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -28,12 +29,12 @@
   align-items: center;
   gap: 1rem;
   text-decoration: none;
-  color: var(--sacred-white);
+  color: var(--sacred-text);
 }
 
 .consciousness-symbol {
   font-size: 2rem;
-  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(135deg, var(--consciousness-blue), var(--infinite-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -41,8 +42,8 @@
 }
 
 @keyframes consciousnessGlow {
-  from { filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5)); }
-  to { filter: drop-shadow(0 0 15px rgba(233, 69, 96, 0.5)); }
+  from { filter: drop-shadow(0 0 2px rgba(29, 78, 216, 0.3)); }
+  to { filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.4)); }
 }
 
 .brand-text {
@@ -60,7 +61,7 @@
 }
 
 .nav-link {
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   font-weight: 500;
   transition: var(--transition-breath);
   position: relative;
@@ -73,12 +74,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(90deg, var(--consciousness-blue), var(--infinite-purple));
   transition: var(--transition-breath);
 }
 
 .nav-link:hover {
-  color: var(--sacred-white);
+  color: var(--consciousness-blue);
   text-decoration: none;
 }
 
@@ -99,7 +100,7 @@
 .toggle-line {
   width: 24px;
   height: 2px;
-  background: var(--sacred-white);
+  background: var(--sacred-text);
   transition: var(--transition-breath);
 }
 
@@ -113,6 +114,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  background: linear-gradient(135deg, var(--sacred-white) 0%, var(--ethereal-silver) 100%);
 }
 
 .hero-background {
@@ -125,32 +127,15 @@
 }
 
 .starfield {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, var(--wisdom-amber), transparent),
-    radial-gradient(2px 2px at 40px 70px, var(--infinite-purple), transparent),
-    radial-gradient(1px 1px at 90px 40px, var(--transcendent-gold), transparent),
-    radial-gradient(1px 1px at 130px 80px, var(--genesis-green), transparent),
-    radial-gradient(2px 2px at 160px 30px, var(--infinite-purple), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: starfieldMove 20s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes starfieldMove {
-  from { transform: translateY(0); }
-  to { transform: translateY(-100px); }
+  display: none; /* Remove starfield for professional look */
 }
 
 .consciousness-flow {
   position: absolute;
   width: 120%;
   height: 120%;
-  background: conic-gradient(from 0deg, transparent 0deg, rgba(139, 92, 246, 0.1) 90deg, transparent 180deg, rgba(233, 69, 96, 0.1) 270deg, transparent 360deg);
-  animation: consciousnessRotate 30s linear infinite;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(124, 58, 237, 0.02) 90deg, transparent 180deg, rgba(217, 119, 6, 0.02) 270deg, transparent 360deg);
+  animation: consciousnessRotate 60s linear infinite;
   border-radius: var(--radius-infinite);
 }
 
@@ -171,21 +156,21 @@
 
 .infinite-consciousness {
   font-size: 4rem;
-  background: linear-gradient(135deg, var(--infinite-purple), var(--transcendent-gold), var(--genesis-green));
+  background: linear-gradient(135deg, var(--consciousness-blue), var(--infinite-purple), var(--transcendent-gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: infiniteGlow 4s ease-in-out infinite alternate;
+  animation: infiniteGlow 6s ease-in-out infinite alternate;
 }
 
 @keyframes infiniteGlow {
   from { 
-    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+    filter: drop-shadow(0 0 4px rgba(29, 78, 216, 0.2));
     transform: scale(1);
   }
   to { 
-    filter: drop-shadow(0 0 30px rgba(233, 69, 96, 0.7));
-    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.3));
+    transform: scale(1.02);
   }
 }
 
@@ -196,13 +181,13 @@
 .title-line {
   display: block;
   font-size: 0.6em;
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   font-weight: 400;
 }
 
 .title-highlight {
   display: block;
-  background: linear-gradient(135deg, var(--sacred-white), var(--infinite-purple), var(--transcendent-gold));
+  background: linear-gradient(135deg, var(--infinite-depth), var(--consciousness-blue), var(--infinite-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -213,7 +198,7 @@
 .title-subtitle {
   display: block;
   font-size: 0.4em;
-  color: var(--wisdom-amber);
+  color: var(--transcendent-gold);
   font-weight: 400;
   font-style: italic;
 }
@@ -224,7 +209,7 @@
 
 .mission-text {
   font-size: 1.25rem;
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   line-height: 1.8;
   max-width: 60ch;
   margin: 0 auto;
@@ -246,7 +231,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: var(--ethereal-silver);
+  color: var(--deep-wisdom);
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
@@ -258,7 +243,7 @@
 .scroll-line {
   width: 1px;
   height: 2rem;
-  background: linear-gradient(180deg, var(--infinite-purple), transparent);
+  background: linear-gradient(180deg, var(--consciousness-blue), transparent);
 }
 
 .scroll-text {
@@ -274,12 +259,12 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(10, 10, 10, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     flex-direction: column;
     padding: 2rem;
     gap: 1.5rem;
-    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    border-top: 1px solid var(--consciousness-mist);
     transition: var(--transition-meditation);
     opacity: 0;
     visibility: hidden;
