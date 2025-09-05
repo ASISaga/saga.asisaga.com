@@ -113,7 +113,9 @@ class Home3DAnimation {
   // minorRadius: radius of the tube
   randomOnTorus(majorRadius, minorRadius) {
     const u = Math.random() * 2 * Math.PI; // angle around main circle
-    const v = Math.random() * 2 * Math.PI; // angle around tube
+    // Restrict v to avoid top/bottom extremes: e.g., avoid ±π/2 by using a margin
+    const margin = Math.PI / 6; // 30 degrees margin
+    const v = margin + Math.random() * (2 * Math.PI - 2 * margin); // tube angle
     const x = (majorRadius + minorRadius * Math.cos(v)) * Math.cos(u);
     const y = (majorRadius + minorRadius * Math.cos(v)) * Math.sin(u);
     const z = minorRadius * Math.sin(v);
