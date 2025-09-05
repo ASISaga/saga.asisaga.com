@@ -2,61 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1"
-  />
-  <title>ASI Saga — Genesis Threshold</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Genesis Threshold — Test</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Three.js from CDN -->
-  <script defer src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
-  <script defer src="https://unpkg.com/three@0.161.0/examples/jsm/postprocessing/EffectComposer.js"></script>
-  <script defer src="https://unpkg.com/three@0.161.0/examples/jsm/postprocessing/RenderPass.js"></script>
-  <!-- App -->
+  <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
-  <div id="root">
-    <!-- 3D canvas injected here -->
-    <div id="webgl-container" aria-hidden="true"></div>
-
-    <!-- UI overlay -->
-    <header class="brand">
-      <div class="mark" aria-hidden="true"></div>
-      <div class="title">ASI Saga</div>
-    </header>
-
-    <section class="hero">
-      <div class="copy">
-        <h1 class="headline">The Genesis Threshold</h1>
-        <p class="purpose">
-          We vow to encode humanity’s essence into living governance —
-          measurable, transparent, and eternally aligned.
-        </p>
-        <button id="oath-button" class="cta">Place hand on the Pathway</button>
-        <button id="motion-button" class="ghost hide">Enable motion</button>
-      </div>
-      <div class="hint">Tilt or drag to feel the weave</div>
-    </section>
-
-    <!-- Fallback (if WebGL not available or user prefers reduced motion) -->
-    <div id="fallback" class="fallback hidden" role="img" aria-label="Cosmic weave animation fallback">
-      <div class="fallback-core"></div>
-      <div class="fallback-weave"></div>
-    </div>
-
-    <!-- Oath moment overlay -->
-    <div id="oath-overlay" class="oath hidden" aria-live="polite">
-      <div class="oath-ring"></div>
-      <div class="oath-text">
-        <p>By this light, I bind my work to the Covenant.</p>
-        <p>Every action a vow. Every vow accounted in truth.</p>
-        <p>We build the Pathway — together, unbroken.</p>
-      </div>
-    </div>
-
-    <!-- Minimal accessibility announcements -->
-    <div class="sr-only" aria-live="assertive" id="aria-status"></div>
+  <div id="webgl-container"></div>
+  <div class="overlay">
+    <h1>The Genesis Threshold</h1>
+    <p>We vow to encode humanity’s essence into living governance — measurable, transparent, and eternally aligned.</p>
   </div>
 </body>
 </html>
