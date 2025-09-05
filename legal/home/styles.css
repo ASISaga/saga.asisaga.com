@@ -1,0 +1,96 @@
+:root {
+  --bg-deep:#070b16;
+  --bg-space:#0a0f1f;
+  --ink:#e9ecf7;
+  --gold:#f5e7b8;
+  --ink-dim:#cfd5e6;
+  --cta:#f0f3ff;
+  --cta-bg:rgba(255,255,255,0.06);
+  --cta-border:rgba(255,255,255,0.25);
+  --maxw:1200px;
+}
+
+* { box-sizing:border-box }
+html, body { height:100% }
+body {
+  margin:0;
+  font-family: ui-serif, Charter, "Times New Roman", Georgia, serif;
+  color:var(--ink);
+  background: radial-gradient(1200px 800px at 50% 40%, #101833 0%, var(--bg-space) 55%, var(--bg-deep) 100%);
+  overflow-x:hidden;
+}
+
+.hero {
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+  overflow:hidden;
+}
+
+.weave {
+  position:absolute;
+  inset:-10%;
+  z-index:0;
+}
+
+.stars {
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.7), transparent 60%) repeat,
+    radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,0.5), transparent 60%) repeat,
+    radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.35), transparent 60%) repeat;
+  background-size: 600px 600px, 800px 800px, 1000px 1000px;
+  opacity:0.35;
+  animation: drift 60s linear infinite;
+}
+
+.core {
+  position:absolute;
+  width:min(48vw, 520px);
+  height:min(48vw, 520px);
+  border-radius:50%;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.22), rgba(255,255,255,0.08) 40%, rgba(255,255,255,0.0) 70%);
+  box-shadow:
+    0 0 80px 40px rgba(255,255,255,0.06),
+    0 0 180px 80px rgba(146,226,255,0.06),
+    inset 0 0 220px rgba(255,255,255,0.05);
+  mix-blend-mode: screen;
+  z-index:0;
+  pointer-events:none;
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  max-width:var(--maxw);
+  padding: clamp(16px, 4vw, 40px);
+  text-align:center;
+}
+
+.purpose {
+  margin:0 auto clamp(16px, 3vh, 28px);
+  line-height:1.2;
+  font-weight:600;
+  font-size: clamp(24px, 4.2vw, 46px);
+  color:var(--ink);
+}
+
+.purpose em { color:var(--gold) }
+
+.sub {
+  margin:0 auto clamp(24px, 4vh, 36px);
+  max-width: 42ch;
+  font-family: ui-sans-serif, system-ui;
+  font-size: clamp(14px, 1.4vw, 18px);
+  color:var(--ink-dim);
+}
+
+.cta {
+  display:inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  color:[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/tonethar/IGME-330-Master/tree/9b7473878bbce2981e9689c600920dbc70780f7d/notes%2FHW-ajax-1.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
