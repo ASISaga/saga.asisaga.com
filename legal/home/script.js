@@ -108,31 +108,36 @@ class Home3DAnimation {
   }
 
   // Generate a random point uniformly on a sphere
-  randomOnSphere(radius) {
-    const cosPhi = Math.random() * 2 - 1;
-    const theta = Math.random() * Math.PI * 2;
-    const r = radius;
-    const sinPhi = Math.sqrt(1 - cosPhi * cosPhi);
-    return new THREE.Vector3(
-      r * sinPhi * Math.cos(theta),
-      r * cosPhi,
-      r * sinPhi * Math.sin(theta)
-    );
+  // Generate a random point on a torus (donut)
+  // majorRadius: distance from center to middle of tube
+  // minorRadius: radius of the tube
+  randomOnTorus(majorRadius, minorRadius) {
+    const u = Math.random() * 2 * Math.PI; // angle around main circle
+    const v = Math.random() * 2 * Math.PI; // angle around tube
+    const x = (majorRadius + minorRadius * Math.cos(v)) * Math.cos(u);
+    const y = (majorRadius + minorRadius * Math.cos(v)) * Math.sin(u);
+    const z = minorRadius * Math.sin(v);
+    return new THREE.Vector3(x, y, z);
   }
 
   // Seed a particle with a new target and initial position
   seedParticle(index, now) {
-    const targetVector = this.randomOnSphere(this.coreRadius);
+    // Torus parameters: major radius (distance from center), minor radius (tube thickness)
+    const majorRadius = this.coreRadius * 1.2; // slightly larger than core
+    const minorRadius = this.coreRadius * 0.35; // thickness of donut
+    const targetVector = this.randomOnTorus(majorRadius, minorRadius);
     this.particleTargets[index * 3 + 0] = targetVector.x;
     this.particleTargets[index * 3 + 1] = targetVector.y;
     this.particleTargets[index * 3 + 2] = targetVector.z;
 
+    // Start position: along same ray but farther out
     const startRadius = this.particleStartRadiusMin + Math.random() * (this.particleStartRadiusMax - this.particleStartRadiusMin);
-    this.particlePositions[index * 3 + 0] = targetVector.x * startRadius / this.coreRadius;
-    this.particlePositions[index * 3 + 1] = targetVector.y * startRadius / this.coreRadius;
-    this.particlePositions[index * 3 + 2] = targetVector.z * startRadius / this.coreRadius;
+    const scale = startRadius / majorRadius;
+    this.particlePositions[index * 3 + 0] = targetVector.x * scale;
+    this.particlePositions[index * 3 + 1] = targetVector.y * scale;
+    this.particlePositions[index * 3 + 2] = targetVector.z * scale;
 
-  this.particleSpeeds[index] = (0.75 + Math.random() * 0.75) * 0.25; // reduce speed to 50%
+    this.particleSpeeds[index] = (0.75 + Math.random() * 0.75) * 0.5; // keep at 50% speed
     this.particleDelays[index] = Math.random() * 2.2;
     this.particleStates[index] = 2;
     this.particleDwellAt[index] = 0;
