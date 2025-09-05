@@ -256,5 +256,7 @@ class Home3DAnimation {
 }
 
 // Instantiate and run the animation
-new Home3DAnimation();
+document.addEventListener('DOMContentLoaded', () => {
+  new Home3DAnimation();
+});
 
