@@ -127,6 +127,11 @@ class Home3DAnimation {
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.sin(phi) * Math.sin(theta);
     const z = radius * cosPhi;
+
+    // DEBUG: Log the latitude in degrees
+    const latitude = 90 - (phi * 180 / Math.PI);
+    console.log("Generated particle latitude:", latitude.toFixed(2));
+
     return new THREE.Vector3(x, y, z);
   }
 
