@@ -1,36 +1,10 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: radial-gradient(ellipse at center, #0b0f1a 0%, #05060a 100%);
-  overflow: hidden;
-  font-family: system-ui, sans-serif;
-  color: #dfe7ff;
-}
 
-#webgl-container {
-  position: fixed;
-  inset: 0;
-}
-
+html, body { height: 100%; margin: 0; background: #000; overflow: hidden; }
+canvas { display: block; }
 .overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  max-width: 90%;
-  z-index: 10;
+	position: fixed; inset: 0; display: grid; place-items: center; pointer-events: none;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+	color: #dfe7ff; text-align: center; padding: 16px;
 }
-
-.overlay h1 {
-  font-size: clamp(24px, 5vw, 48px);
-  margin-bottom: 0.5em;
-  text-shadow: 0 0 20px rgba(122,167,255,0.4);
-}
-
-.overlay p {
-  font-size: clamp(14px, 2.5vw, 18px);
-  color: #cfe0ff;
-  text-shadow: 0 0 10px rgba(122,167,255,0.3);
-}
+.overlay h1 { margin: 0 0 6px; font-size: clamp(22px, 5vw, 40px); text-shadow: 0 0 22px rgba(122,167,255,.3); }
+.overlay p { margin: 0; max-width: 60ch; color: #cfe0ff; opacity: .9; }

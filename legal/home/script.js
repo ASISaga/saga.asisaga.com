@@ -1,80 +1,239 @@
-// Respect reduced motion preferences
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Elements
-const weave = document.querySelector('.weave');
-const stars = document.querySelector('.stars');
-const core = document.querySelector('.core');
-const cta = document.getElementById('enterGenesis');
+// =============================
+// Home Page 3D Animation
+// =============================
+// Refactored as a class for modularity and maintainability
+class Home3DAnimation {
+  constructor() {
+    this.setupScene();
+    this.setupCamera();
+    this.setupRenderer();
+    this.setupLighting();
+    this.setupCore();
+    this.setupParticleParams();
+    this.setupBuffers();
+    this.setupHelpers();
+    this.setupGeometry();
+    this.setupClock();
+    this.initParticles();
+    this.bindEvents();
+    this.animate();
+  }
 
-// Clamp helper
-const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  setupScene() {
+    this.scene = new THREE.Scene();
+    this.scene.fog = new THREE.FogExp2(0x05060a, 0.02);
+  }
 
-// Target and current positions for smooth easing
-let target = { x: 0, y: 0 };
-let current = { x: 0, y: 0 };
-let rafId = null;
+  setupCamera() {
+    this.camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 200);
+    this.camera.position.set(0, 0, 7.5);
+  }
 
-// Pointer movement handler
-function onPointerMove(e) {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-  const x = (e.clientX / w - 0.5) * 2; // -1 to 1
-  const y = (e.clientY / h - 0.5) * 2;
-  target.x = clamp(x, -1, 1);
-  target.y = clamp(y, -1, 1);
-  if (!rafId) rafId = requestAnimationFrame(update);
-}
+  setupRenderer() {
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    this.renderer.setSize(innerWidth, innerHeight);
+    document.body.appendChild(this.renderer.domElement);
+  }
 
-// Device tilt handler
-function onDeviceTilt(e) {
-  const gamma = e.gamma || 0; // left-right
-  const beta = e.beta || 0;   // front-back
-  target.x = clamp(gamma / 30, -1, 1);
-  target.y = clamp(beta / 45, -1, 1);
-  if (!rafId) rafId = requestAnimationFrame(update);
-}
+  setupLighting() {
+    this.scene.add(new THREE.AmbientLight(0x6ea9ff, 0.38));
+    const dir = new THREE.DirectionalLight(0x9ee8ff, 0.85);
+    dir.position.set(2.2, 2.8, 2.6);
+    this.scene.add(dir);
+  }
 
-// Animation update loop
-function update() {
-  rafId = null;
-  // Ease towards target
-  current.x += (target.x - current.x) * 0.06;
-  current.y += (target.y - current.y) * 0.06;
+  setupCore() {
+    this.coreRadius = 1.08;
+    const coreGeometry = new THREE.SphereGeometry(this.coreRadius * 0.96, 48, 48);
+    const coreMaterial = new THREE.MeshStandardMaterial({
+      color: 0x1a2440,
+      emissive: 0x89e4ff,
+      emissiveIntensity: 0.25,
+      metalness: 0.2,
+      roughness: 0.9
+    });
+    this.coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
+    this.scene.add(this.coreMesh);
+  }
 
-  // Apply transforms
-  weave.style.transform = `translate3d(${current.x * 12}px, ${current.y * 8}px, 0) scale(1.02)`;
-  stars.style.transform = `translate3d(${current.x * -6}px, ${current.y * -4}px, 0)`;
-  core.style.transform = `translate3d(${current.x * -4}px, ${current.y * -3}px, 0)`;
+  setupParticleParams() {
+    this.particleCount = 2000;
+    this.particleStartRadiusMin = 3.0;
+    this.particleStartRadiusMax = 7.0;
+    this.particleStickDistance = 0.02;
+    this.particleDwellTime = 1.6;
+    this.particleSpiralFactor = 0.65;
+    this.particleBaseInwardStep = 0.015;
+    this.particleMaxStep = 0.06;
+    this.particleVariance = 0.8;
+  }
 
-  // Continue until close to target
-  if (Math.abs(target.x - current.x) > 0.002 || Math.abs(target.y - current.y) > 0.002) {
-    rafId = requestAnimationFrame(update);
+  setupBuffers() {
+    this.particlePositions = new Float32Array(this.particleCount * 3);
+    this.particleTargets = new Float32Array(this.particleCount * 3);
+    this.particleSpeeds = new Float32Array(this.particleCount);
+    this.particleDelays = new Float32Array(this.particleCount);
+    this.particleStates = new Uint8Array(this.particleCount);
+    this.particleDwellAt = new Float32Array(this.particleCount);
+  }
+
+  setupHelpers() {
+    this.radialVector = new THREE.Vector3();
+    this.tangentialVector = new THREE.Vector3();
+    this.upVector = new THREE.Vector3(0, 1, 0);
+  }
+
+  setupGeometry() {
+    this.particleGeometry = new THREE.BufferGeometry();
+    this.particleGeometry.setAttribute('position', new THREE.BufferAttribute(this.particlePositions, 3));
+    this.particleMaterial = new THREE.PointsMaterial({
+      color: 0x8fd3ff,
+      size: 0.028,
+      transparent: true,
+      opacity: 0.95,
+      depthWrite: false
+    });
+    this.particlePoints = new THREE.Points(this.particleGeometry, this.particleMaterial);
+    this.scene.add(this.particlePoints);
+  }
+
+  setupClock() {
+    this.animationClock = new THREE.Clock();
+  }
+
+  bindEvents() {
+    addEventListener('resize', () => this.handleResize(), { passive: true });
+  }
+
+  // Generate a random point uniformly on a sphere
+  randomOnSphere(radius) {
+    const cosPhi = Math.random() * 2 - 1;
+    const theta = Math.random() * Math.PI * 2;
+    const r = radius;
+    const sinPhi = Math.sqrt(1 - cosPhi * cosPhi);
+    return new THREE.Vector3(
+      r * sinPhi * Math.cos(theta),
+      r * cosPhi,
+      r * sinPhi * Math.sin(theta)
+    );
+  }
+
+  // Seed a particle with a new target and initial position
+  seedParticle(index, now) {
+    const targetVector = this.randomOnSphere(this.coreRadius);
+    this.particleTargets[index * 3 + 0] = targetVector.x;
+    this.particleTargets[index * 3 + 1] = targetVector.y;
+    this.particleTargets[index * 3 + 2] = targetVector.z;
+
+    const startRadius = this.particleStartRadiusMin + Math.random() * (this.particleStartRadiusMax - this.particleStartRadiusMin);
+    this.particlePositions[index * 3 + 0] = targetVector.x * startRadius / this.coreRadius;
+    this.particlePositions[index * 3 + 1] = targetVector.y * startRadius / this.coreRadius;
+    this.particlePositions[index * 3 + 2] = targetVector.z * startRadius / this.coreRadius;
+
+    this.particleSpeeds[index] = 0.75 + Math.random() * 0.75;
+    this.particleDelays[index] = Math.random() * 2.2;
+    this.particleStates[index] = 2;
+    this.particleDwellAt[index] = 0;
+    if (now > this.particleDelays[index]) this.particleStates[index] = 0;
+  }
+
+  // Initialize all particles
+  initParticles() {
+    for (let index = 0; index < this.particleCount; index++) this.seedParticle(index, 0);
+  }
+
+  // Animation loop
+  animate() {
+    requestAnimationFrame(() => this.animate());
+    const elapsedTime = this.animationClock.getElapsedTime();
+    const positionAttribute = this.particleGeometry.attributes.position;
+
+    // Core breathing effect
+    const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
+    this.coreMesh.scale.setScalar(coreBreathScale);
+
+    // Slight scene drift for life
+    this.scene.rotation.y += 0.0008;
+
+    // Update particles
+    for (let index = 0; index < this.particleCount; index++) {
+      const particleIdx = index * 3;
+
+      // Manage Delay
+      if (this.particleStates[index] === 2) {
+        if (elapsedTime >= this.particleDelays[index]) this.particleStates[index] = 0;
+        else continue;
+      }
+
+      // If Stuck, Check Dwell Time then Respawn
+      if (this.particleStates[index] === 1) {
+        if (elapsedTime - this.particleDwellAt[index] > this.particleDwellTime) {
+          this.seedParticle(index, elapsedTime);
+        } else {
+          const targetX = this.particleTargets[particleIdx + 0], targetY = this.particleTargets[particleIdx + 1], targetZ = this.particleTargets[particleIdx + 2];
+          const wobble = 0.003 * Math.sin(elapsedTime * 2 + index * 0.17);
+          positionAttribute.setXYZ(index, targetX * (1 + wobble), targetY * (1 + wobble), targetZ * (1 + wobble));
+        }
+        continue;
+      }
+
+      // Current and Final Positions
+      const currentX = positionAttribute.getX(index);
+      const currentY = positionAttribute.getY(index);
+      const currentZ = positionAttribute.getZ(index);
+      const targetX = this.particleTargets[particleIdx + 0];
+      const targetY = this.particleTargets[particleIdx + 1];
+      const targetZ = this.particleTargets[particleIdx + 2];
+
+      // Radial Direction (toward target)
+      this.radialVector.set(targetX - currentX, targetY - currentY, targetZ - currentZ);
+      const radialDistance = this.radialVector.length();
+
+      // Stick to Core if Close Enough
+      if (radialDistance <= this.particleStickDistance) {
+        positionAttribute.setXYZ(index, targetX, targetY, targetZ);
+        this.particleStates[index] = 1;
+        this.particleDwellAt[index] = elapsedTime;
+        continue;
+      }
+
+      this.radialVector.normalize();
+
+      // Tangential Direction (perpendicular to radial)
+      this.tangentialVector.copy(this.upVector).cross(this.radialVector);
+      if (this.tangentialVector.lengthSq() < 1e-6) {
+        this.tangentialVector.set(1, 0, 0);
+      }
+      this.tangentialVector.normalize();
+
+      // Speed Profile
+      const baseInwardStep = this.particleBaseInwardStep * this.particleSpeeds[index];
+      const ease = Math.min(1, radialDistance / 1.2);
+      const inwardStep = Math.min(this.particleMaxStep, baseInwardStep * (0.5 + ease));
+      const spiralStep = inwardStep * this.particleSpiralFactor * (0.9 + this.particleVariance * (Math.sin(elapsedTime * 1.2 + index * 0.73) * 0.5 + 0.5));
+
+      // Update Position
+      const nextX = currentX + this.radialVector.x * inwardStep + this.tangentialVector.x * spiralStep;
+      const nextY = currentY + this.radialVector.y * inwardStep + this.tangentialVector.y * spiralStep;
+      const nextZ = currentZ + this.radialVector.z * inwardStep + this.tangentialVector.z * spiralStep;
+
+      positionAttribute.setXYZ(index, nextX, nextY, nextZ);
+    }
+
+    positionAttribute.needsUpdate = true;
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  // Handle window resize
+  handleResize() {
+    this.camera.aspect = innerWidth / innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(innerWidth, innerHeight);
   }
 }
 
-// Smooth scroll for CTA
-cta?.addEventListener('click', e => {
-  const targetEl = document.querySelector(cta.getAttribute('href'));
-  if (targetEl) {
-    e.preventDefault();
-    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-});
+// Instantiate and run the animation
+new Home3DAnimation();
 
-// Randomize thread line animation delays/durations
-(function breatheLines() {
-  const lines = document.querySelectorAll('.line-fade');
-  lines.forEach(el => {
-    el.style.animationDelay = `${(Math.random() * 4).toFixed(2)}s`;
-    el.style.animationDuration = `${(6 + Math.random() * 4).toFixed(2)}s`;
-  });
-})();
-
-// Attach motion listeners if allowed
-if (!prefersReduced) {
-  window.addEventListener('mousemove', onPointerMove, { passive: true });
-  if ('DeviceOrientationEvent' in window) {
-    window.addEventListener('deviceorientation', onDeviceTilt, { passive: true });
-  }
-}
