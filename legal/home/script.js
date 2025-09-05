@@ -114,9 +114,9 @@ class Home3DAnimation {
   randomOnTorus(majorRadius, minorRadius) {
     const u = Math.random() * 2 * Math.PI; // angle around main circle
     // Restrict v to avoid top/bottom extremes: e.g., avoid ±π/2 by using a margin
-  // Use only the middle 50% of the tube angle to avoid top/bottom
-  const minV = Math.PI / 2;
-  const maxV = 3 * Math.PI / 2;
+  // Use only the middle 30% of the tube angle to avoid top/bottom
+  const minV = Math.PI * 0.85;
+  const maxV = Math.PI * 1.15;
   const v = minV + Math.random() * (maxV - minV);
     const x = (majorRadius + minorRadius * Math.cos(v)) * Math.cos(u);
     const y = (majorRadius + minorRadius * Math.cos(v)) * Math.sin(u);
