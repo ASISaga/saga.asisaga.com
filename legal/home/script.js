@@ -108,35 +108,34 @@ class Home3DAnimation {
   }
 
   // Generate a random point uniformly on a sphere
-  // Generate a random point on a torus (donut)
-  // majorRadius: distance from center to middle of tube
-  // minorRadius: radius of the tube
-  randomOnTorus(majorRadius, minorRadius) {
-    const u = Math.random() * 2 * Math.PI; // angle around main circle
-    // Restrict v to avoid top/bottom extremes: e.g., avoid ±π/2 by using a margin
-  // Use only the middle 30% of the tube angle to avoid top/bottom
-  const minV = Math.PI * 0.85;
-  const maxV = Math.PI * 1.15;
-  const v = minV + Math.random() * (maxV - minV);
-    const x = (majorRadius + minorRadius * Math.cos(v)) * Math.cos(u);
-    const y = (majorRadius + minorRadius * Math.cos(v)) * Math.sin(u);
-    const z = minorRadius * Math.sin(v);
+  // Generate a random point in a thick equatorial band (Jupiter-like)
+  // radius: sphere radius
+  // bandWidth: controls thickness of the band (0.0 = equator only, 1.0 = full sphere)
+  randomOnJupiterBand(radius, bandWidth = 0.5) {
+    const theta = Math.random() * 2 * Math.PI; // longitude
+    // phi: latitude, restrict to a band around the equator
+    // phi in [π/2 - band, π/2 + band]
+    const band = bandWidth * Math.PI / 2; // e.g. 0.5 covers ±45° from equator
+    const phi = (Math.PI / 2 - band) + Math.random() * (2 * band);
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.sin(phi) * Math.sin(theta);
+    const z = radius * Math.cos(phi);
     return new THREE.Vector3(x, y, z);
   }
 
   // Seed a particle with a new target and initial position
   seedParticle(index, now) {
-    // Torus parameters: major radius (distance from center), minor radius (tube thickness)
-    const majorRadius = this.coreRadius * 1.2; // slightly larger than core
-    const minorRadius = this.coreRadius * 0.35; // thickness of donut
-    const targetVector = this.randomOnTorus(majorRadius, minorRadius);
+    // Jupiter band parameters
+    const bandWidth = 0.5; // 0.5 = ±45° from equator
+    const sphereRadius = this.coreRadius * 1.2;
+    const targetVector = this.randomOnJupiterBand(sphereRadius, bandWidth);
     this.particleTargets[index * 3 + 0] = targetVector.x;
     this.particleTargets[index * 3 + 1] = targetVector.y;
     this.particleTargets[index * 3 + 2] = targetVector.z;
 
     // Start position: along same ray but farther out
     const startRadius = this.particleStartRadiusMin + Math.random() * (this.particleStartRadiusMax - this.particleStartRadiusMin);
-    const scale = startRadius / majorRadius;
+    const scale = startRadius / sphereRadius;
     this.particlePositions[index * 3 + 0] = targetVector.x * scale;
     this.particlePositions[index * 3 + 1] = targetVector.y * scale;
     this.particlePositions[index * 3 + 2] = targetVector.z * scale;
