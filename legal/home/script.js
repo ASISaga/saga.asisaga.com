@@ -112,12 +112,11 @@ class Home3DAnimation {
   // No points above arctic circle or below antarctic circle (±66.5° latitude)
   randomOnJupiterBand(radius) {
     const theta = Math.random() * 2 * Math.PI; // longitude
-    // Arctic/Antarctic circles: latitude ±66.5°
-    const arcticLat = 66.5 * Math.PI / 180; // radians
-    const minPhi = Math.PI / 2 - arcticLat; // lower bound (north)
-    const maxPhi = Math.PI / 2 + arcticLat; // upper bound (south)
+    // Use a stricter band: ±60° to ensure no points near poles
+    const bandLat = 60 * Math.PI / 180; // radians
+    const minPhi = Math.PI / 2 - bandLat; // lower bound (north)
+    const maxPhi = Math.PI / 2 + bandLat; // upper bound (south)
     // Sample cos(phi) uniformly for even density
-    // cos(minPhi) > cos(maxPhi), so swap if needed
     let cosMin = Math.cos(minPhi);
     let cosMax = Math.cos(maxPhi);
     if (cosMin < cosMax) {
