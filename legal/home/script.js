@@ -2,9 +2,10 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 // =============================
-// Home Page 3D Animation
+// Home Page 3D Animation - Updated for Continuous Horizontal Ring Spiral
 // =============================
-// Refactored as a class for modularity and maintainability
+// Enhanced to create continuous particle flow from horizontal rings to core
+// Particles originate from distinct horizontal rings and spiral inward like puzzle pieces
 class Home3DAnimation {
   constructor() {
     this.setupScene();
