@@ -7,19 +7,24 @@ import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 // Refactored as a class for modularity and maintainability
 class Home3DAnimation {
   constructor() {
-    this.setupScene();
-    this.setupCamera();
-    this.setupRenderer();
-    this.setupLighting();
-    this.setupCore();
-    this.setupParticleParams();
-    this.setupBuffers();
-    this.setupHelpers();
-    this.setupGeometry();
-    this.setupClock();
-    this.initParticles();
-    this.bindEvents();
-    this.animate();
+  this.setupScene();
+  this.setupCamera();
+  this.setupRenderer();
+  this.setupLighting();
+  this.setupCore();
+  this.setupParticleParams();
+  this.setupBuffers();
+  this.setupHelpers();
+  this.setupGeometry();
+  this.setupClock();
+  this.initParticles();
+  this.bindEvents();
+  this.animate();
+
+  // Pulsating effect properties
+  this.baseRadius = 50; // Adjust as needed
+  this.pulseAmplitude = 10; // How much the radius changes
+  this.pulseSpeed = 2; // Pulses per second
   }
 
   setupScene() {
@@ -63,19 +68,43 @@ class Home3DAnimation {
   }
 
   setupParticleParams() {
-    this.particleCount = 2000;
-    this.particleStartRadiusMin = 3.0;
-    this.particleStartRadiusMax = 7.0;
-    this.particleStickDistance = 0.02;
-    this.particleDwellTime = 1.6;
-    this.particleSpiralFactor = 0.65;
-    this.particleBaseInwardStep = 0.015;
-    this.particleMaxStep = 0.06;
-    this.particleVariance = 0.8;
-    // Enhanced Jupiter ring parameters
-    this.ringOrbitTime = 3.0; // Time particles spend in ring orbit before spiraling
-    this.ringOrbitSpeed = 0.8; // Speed of orbital motion in the ring
-    this.ringThickness = 0.3; // Thickness of the Jupiter ring
+  // Number of particles in the system (higher for denser effect)
+  this.particleCount = 2000;
+
+  // Minimum and maximum radius for initial particle ring orbit (distance from core)
+  this.particleStartRadiusMin = 3.0; // Closest ring band to core
+  this.particleStartRadiusMax = 7.0; // Farthest ring band from core
+
+  // Distance threshold for a particle to "stick" to the core (puzzle piece attachment)
+  this.particleStickDistance = 0.02;
+
+  // Time (in seconds) a particle remains attached to the core before respawning
+  this.particleDwellTime = 1.6;
+
+  // Spiral factor controls how much tangential (spiral) motion particles have as they move inward
+  this.particleSpiralFactor = 0.65;
+
+  // Base step size for inward movement per frame (controls speed toward core)
+  this.particleBaseInwardStep = 0.015;
+
+  // Maximum allowed step size per frame (prevents particles from jumping too far)
+  this.particleMaxStep = 0.06;
+
+  // Variance factor for spiral motion (adds randomness and organic feel)
+  this.particleVariance = 0.8;
+
+  // =============================
+  // Jupiter Ring Effect Parameters
+  // =============================
+
+  // Time (in seconds) particles spend orbiting in the ring before spiraling inward
+  this.ringOrbitTime = 3.0;
+
+  // Speed of orbital motion in the ring (radians per second)
+  this.ringOrbitSpeed = 0.8;
+
+  // Thickness of the Jupiter ring (vertical spread of ring particles)
+  this.ringThickness = 0.3;
   }
 
   setupBuffers() {
@@ -203,6 +232,12 @@ class Home3DAnimation {
     // Core breathing effect
     const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
     this.coreMesh.scale.setScalar(coreBreathScale);
+
+  // Sphere pulsating effect
+  let time = elapsedTime;
+  let pulsatingRadius = this.baseRadius + Math.sin(time * this.pulseSpeed) * this.pulseAmplitude;
+  this.coreMesh.geometry.dispose();
+  this.coreMesh.geometry = new THREE.SphereGeometry(pulsatingRadius, 48, 48);
 
     // Slight scene drift for life
     this.scene.rotation.y += 0.0008;
