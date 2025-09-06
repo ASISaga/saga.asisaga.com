@@ -201,15 +201,15 @@ class Home3DAnimation {
     this.particleTargets[index * 3 + 1] = targetVector.y;
     this.particleTargets[index * 3 + 2] = targetVector.z;
 
-    // Start position: in ring orbit around the same equatorial plane as target
-    const ringAngle = this.particleRingAngles[index];
-    const ringY = targetVector.y * (ringRadius / sphereRadius); // Maintain same relative Y position
-    const ringX = ringRadius * Math.cos(ringAngle);
-    const ringZ = ringRadius * Math.sin(ringAngle);
-    
-    this.particlePositions[index * 3 + 0] = ringX;
-    this.particlePositions[index * 3 + 1] = ringY;
-    this.particlePositions[index * 3 + 2] = ringZ;
+  // Start position: in horizontal ring orbit (XZ plane, y=0)
+  const ringAngle = this.particleRingAngles[index];
+  const ringY = 0; // Horizontal ring at equator
+  const ringX = ringRadius * Math.cos(ringAngle);
+  const ringZ = ringRadius * Math.sin(ringAngle);
+
+  this.particlePositions[index * 3 + 0] = ringX;
+  this.particlePositions[index * 3 + 1] = ringY;
+  this.particlePositions[index * 3 + 2] = ringZ;
 
     this.particleSpeeds[index] = (0.75 + Math.random() * 0.75) * 0.5;
     this.particleDelays[index] = Math.random() * 2.2;
