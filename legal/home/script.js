@@ -2,9 +2,10 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 // =============================
-// Home Page 3D Animation
+// Home Page 3D Animation - Updated for Continuous Horizontal Ring Spiral
 // =============================
-// Refactored as a class for modularity and maintainability
+// Enhanced to create continuous particle flow from horizontal rings to core
+// Particles originate from distinct horizontal rings and spiral inward like puzzle pieces
 class Home3DAnimation {
   constructor() {
     this.setupScene();
@@ -67,15 +68,16 @@ class Home3DAnimation {
     this.particleStartRadiusMin = 3.0;
     this.particleStartRadiusMax = 7.0;
     this.particleStickDistance = 0.02;
-    this.particleDwellTime = 1.6;
-    this.particleSpiralFactor = 0.65;
-    this.particleBaseInwardStep = 0.015;
-    this.particleMaxStep = 0.06;
-    this.particleVariance = 0.8;
-    // Enhanced Jupiter ring parameters
-    this.ringOrbitTime = 3.0; // Time particles spend in ring orbit before spiraling
-    this.ringOrbitSpeed = 0.8; // Speed of orbital motion in the ring
-    this.ringThickness = 0.3; // Thickness of the Jupiter ring
+    this.particleDwellTime = 0.8; // Reduced dwell time for more continuous flow
+    this.particleSpiralFactor = 0.85; // Increased spiral intensity
+    this.particleBaseInwardStep = 0.018; // Slightly faster inward motion
+    this.particleMaxStep = 0.08; // Increased max step
+    this.particleVariance = 1.2; // More variation for organic feel
+    // Enhanced horizontal ring parameters for immediate spiral effect
+    this.ringOrbitTime = 0.5; // Much shorter orbit time for more immediate spiraling
+    this.ringOrbitSpeed = 1.2; // Faster ring motion
+    this.ringThickness = 0.2; // Thinner, more defined ring
+    this.continuousSpawnRate = 0.98; // Probability of continuous spawning
   }
 
   setupBuffers() {
@@ -85,10 +87,11 @@ class Home3DAnimation {
     this.particleDelays = new Float32Array(this.particleCount);
     this.particleStates = new Uint8Array(this.particleCount);
     this.particleDwellAt = new Float32Array(this.particleCount);
-    // Enhanced state tracking for Jupiter ring effect
+    // Enhanced state tracking for continuous horizontal ring effect
     this.particleRingAngles = new Float32Array(this.particleCount); // Current angle in ring orbit
     this.particleRingRadii = new Float32Array(this.particleCount); // Current radius in ring
     this.particleRingStartTime = new Float32Array(this.particleCount); // When particle started ring orbit
+    this.particleSpawnTime = new Float32Array(this.particleCount); // For continuous spawning
   }
 
   setupHelpers() {
@@ -104,9 +107,9 @@ class Home3DAnimation {
     // Enhanced particle material for more puzzle-piece-like appearance
     this.particleMaterial = new THREE.PointsMaterial({
       color: 0x8fd3ff,
-      size: 0.08, // Slightly larger for better visibility
+      size: 0.09, // Slightly larger for better visibility of puzzle pieces
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.9, // More opaque for better definition
       depthWrite: false,
       blending: THREE.AdditiveBlending, // Add glowing effect
       sizeAttenuation: true // Size varies with distance
@@ -124,25 +127,36 @@ class Home3DAnimation {
     addEventListener('resize', () => this.handleResize(), { passive: true });
   }
 
-  // Generate a random point in a thick equatorial band (Jupiter-like)
-  // Enhanced to create more pronounced ring formation
-  randomOnJupiterBand(radius) {
-    const theta = Math.random() * 2 * Math.PI; // longitude
+  // Generate a random point on a horizontal ring system
+  // Enhanced to create more defined horizontal ring formations
+  randomOnHorizontalRing(radius) {
+    const theta = Math.random() * 2 * Math.PI; // longitude around ring
     
-    // Create a more pronounced ring by concentrating particles in narrower bands
-    // Use multiple ring bands like Jupiter's actual ring system
+    // Create distinct horizontal ring bands for better visual definition
     const ringBands = [
-      { center: 0, thickness: 0.15 }, // Main ring
-      { center: 0.2, thickness: 0.08 }, // Secondary ring
-      { center: -0.2, thickness: 0.08 }, // Secondary ring
+      { center: 0, thickness: 0.08 }, // Primary horizontal ring (equator)
+      { center: 0.15, thickness: 0.05 }, // Upper ring
+      { center: -0.15, thickness: 0.05 }, // Lower ring
     ];
     
-    // Randomly select a ring band
-    const band = ringBands[Math.floor(Math.random() * ringBands.length)];
+    // Randomly select a ring band with preference for main ring
+    const bandWeights = [0.7, 0.15, 0.15]; // 70% main ring, 15% each for others
+    let selectedBand = 0;
+    const random = Math.random();
+    let cumulative = 0;
+    for (let i = 0; i < bandWeights.length; i++) {
+      cumulative += bandWeights[i];
+      if (random <= cumulative) {
+        selectedBand = i;
+        break;
+      }
+    }
     
-    // Generate latitude within the selected band
-    const bandLatRad = band.thickness * Math.PI / 6; // Convert to radians (narrower rings)
-    const centerLatRad = band.center * Math.PI / 6;
+    const band = ringBands[selectedBand];
+    
+    // Generate latitude within the selected horizontal band (tighter rings)
+    const bandLatRad = band.thickness * Math.PI / 8; // Even narrower rings
+    const centerLatRad = band.center * Math.PI / 4;
     const lat = centerLatRad + (Math.random() - 0.5) * bandLatRad;
     
     // Convert to spherical coordinates
@@ -157,22 +171,23 @@ class Home3DAnimation {
 
   // Seed a particle with a new target and initial position
   seedParticle(index, now) {
-    // Jupiter ring: Start particles in ring orbit, then spiral to surface
+    // Horizontal ring: Start particles in ring orbit, then continuously spiral to surface
     const ringRadius = this.particleStartRadiusMin + Math.random() * (this.particleStartRadiusMax - this.particleStartRadiusMin);
     
     // Initialize ring orbit parameters
     this.particleRingAngles[index] = Math.random() * 2 * Math.PI;
     this.particleRingRadii[index] = ringRadius;
     this.particleRingStartTime[index] = now;
+    this.particleSpawnTime[index] = now;
     
-    // Generate target on sphere surface using enhanced Jupiter band
-    const sphereRadius = this.coreRadius * 1.2;
-    const targetVector = this.randomOnJupiterBand(sphereRadius);
+    // Generate target on sphere surface using enhanced horizontal ring
+    const sphereRadius = this.coreRadius * 1.1; // Closer to core for better puzzle effect
+    const targetVector = this.randomOnHorizontalRing(sphereRadius);
     this.particleTargets[index * 3 + 0] = targetVector.x;
     this.particleTargets[index * 3 + 1] = targetVector.y;
     this.particleTargets[index * 3 + 2] = targetVector.z;
 
-    // Start position: in ring orbit around the same equatorial plane as target
+    // Start position: in horizontal ring orbit
     const ringAngle = this.particleRingAngles[index];
     const ringY = targetVector.y * (ringRadius / sphereRadius); // Maintain same relative Y position
     const ringX = ringRadius * Math.cos(ringAngle);
@@ -182,9 +197,9 @@ class Home3DAnimation {
     this.particlePositions[index * 3 + 1] = ringY;
     this.particlePositions[index * 3 + 2] = ringZ;
 
-    this.particleSpeeds[index] = (0.75 + Math.random() * 0.75) * 0.5;
-    this.particleDelays[index] = Math.random() * 2.2;
-    this.particleStates[index] = 2; // 0=moving, 1=stuck, 2=delayed, 3=ring_orbit
+    this.particleSpeeds[index] = (0.8 + Math.random() * 0.6) * 0.6; // More varied speeds
+    this.particleDelays[index] = Math.random() * 1.5; // Shorter delays for continuous feel
+    this.particleStates[index] = 2; // 0=spiraling, 1=attached, 2=delayed, 3=ring_orbit
     this.particleDwellAt[index] = 0;
     if (now > this.particleDelays[index]) this.particleStates[index] = 3; // Start in ring orbit
   }
@@ -217,23 +232,23 @@ class Home3DAnimation {
         else continue;
       }
 
-      // Ring Orbit State - NEW: Jupiter-like ring orbital motion
+      // Ring Orbit State - Horizontal ring orbital motion
       if (this.particleStates[index] === 3) {
         const timeInRing = elapsedTime - this.particleRingStartTime[index];
         
-        // Orbit in ring for specified time before spiraling inward
+        // Shorter orbit time for more immediate spiraling
         if (timeInRing < this.ringOrbitTime) {
-          // Update orbital angle
+          // Update orbital angle with more dynamic motion
           this.particleRingAngles[index] += this.ringOrbitSpeed * 0.016; // Assuming ~60fps
           
-          // Calculate ring position with slight wobble to simulate ring particles
-          const wobble = 0.1 * Math.sin(elapsedTime * 3 + index * 0.5);
-          const currentRadius = this.particleRingRadii[index] * (1 + wobble * 0.05);
+          // Calculate ring position with gentle pulsing for organic feel
+          const pulse = 0.08 * Math.sin(elapsedTime * 2.5 + index * 0.3);
+          const currentRadius = this.particleRingRadii[index] * (1 + pulse * 0.03);
           const currentAngle = this.particleRingAngles[index];
           
-          // Maintain same Y level (equatorial plane) with slight variation
+          // Maintain horizontal ring structure with slight variation
           const targetY = this.particleTargets[particleIdx + 1];
-          const ringY = targetY * (currentRadius / (this.coreRadius * 1.2)) + wobble * this.ringThickness;
+          const ringY = targetY * (currentRadius / (this.coreRadius * 1.1)) + pulse * this.ringThickness * 0.5;
           
           const ringX = currentRadius * Math.cos(currentAngle);
           const ringZ = currentRadius * Math.sin(currentAngle);
@@ -241,21 +256,27 @@ class Home3DAnimation {
           positionAttribute.setXYZ(index, ringX, ringY, ringZ);
           continue;
         } else {
-          // Transition from ring orbit to spiral inward
+          // Immediate transition to spiraling inward
           this.particleStates[index] = 0;
         }
       }
 
-      // If Stuck, Check Dwell Time then Respawn
+      // If Attached, Check Dwell Time then Respawn for Continuous Flow
       if (this.particleStates[index] === 1) {
         if (elapsedTime - this.particleDwellAt[index] > this.particleDwellTime) {
-          this.seedParticle(index, elapsedTime);
+          // Continuous respawn with staggered timing
+          if (Math.random() < this.continuousSpawnRate) {
+            this.seedParticle(index, elapsedTime);
+          }
         } else {
           const targetX = this.particleTargets[particleIdx + 0], targetY = this.particleTargets[particleIdx + 1], targetZ = this.particleTargets[particleIdx + 2];
-          // Enhanced puzzle-piece attachment with subtle pulsing
-          const pulse = 1 + 0.02 * Math.sin(elapsedTime * 4 + index * 0.3);
-          const wobble = 0.003 * Math.sin(elapsedTime * 2 + index * 0.17);
-          positionAttribute.setXYZ(index, targetX * (pulse + wobble), targetY * (pulse + wobble), targetZ * (pulse + wobble));
+          // Enhanced puzzle-piece attachment with subtle pulsing and magnetic attraction
+          const attachmentTime = elapsedTime - this.particleDwellAt[index];
+          const settlePulse = Math.exp(-attachmentTime * 2) * 0.03; // Settle into place
+          const magneticPulse = 1 + 0.015 * Math.sin(elapsedTime * 3.5 + index * 0.4);
+          const microWobble = 0.002 * Math.sin(elapsedTime * 6 + index * 0.23);
+          const finalScale = magneticPulse + microWobble + settlePulse;
+          positionAttribute.setXYZ(index, targetX * finalScale, targetY * finalScale, targetZ * finalScale);
         }
         continue;
       }
@@ -282,27 +303,32 @@ class Home3DAnimation {
 
       this.radialVector.normalize();
 
-      // Enhanced Tangential Direction for more pronounced spiral from ring
+      // Enhanced Tangential Direction for pronounced continuous spiral from horizontal ring
       this.tangentialVector.copy(this.upVector).cross(this.radialVector);
       if (this.tangentialVector.lengthSq() < 1e-6) {
         this.tangentialVector.set(1, 0, 0);
       }
       this.tangentialVector.normalize();
 
-      // Enhanced Speed Profile for smoother transition from ring to core
+      // Enhanced Speed Profile for smoother, more continuous spiral motion
       const baseInwardStep = this.particleBaseInwardStep * this.particleSpeeds[index];
-      const ease = Math.min(1, radialDistance / 1.2);
-      const inwardStep = Math.min(this.particleMaxStep, baseInwardStep * (0.5 + ease));
+      const distanceEase = Math.min(1, radialDistance / 2.0); // Gradual easing
+      const inwardStep = Math.min(this.particleMaxStep, baseInwardStep * (0.4 + distanceEase * 0.6));
       
-      // Enhanced spiral motion that maintains ring-like behavior longer
-      const spiralIntensity = Math.max(0.3, ease); // Maintain spiral even when close
-      const spiralStep = inwardStep * this.particleSpiralFactor * spiralIntensity * 
-                        (0.9 + this.particleVariance * (Math.sin(elapsedTime * 1.2 + index * 0.73) * 0.5 + 0.5));
+      // Enhanced spiral motion that creates continuous flowing pattern
+      const spiralIntensity = Math.max(0.4, distanceEase); // Maintain strong spiral throughout
+      const timeFactor = Math.sin(elapsedTime * 0.8 + index * 0.91) * 0.3 + 0.7; // Temporal variation
+      const spiralStep = inwardStep * this.particleSpiralFactor * spiralIntensity * timeFactor *
+                        (0.85 + this.particleVariance * (Math.sin(elapsedTime * 1.4 + index * 0.67) * 0.4 + 0.6));
 
-      // Update Position
-      const nextX = currentX + this.radialVector.x * inwardStep + this.tangentialVector.x * spiralStep;
-      const nextY = currentY + this.radialVector.y * inwardStep + this.tangentialVector.y * spiralStep;
-      const nextZ = currentZ + this.radialVector.z * inwardStep + this.tangentialVector.z * spiralStep;
+      // Additional perpendicular motion for more complex spiral pattern
+      const perpVector = new THREE.Vector3().crossVectors(this.radialVector, this.tangentialVector);
+      const perpStep = spiralStep * 0.3 * Math.sin(elapsedTime * 2.1 + index * 0.45);
+
+      // Update Position with enhanced 3D spiral motion
+      const nextX = currentX + this.radialVector.x * inwardStep + this.tangentialVector.x * spiralStep + perpVector.x * perpStep;
+      const nextY = currentY + this.radialVector.y * inwardStep + this.tangentialVector.y * spiralStep + perpVector.y * perpStep;
+      const nextZ = currentZ + this.radialVector.z * inwardStep + this.tangentialVector.z * spiralStep + perpVector.z * perpStep;
 
       positionAttribute.setXYZ(index, nextX, nextY, nextZ);
     }
