@@ -85,10 +85,11 @@ class Home3DAnimation {
       new THREE.Vector3(0.2, -0.2, -0.1),
       new THREE.Vector3(0.3, 0.2, 0.0)
     ];
-    const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(this.coreRadius * 0.6)));
-    const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x88aaff, linewidth: 2, transparent: true, opacity: 0.7 }));
-    brainLine.renderOrder = 3;
-    this.scene.add(brainLine);
+  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(this.coreRadius * 0.6)));
+  const brainLineMaterial = new THREE.LineBasicMaterial({ color: 0x3366ff, linewidth: 8, transparent: true, opacity: 1.0 });
+  const brainLine = new THREE.Line(brainGeometry, brainLineMaterial);
+  brainLine.renderOrder = 10;
+  this.scene.add(brainLine);
 
     // Neuron positions (on curve)
     this.neuronCount = 12;
@@ -123,8 +124,9 @@ class Home3DAnimation {
         this.neuronMeshes[i].position,
         this.neuronMeshes[i + 1].position
       ]);
-      const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.5 }));
-      line.renderOrder = 4;
+      const neuronLineMaterial = new THREE.LineBasicMaterial({ color: 0xffd700, linewidth: 6, transparent: false, opacity: 1.0 });
+      const line = new THREE.Line(geometry, neuronLineMaterial);
+      line.renderOrder = 11;
       this.scene.add(line);
     }
   }
