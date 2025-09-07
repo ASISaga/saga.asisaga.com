@@ -1,7 +1,7 @@
 // thoughts.js - Thought balloon sprite setup and animation manager for ASI Saga
 // Provides functions to create thought sprites and animate them, including neuron flashes
 
-import * as THREE from 'https://cdn.skypack.dev/three@0.158.0';
+import THREE from './three-minimal.js';
 import { randomOnHorizontalRing } from './utils.js';
 
 export function setupThoughts(scene, coreRadius, thoughtCount = 20) {

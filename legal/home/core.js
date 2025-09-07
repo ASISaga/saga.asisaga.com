@@ -1,7 +1,7 @@
 // core.js - Scene, camera, renderer, lighting, and core mesh setup for ASI Saga
 // Provides functions to create and configure the main Three.js scene and its core elements
 
-import * as THREE from 'https://cdn.skypack.dev/three@0.158.0';
+import THREE from './three-minimal.js';
 
 export function setupScene() {
   const scene = new THREE.Scene();

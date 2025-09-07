@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.158.0';
+import THREE from './three-minimal.js';
 
 export function randomOnHorizontalRing(radius) {
   const theta = Math.random() * 2 * Math.PI;
