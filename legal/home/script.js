@@ -73,17 +73,22 @@ class Home3DAnimation {
 
   // Brain setup: neurons and lines inside core sphere
   setupBrain() {
-    // Stylized brain outline (simple closed curve)
+    // Improved brain outline: lobed, asymmetric, undulating curve
     const brainCurve = [
-      new THREE.Vector3(0.3, 0.2, 0.0),
-      new THREE.Vector3(0.5, 0.5, 0.1),
-      new THREE.Vector3(0.2, 0.7, 0.2),
-      new THREE.Vector3(-0.2, 0.7, 0.1),
-      new THREE.Vector3(-0.5, 0.5, 0.0),
-      new THREE.Vector3(-0.3, 0.2, -0.1),
-      new THREE.Vector3(-0.2, -0.2, -0.2),
-      new THREE.Vector3(0.2, -0.2, -0.1),
-      new THREE.Vector3(0.3, 0.2, 0.0)
+      new THREE.Vector3(0.35, 0.18, 0.0), // right lower
+      new THREE.Vector3(0.55, 0.38, 0.08), // right lobe
+      new THREE.Vector3(0.45, 0.65, 0.18), // right upper
+      new THREE.Vector3(0.18, 0.78, 0.22), // top right
+      new THREE.Vector3(-0.12, 0.82, 0.18), // top center
+      new THREE.Vector3(-0.38, 0.75, 0.12), // top left
+      new THREE.Vector3(-0.55, 0.55, 0.05), // left upper
+      new THREE.Vector3(-0.58, 0.28, -0.05), // left lobe
+      new THREE.Vector3(-0.45, 0.05, -0.12), // left lower
+      new THREE.Vector3(-0.38, -0.18, -0.18), // left bottom
+      new THREE.Vector3(-0.18, -0.38, -0.22), // bottom left
+      new THREE.Vector3(0.08, -0.45, -0.18), // bottom center
+      new THREE.Vector3(0.28, -0.38, -0.12), // bottom right
+      new THREE.Vector3(0.35, 0.18, 0.0) // close loop
     ];
     // Offset curve slightly in Z to avoid occlusion
     for (let v of brainCurve) v.z += 0.15;
