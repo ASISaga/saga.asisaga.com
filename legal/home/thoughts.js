@@ -1,7 +1,7 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 import { randomOnHorizontalRing } from './utils.js';
 
-export function setupThoughts(scene, coreRadius, particleCount = 200) {
+export function setupThoughts(scene, coreRadius, thoughtCount = 100) {
   // Setup thought balloon emojis
   const thoughtSprites = [];
   const emoji = '💭';
@@ -15,7 +15,7 @@ export function setupThoughts(scene, coreRadius, particleCount = 200) {
   ctx.clearRect(0, 0, 64, 64);
   ctx.fillText(emoji, 32, 32);
   const texture = new THREE.CanvasTexture(canvas);
-  for (let i = 0; i < particleCount; i++) {
+  for (let i = 0; i < thoughtCount; i++) {
     const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
     const sprite = new THREE.Sprite(spriteMaterial);
     sprite.scale.set(0.22, 0.22, 1);
@@ -31,7 +31,7 @@ export class ThoughtsManager {
     this.coreRadius = coreRadius;
     this.thoughtSprites = thoughtSprites;
     this.neuronMeshes = neuronMeshes;
-    this.particleCount = thoughtSprites.length;
+    this.thoughtCount = thoughtSprites.length;
     this.particleStartRadiusMin = 3.0;
     this.particleStartRadiusMax = 7.0;
     this.particleStickDistance = 0.02;
@@ -44,16 +44,16 @@ export class ThoughtsManager {
     this.ringOrbitSpeed = 1.2;
     this.ringThickness = 0.2;
     this.continuousSpawnRate = 0.98;
-    this.particlePositions = new Float32Array(this.particleCount * 3);
-    this.particleTargets = new Float32Array(this.particleCount * 3);
-    this.particleSpeeds = new Float32Array(this.particleCount);
-    this.particleDelays = new Float32Array(this.particleCount);
-    this.particleStates = new Uint8Array(this.particleCount);
-    this.particleDwellAt = new Float32Array(this.particleCount);
-    this.particleRingAngles = new Float32Array(this.particleCount);
-    this.particleRingRadii = new Float32Array(this.particleCount);
-    this.particleRingStartTime = new Float32Array(this.particleCount);
-    this.particleSpawnTime = new Float32Array(this.particleCount);
+    this.particlePositions = new Float32Array(this.thoughtCount * 3);
+    this.particleTargets = new Float32Array(this.thoughtCount * 3);
+    this.particleSpeeds = new Float32Array(this.thoughtCount);
+    this.particleDelays = new Float32Array(this.thoughtCount);
+    this.particleStates = new Uint8Array(this.thoughtCount);
+    this.particleDwellAt = new Float32Array(this.thoughtCount);
+    this.particleRingAngles = new Float32Array(this.thoughtCount);
+    this.particleRingRadii = new Float32Array(this.thoughtCount);
+    this.particleRingStartTime = new Float32Array(this.thoughtCount);
+    this.particleSpawnTime = new Float32Array(this.thoughtCount);
     this.radialVector = new THREE.Vector3();
     this.tangentialVector = new THREE.Vector3();
     this.upVector = new THREE.Vector3(0, 1, 0);
@@ -88,7 +88,7 @@ export class ThoughtsManager {
   }
 
   initParticles() {
-    for (let index = 0; index < this.particleCount; index++) this.seedParticle(index, 0);
+    for (let index = 0; index < this.thoughtCount; index++) this.seedParticle(index, 0);
   }
 
   animate(coreMesh) {
@@ -115,7 +115,7 @@ export class ThoughtsManager {
       }
     }
     // Spiral/ring motion for thought bubbles, vanish at sphere, and always respawn
-    for (let index = 0; index < this.particleCount; index++) {
+    for (let index = 0; index < this.thoughtCount; index++) {
       const sprite = this.thoughtSprites[index];
       if (!sprite.visible) {
         let attempts = 0;
