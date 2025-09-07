@@ -276,14 +276,16 @@ class Home3DAnimation {
     const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
     this.coreMesh.scale.setScalar(coreBreathScale);
 
-    // Animate neuron glow
+    // Animate neuron glow (stronger, with color and opacity pulse)
     if (this.neuronMeshes) {
       for (let i = 0; i < this.neuronMeshes.length; i++) {
         const mesh = this.neuronMeshes[i];
-        const phase = elapsedTime * 2 + i * 0.5;
-        const glow = 0.7 + 0.5 * Math.sin(phase);
-        mesh.material.emissiveIntensity = glow;
-        mesh.scale.setScalar(1 + 0.18 * Math.sin(phase));
+        const phase = elapsedTime * 2.2 + i * 0.7;
+        const pulse = 0.7 + 0.9 * Math.abs(Math.sin(phase));
+        mesh.material.emissiveIntensity = pulse * 2.2;
+        mesh.material.opacity = 0.7 + 0.3 * Math.abs(Math.sin(phase));
+        mesh.material.color.setHSL(0.13, 0.9, 0.5 + 0.2 * Math.abs(Math.sin(phase)));
+        mesh.scale.setScalar(1 + 0.28 * Math.abs(Math.sin(phase)));
       }
     }
 
