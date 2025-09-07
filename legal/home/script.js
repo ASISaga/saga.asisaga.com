@@ -160,22 +160,26 @@ class Home3DAnimation {
   }
 
   setupGeometry() {
-    this.particleGeometry = new THREE.BufferGeometry();
-    this.particleGeometry.setAttribute('position', new THREE.BufferAttribute(this.particlePositions, 3));
-    
-    // Enhanced particle material for more puzzle-piece-like appearance
-    this.particleMaterial = new THREE.PointsMaterial({
-      color: 0x8fd3ff,
-      size: 0.09, // Slightly larger for better visibility of puzzle pieces
-      transparent: true,
-      opacity: 0.9, // More opaque for better definition
-      depthWrite: false,
-      blending: THREE.AdditiveBlending, // Add glowing effect
-      sizeAttenuation: true // Size varies with distance
-    });
-    
-    this.particlePoints = new THREE.Points(this.particleGeometry, this.particleMaterial);
-    this.scene.add(this.particlePoints);
+    // Replace particles with thought balloon emojis
+    this.thoughtSprites = [];
+    const emoji = '💭';
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    ctx.font = '48px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.clearRect(0, 0, 64, 64);
+    ctx.fillText(emoji, 32, 32);
+    const texture = new THREE.CanvasTexture(canvas);
+    for (let i = 0; i < this.particleCount; i++) {
+      const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.scale.set(0.22, 0.22, 1);
+      this.scene.add(sprite);
+      this.thoughtSprites.push(sprite);
+    }
   }
 
   setupClock() {
@@ -272,13 +276,10 @@ class Home3DAnimation {
   animate() {
     requestAnimationFrame(() => this.animate());
     const elapsedTime = this.animationClock.getElapsedTime();
-    const positionAttribute = this.particleGeometry.attributes.position;
-
     // Core breathing effect
     const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
     this.coreMesh.scale.setScalar(coreBreathScale);
-
-    // Animate neuron glow (stronger, with color and opacity pulse)
+    // Animate neuron glow
     if (this.neuronMeshes) {
       for (let i = 0; i < this.neuronMeshes.length; i++) {
         const mesh = this.neuronMeshes[i];
@@ -290,122 +291,88 @@ class Home3DAnimation {
         mesh.scale.setScalar(1 + 0.28 * Math.abs(Math.sin(phase)));
       }
     }
-
     // Slight scene drift for life
     this.scene.rotation.y += 0.0008;
-
-    // Update particles
+    // Update thought balloon sprites
     for (let index = 0; index < this.particleCount; index++) {
-      const particleIdx = index * 3;
-
-      // Manage Delay
+      // Use the same spiral logic to position sprites
+      let x, y, z;
       if (this.particleStates[index] === 2) {
-        if (elapsedTime >= this.particleDelays[index]) this.particleStates[index] = 3; // Start in ring orbit
+        if (elapsedTime >= this.particleDelays[index]) this.particleStates[index] = 3;
         else continue;
       }
-
-      // Ring Orbit State - Horizontal ring orbital motion
       if (this.particleStates[index] === 3) {
         const timeInRing = elapsedTime - this.particleRingStartTime[index];
-        
-        // Shorter orbit time for more immediate spiraling
         if (timeInRing < this.ringOrbitTime) {
-          // Update orbital angle with more dynamic motion
-          this.particleRingAngles[index] += this.ringOrbitSpeed * 0.016; // Assuming ~60fps
-          
-          // Calculate ring position with gentle pulsing for organic feel
+          this.particleRingAngles[index] += this.ringOrbitSpeed * 0.016;
           const pulse = 0.08 * Math.sin(elapsedTime * 2.5 + index * 0.3);
           const currentRadius = this.particleRingRadii[index] * (1 + pulse * 0.03);
           const currentAngle = this.particleRingAngles[index];
-          
-          // Maintain horizontal ring structure with slight variation
-          const targetY = this.particleTargets[particleIdx + 1];
-          const ringY = targetY * (currentRadius / (this.coreRadius * 1.1)) + pulse * this.ringThickness * 0.5;
-          
-          const ringX = currentRadius * Math.cos(currentAngle);
-          const ringZ = currentRadius * Math.sin(currentAngle);
-          
-          positionAttribute.setXYZ(index, ringX, ringY, ringZ);
+          const targetY = this.particleTargets[index * 3 + 1];
+          y = targetY * (currentRadius / (this.coreRadius * 1.1)) + pulse * this.ringThickness * 0.5;
+          x = currentRadius * Math.cos(currentAngle);
+          z = currentRadius * Math.sin(currentAngle);
+          this.thoughtSprites[index].position.set(x, y, z);
           continue;
         } else {
-          // Immediate transition to spiraling inward
           this.particleStates[index] = 0;
         }
       }
-
-      // If Attached, Check Dwell Time then Respawn for Continuous Flow
       if (this.particleStates[index] === 1) {
         if (elapsedTime - this.particleDwellAt[index] > this.particleDwellTime) {
-          // Continuous respawn with staggered timing
           if (Math.random() < this.continuousSpawnRate) {
             this.seedParticle(index, elapsedTime);
           }
         } else {
-          const targetX = this.particleTargets[particleIdx + 0], targetY = this.particleTargets[particleIdx + 1], targetZ = this.particleTargets[particleIdx + 2];
-          // Enhanced puzzle-piece attachment with subtle pulsing and magnetic attraction
+          const targetX = this.particleTargets[index * 3 + 0], targetY = this.particleTargets[index * 3 + 1], targetZ = this.particleTargets[index * 3 + 2];
           const attachmentTime = elapsedTime - this.particleDwellAt[index];
-          const settlePulse = Math.exp(-attachmentTime * 2) * 0.03; // Settle into place
+          const settlePulse = Math.exp(-attachmentTime * 2) * 0.03;
           const magneticPulse = 1 + 0.015 * Math.sin(elapsedTime * 3.5 + index * 0.4);
           const microWobble = 0.002 * Math.sin(elapsedTime * 6 + index * 0.23);
           const finalScale = magneticPulse + microWobble + settlePulse;
-          positionAttribute.setXYZ(index, targetX * finalScale, targetY * finalScale, targetZ * finalScale);
+          x = targetX * finalScale;
+          y = targetY * finalScale;
+          z = targetZ * finalScale;
+          this.thoughtSprites[index].position.set(x, y, z);
         }
         continue;
       }
-
-      // Current and Final Positions (Spiral Inward State)
-      const currentX = positionAttribute.getX(index);
-      const currentY = positionAttribute.getY(index);
-      const currentZ = positionAttribute.getZ(index);
-      const targetX = this.particleTargets[particleIdx + 0];
-      const targetY = this.particleTargets[particleIdx + 1];
-      const targetZ = this.particleTargets[particleIdx + 2];
-
-      // Radial Direction (toward target)
+      // Spiral inward state
+      const currentX = this.thoughtSprites[index].position.x;
+      const currentY = this.thoughtSprites[index].position.y;
+      const currentZ = this.thoughtSprites[index].position.z;
+      const targetX = this.particleTargets[index * 3 + 0];
+      const targetY = this.particleTargets[index * 3 + 1];
+      const targetZ = this.particleTargets[index * 3 + 2];
       this.radialVector.set(targetX - currentX, targetY - currentY, targetZ - currentZ);
       const radialDistance = this.radialVector.length();
-
-      // Stick to Core if Close Enough (Puzzle piece attachment)
       if (radialDistance <= this.particleStickDistance) {
-        positionAttribute.setXYZ(index, targetX, targetY, targetZ);
+        this.thoughtSprites[index].position.set(targetX, targetY, targetZ);
         this.particleStates[index] = 1;
         this.particleDwellAt[index] = elapsedTime;
         continue;
       }
-
       this.radialVector.normalize();
-
-      // Enhanced Tangential Direction for pronounced continuous spiral from horizontal ring
       this.tangentialVector.copy(this.upVector).cross(this.radialVector);
       if (this.tangentialVector.lengthSq() < 1e-6) {
         this.tangentialVector.set(1, 0, 0);
       }
       this.tangentialVector.normalize();
-
-      // Enhanced Speed Profile for smoother, more continuous spiral motion
       const baseInwardStep = this.particleBaseInwardStep * this.particleSpeeds[index];
-      const distanceEase = Math.min(1, radialDistance / 2.0); // Gradual easing
+      const distanceEase = Math.min(1, radialDistance / 2.0);
       const inwardStep = Math.min(this.particleMaxStep, baseInwardStep * (0.4 + distanceEase * 0.6));
-      
-      // Enhanced spiral motion that creates continuous flowing pattern
-      const spiralIntensity = Math.max(0.4, distanceEase); // Maintain strong spiral throughout
-      const timeFactor = Math.sin(elapsedTime * 0.8 + index * 0.91) * 0.3 + 0.7; // Temporal variation
+      const spiralIntensity = Math.max(0.4, distanceEase);
+      const timeFactor = Math.sin(elapsedTime * 0.8 + index * 0.91) * 0.3 + 0.7;
       const spiralStep = inwardStep * this.particleSpiralFactor * spiralIntensity * timeFactor *
                         (0.85 + this.particleVariance * (Math.sin(elapsedTime * 1.4 + index * 0.67) * 0.4 + 0.6));
-
-      // Additional perpendicular motion for more complex spiral pattern
       const perpVector = new THREE.Vector3().crossVectors(this.radialVector, this.tangentialVector);
       const perpStep = spiralStep * 0.3 * Math.sin(elapsedTime * 2.1 + index * 0.45);
-
-      // Update Position with enhanced 3D spiral motion
       const nextX = currentX + this.radialVector.x * inwardStep + this.tangentialVector.x * spiralStep + perpVector.x * perpStep;
       const nextY = currentY + this.radialVector.y * inwardStep + this.tangentialVector.y * spiralStep + perpVector.y * perpStep;
       const nextZ = currentZ + this.radialVector.z * inwardStep + this.tangentialVector.z * spiralStep + perpVector.z * perpStep;
-
-      positionAttribute.setXYZ(index, nextX, nextY, nextZ);
+      this.thoughtSprites[index].position.set(nextX, nextY, nextZ);
     }
 
-    positionAttribute.needsUpdate = true;
     this.renderer.render(this.scene, this.camera);
   }
 
