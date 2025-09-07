@@ -95,12 +95,9 @@ export class ThoughtsManager {
     for (let index = 0; index < this.thoughtCount; index++) this.seedParticle(index, 0);
   }
 
-  animate(coreMesh) {
-    requestAnimationFrame(() => this.animate(coreMesh));
+  animate() {
+    requestAnimationFrame(() => this.animate());
     const elapsedTime = this.animationClock.getElapsedTime();
-    // Core breathing effect
-    const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
-    coreMesh.scale.setScalar(coreBreathScale);
     // Animate neuron flashes
     if (this.neuronMeshes) {
       for (let i = 0; i < this.neuronMeshes.length; i++) {

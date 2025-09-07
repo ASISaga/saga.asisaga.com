@@ -2,8 +2,7 @@
  * ASI Saga Scene Overview
  *
  * This scene visualizes a stylized, animated representation of a mind or intelligence.
- * At the center is a translucent core sphere, made of glass.
- * Inside the core is a side-view outline of a brain, with distinct anatomical lobes and neuron spheres.
+ * At the center is a stylized side-view outline of a brain, with distinct anatomical lobes and neuron spheres.
  * Neurons are connected by lines, and their colors/emissive intensities pulse to simulate neural activity.
  * Animated thought balloon emojis (sprites) spiral inward from the edges of the screen, orbiting and vanishing as they reach the core.
  * The entire scene is rendered in Three.js with soft lighting and fog for depth, creating a sense of mystery and emergence.
@@ -32,9 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderer = setupRenderer();
   // Add ambient and directional lighting to the scene
   setupLighting(scene);
-  // Add the glowing core sphere to the scene
-  const { coreMesh, coreRadius } = setupCore(scene);
-  // Add the brain outline and neuron spheres
+  // No core sphere; show the brain directly at the center
+  const coreRadius = 1.08;
   const { neuronMeshes } = setupBrain(scene, coreRadius);
   // Add animated thought sprites (emojis)
   const { thoughtSprites } = setupThoughts(scene, coreRadius);
@@ -44,5 +42,5 @@ document.addEventListener('DOMContentLoaded', () => {
   thoughtsManager.setRenderer(renderer);
   thoughtsManager.setCamera(camera);
   // Start the animation loop
-  thoughtsManager.animate(coreMesh);
+  thoughtsManager.animate();
 });

@@ -32,6 +32,6 @@ export function setupLighting(scene) {
 
 export function setupCore(scene) {
   const coreRadius = 1.08;
-  // No core mesh for maximum visibility
-  return { coreMesh: null, coreRadius };
+  // No core mesh; only provide coreRadius for brain and thoughts placement
+  return { coreRadius };
 }
