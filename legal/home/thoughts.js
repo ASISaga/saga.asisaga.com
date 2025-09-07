@@ -118,26 +118,52 @@ export class ThoughtsManager {
     for (let index = 0; index < this.particleCount; index++) {
       const sprite = this.thoughtSprites[index];
       if (!sprite.visible) {
-        let thetaDeg, theta;
-        while (true) {
+        let attempts = 0;
+        let onScreen = false;
+        let thetaDeg, theta, phi, r, pos3D, pos2D;
+        while (!onScreen && attempts < 10) {
           thetaDeg = Math.random() * 360;
           if ((thetaDeg >= 0 && thetaDeg <= 60) || (thetaDeg >= 120 && thetaDeg <= 240) || (thetaDeg >= 300 && thetaDeg <= 360)) {
-            break;
+            theta = THREE.MathUtils.degToRad(thetaDeg);
+            phi = Math.acos(2 * Math.random() - 1);
+            r = this.coreRadius * 2.2;
+            pos3D = new THREE.Vector3(
+              r * Math.sin(phi) * Math.cos(theta),
+              r * Math.sin(phi) * Math.sin(theta),
+              r * Math.cos(phi)
+            );
+            // Project to screen space
+            pos2D = pos3D.clone().project(this.camera);
+            const xScreen = (pos2D.x * 0.5 + 0.5) * this.renderer.domElement.width;
+            const yScreen = (1 - (pos2D.y * 0.5 + 0.5)) * this.renderer.domElement.height;
+            if (xScreen >= 0 && xScreen <= this.renderer.domElement.width && yScreen >= 0 && yScreen <= this.renderer.domElement.height) {
+              onScreen = true;
+              sprite.position.copy(pos3D);
+              sprite.userData.target = sprite.position.clone().normalize().multiplyScalar(this.coreRadius * 1.05);
+              sprite.visible = true;
+              this.particleStates[index] = 2;
+              this.particleDelays[index] = elapsedTime + Math.random() * 1.5;
+              this.particleRingStartTime[index] = elapsedTime;
+            }
           }
+          attempts++;
         }
-        theta = THREE.MathUtils.degToRad(thetaDeg);
-        const phi = Math.acos(2 * Math.random() - 1);
-        const r = this.coreRadius * 2.2;
-        sprite.position.set(
-          r * Math.sin(phi) * Math.cos(theta),
-          r * Math.sin(phi) * Math.sin(theta),
-          r * Math.cos(phi)
-        );
-        sprite.userData.target = sprite.position.clone().normalize().multiplyScalar(this.coreRadius * 1.05);
-        sprite.visible = true;
-        this.particleStates[index] = 2;
-        this.particleDelays[index] = elapsedTime + Math.random() * 1.5;
-        this.particleRingStartTime[index] = elapsedTime;
+        // If not found after attempts, fallback to original logic
+        if (!onScreen) {
+          theta = THREE.MathUtils.degToRad(thetaDeg);
+          phi = Math.acos(2 * Math.random() - 1);
+          r = this.coreRadius * 2.2;
+          sprite.position.set(
+            r * Math.sin(phi) * Math.cos(theta),
+            r * Math.sin(phi) * Math.sin(theta),
+            r * Math.cos(phi)
+          );
+          sprite.userData.target = sprite.position.clone().normalize().multiplyScalar(this.coreRadius * 1.05);
+          sprite.visible = true;
+          this.particleStates[index] = 2;
+          this.particleDelays[index] = elapsedTime + Math.random() * 1.5;
+          this.particleRingStartTime[index] = elapsedTime;
+        }
       }
       let x, y, z;
       if (this.particleStates[index] === 2) {
