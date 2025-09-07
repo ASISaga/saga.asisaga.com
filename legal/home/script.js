@@ -328,7 +328,7 @@ class Home3DAnimation {
       let x, y, z;
       if (this.particleStates[index] === 2) {
         if (elapsedTime >= this.particleDelays[index]) this.particleStates[index] = 3;
-        else continue;
+        // Do NOT continue; let the new thought animate immediately
       }
       if (this.particleStates[index] === 3) {
         const timeInRing = elapsedTime - this.particleRingStartTime[index];
@@ -382,7 +382,7 @@ class Home3DAnimation {
         sprite.visible = false;
         this.particleStates[index] = 1;
         this.particleDwellAt[index] = elapsedTime;
-        continue;
+        // Do NOT continue; let the new thought animate immediately
       }
       this.radialVector.normalize();
       this.tangentialVector.copy(this.upVector).cross(this.radialVector);
@@ -404,6 +404,7 @@ class Home3DAnimation {
       const nextZ = currentZ + this.radialVector.z * inwardStep + this.tangentialVector.z * spiralStep + perpVector.z * perpStep;
       sprite.position.set(nextX, nextY, nextZ);
       if (Math.sqrt(nextX*nextX + nextY*nextY + nextZ*nextZ) <= this.coreRadius * 1.05) sprite.visible = false;
+      // Do NOT continue; let the new thought animate immediately
     }
 
     this.renderer.render(this.scene, this.camera);
