@@ -73,22 +73,22 @@ class Home3DAnimation {
 
   // Brain setup: neurons and lines inside core sphere
   setupBrain() {
-    // Improved brain outline: lobed, asymmetric, undulating curve
+    // Side view brain outline: more elongated, with frontal and occipital lobes
     const brainCurve = [
-      new THREE.Vector3(0.35, 0.18, 0.0), // right lower
-      new THREE.Vector3(0.55, 0.38, 0.08), // right lobe
-      new THREE.Vector3(0.45, 0.65, 0.18), // right upper
-      new THREE.Vector3(0.18, 0.78, 0.22), // top right
-      new THREE.Vector3(-0.12, 0.82, 0.18), // top center
-      new THREE.Vector3(-0.38, 0.75, 0.12), // top left
-      new THREE.Vector3(-0.55, 0.55, 0.05), // left upper
-      new THREE.Vector3(-0.58, 0.28, -0.05), // left lobe
-      new THREE.Vector3(-0.45, 0.05, -0.12), // left lower
-      new THREE.Vector3(-0.38, -0.18, -0.18), // left bottom
-      new THREE.Vector3(-0.18, -0.38, -0.22), // bottom left
-      new THREE.Vector3(0.08, -0.45, -0.18), // bottom center
-      new THREE.Vector3(0.28, -0.38, -0.12), // bottom right
-      new THREE.Vector3(0.35, 0.18, 0.0) // close loop
+      new THREE.Vector3(-0.55, 0.18, 0.0), // occipital lobe (back)
+      new THREE.Vector3(-0.68, 0.38, 0.08), // upper back
+      new THREE.Vector3(-0.62, 0.65, 0.18), // parietal
+      new THREE.Vector3(-0.38, 0.78, 0.22), // top
+      new THREE.Vector3(0.05, 0.82, 0.18), // top front
+      new THREE.Vector3(0.38, 0.75, 0.12), // frontal lobe (front top)
+      new THREE.Vector3(0.62, 0.55, 0.05), // front upper
+      new THREE.Vector3(0.68, 0.28, -0.05), // front
+      new THREE.Vector3(0.55, 0.05, -0.12), // front lower
+      new THREE.Vector3(0.38, -0.18, -0.18), // bottom front
+      new THREE.Vector3(0.05, -0.38, -0.22), // bottom center
+      new THREE.Vector3(-0.28, -0.45, -0.18), // bottom back
+      new THREE.Vector3(-0.48, -0.38, -0.12), // lower back
+      new THREE.Vector3(-0.55, 0.18, 0.0) // close loop
     ];
     // Offset curve slightly in Z to avoid occlusion
     for (let v of brainCurve) v.z += 0.15;
