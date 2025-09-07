@@ -1,22 +1,22 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 export function setupBrain(scene, coreRadius) {
-  // Side view brain outline: more elongated, with frontal and occipital lobes
+  // Side view brain outline: more anatomical, with distinct lobes
   const brainCurve = [
-    new THREE.Vector3(-0.55, 0.18, 0.0),
-    new THREE.Vector3(-0.68, 0.38, 0.08),
-    new THREE.Vector3(-0.62, 0.65, 0.18),
-    new THREE.Vector3(-0.38, 0.78, 0.22),
-    new THREE.Vector3(0.05, 0.82, 0.18),
-    new THREE.Vector3(0.38, 0.75, 0.12),
-    new THREE.Vector3(0.62, 0.55, 0.05),
-    new THREE.Vector3(0.68, 0.28, -0.05),
-    new THREE.Vector3(0.55, 0.05, -0.12),
-    new THREE.Vector3(0.38, -0.18, -0.18),
-    new THREE.Vector3(0.05, -0.38, -0.22),
-    new THREE.Vector3(-0.28, -0.45, -0.18),
-    new THREE.Vector3(-0.48, -0.38, -0.12),
-    new THREE.Vector3(-0.55, 0.18, 0.0)
+    new THREE.Vector3(-0.65, 0.18, 0.0), // occipital lobe (back)
+    new THREE.Vector3(-0.75, 0.38, 0.08), // occipital upper
+    new THREE.Vector3(-0.68, 0.65, 0.18), // parietal
+    new THREE.Vector3(-0.45, 0.78, 0.22), // parietal upper
+    new THREE.Vector3(0.0, 0.82, 0.18),   // top
+    new THREE.Vector3(0.45, 0.75, 0.12),  // frontal upper
+    new THREE.Vector3(0.68, 0.55, 0.05),  // frontal lobe (front top)
+    new THREE.Vector3(0.75, 0.28, -0.05), // frontal
+    new THREE.Vector3(0.65, 0.05, -0.12), // temporal lobe (front lower)
+    new THREE.Vector3(0.45, -0.18, -0.18),// temporal lower
+    new THREE.Vector3(0.0, -0.38, -0.22), // bottom center
+    new THREE.Vector3(-0.35, -0.45, -0.18),// cerebellum
+    new THREE.Vector3(-0.55, -0.38, -0.12),// cerebellum lower
+    new THREE.Vector3(-0.65, 0.18, 0.0)    // close loop
   ];
   for (let v of brainCurve) v.z += 0.15;
   const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 0.6)));
