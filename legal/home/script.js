@@ -1,4 +1,3 @@
-
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 // =============================
@@ -13,6 +12,7 @@ class Home3DAnimation {
     this.setupRenderer();
     this.setupLighting();
     this.setupCore();
+    this.setupBrain(); // <-- Added
     this.setupParticleParams();
     this.setupBuffers();
     this.setupHelpers();
@@ -47,6 +47,7 @@ class Home3DAnimation {
     this.scene.add(dir);
   }
 
+  // Core sphere setup
   setupCore() {
     this.coreRadius = 1.08;
     const coreGeometry = new THREE.SphereGeometry(this.coreRadius * 0.96, 48, 48);
@@ -61,6 +62,56 @@ class Home3DAnimation {
     });
     this.coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     this.scene.add(this.coreMesh);
+  }
+
+  // Brain setup: neurons and lines inside core sphere
+  setupBrain() {
+    this.neuronCount = 18;
+    this.neuronRadius = 0.08;
+    this.brainRadius = this.coreRadius * 0.55;
+    this.neurons = [];
+    this.neuronMeshes = [];
+    this.neuronLines = [];
+    const neuronMaterial = new THREE.MeshStandardMaterial({
+      color: 0xfff8a0,
+      emissive: 0xffcc00,
+      emissiveIntensity: 0.7,
+      metalness: 0.2,
+      roughness: 0.5,
+      transparent: true,
+      opacity: 0.95
+    });
+    // Randomly distribute neurons inside a sphere
+    for (let i = 0; i < this.neuronCount; i++) {
+      const phi = Math.acos(2 * Math.random() - 1);
+      const theta = Math.random() * 2 * Math.PI;
+      const r = this.brainRadius * (0.7 + 0.3 * Math.random());
+      const x = r * Math.sin(phi) * Math.cos(theta);
+      const y = r * Math.sin(phi) * Math.sin(theta);
+      const z = r * Math.cos(phi);
+      this.neurons.push(new THREE.Vector3(x, y, z));
+      const mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(this.neuronRadius, 16, 16),
+        neuronMaterial.clone()
+      );
+      mesh.position.set(x, y, z);
+      this.scene.add(mesh);
+      this.neuronMeshes.push(mesh);
+    }
+    // Connect some neurons with lines
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.5 });
+    for (let i = 0; i < this.neuronCount; i++) {
+      for (let j = i + 1; j < this.neuronCount; j++) {
+        if (Math.random() < 0.22) { // sparse connections
+          const geometry = new THREE.BufferGeometry().setFromPoints([
+            this.neurons[i], this.neurons[j]
+          ]);
+          const line = new THREE.Line(geometry, lineMaterial);
+          this.scene.add(line);
+          this.neuronLines.push(line);
+        }
+      }
+    }
   }
 
   setupParticleParams() {
@@ -218,6 +269,17 @@ class Home3DAnimation {
     // Core breathing effect
     const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
     this.coreMesh.scale.setScalar(coreBreathScale);
+
+    // Animate neuron glow
+    if (this.neuronMeshes) {
+      for (let i = 0; i < this.neuronMeshes.length; i++) {
+        const mesh = this.neuronMeshes[i];
+        const phase = elapsedTime * 2 + i * 0.5;
+        const glow = 0.7 + 0.5 * Math.sin(phase);
+        mesh.material.emissiveIntensity = glow;
+        mesh.scale.setScalar(1 + 0.18 * Math.sin(phase));
+      }
+    }
 
     // Slight scene drift for life
     this.scene.rotation.y += 0.0008;
