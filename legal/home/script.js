@@ -55,16 +55,16 @@ class Home3DAnimation {
       color: 0x1a2440,
       metalness: 0.7,
       roughness: 0.05,
-      transmission: 0.92, // glass effect
+      transmission: 0.98, // more glass effect
       thickness: 0.6,
       ior: 1.5,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.15, // almost fully transparent
       clearcoat: 1.0,
       clearcoatRoughness: 0.05,
       reflectivity: 0.8,
       emissive: 0x89e4ff,
-      emissiveIntensity: 0.18
+      emissiveIntensity: 0.12
     });
     this.coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     this.scene.add(this.coreMesh);
