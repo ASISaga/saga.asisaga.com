@@ -23,13 +23,13 @@ export function setupBrain(scene, coreRadius) {
   ];
   for (let v of brainCurve) v.z += 0.0; // Keep brain centered in core
   const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 0.55)));
-  const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: true, opacity: 0.7, linewidth: 2 }));
+  const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: false, opacity: 1.0, linewidth: 3 }));
   brainLine.renderOrder = 100;
   scene.add(brainLine);
 
   // Neuron positions (on curve)
   const neuronCount = 12;
-  const neuronRadius = 0.09;
+  const neuronRadius = 0.11;
   const neuronMeshes = [];
   for (let i = 0; i < neuronCount; i++) {
     const t = i / neuronCount;
@@ -40,11 +40,11 @@ export function setupBrain(scene, coreRadius) {
       new THREE.MeshStandardMaterial({
         color: 0xeeeeff,
         emissive: 0x99ccff,
-        emissiveIntensity: 0.0,
+        emissiveIntensity: 0.15,
         metalness: 0.7,
         roughness: 0.1,
-        transparent: true,
-        opacity: 0.85
+        transparent: false,
+        opacity: 1.0
       })
     );
     mesh.position.copy(pos);
@@ -58,7 +58,7 @@ export function setupBrain(scene, coreRadius) {
     const b = neuronMeshes[i + 1].position.clone();
     a.z += 0.0; b.z += 0.0;
     const geometry = new THREE.BufferGeometry().setFromPoints([a, b]);
-    const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: true, opacity: 0.5 }));
+  const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: false, opacity: 0.8, linewidth: 2 }));
     line.renderOrder = 101;
     scene.add(line);
   }

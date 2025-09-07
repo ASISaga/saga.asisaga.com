@@ -37,20 +37,20 @@ export function setupCore(scene) {
   // Enhanced glass-like material
   const coreMaterial = new THREE.MeshPhysicalMaterial({
     color: 0xffffff,
-    metalness: 0.6,
-    roughness: 0.01,
-    transmission: 1.0,
-    thickness: 2.0,
-    ior: 1.52,
+    metalness: 0.2,
+    roughness: 0.15,
+    transmission: 0.7,
+    thickness: 0.5,
+    ior: 1.35,
     transparent: true,
-    opacity: 0.09,
-    clearcoat: 1.0,
-    clearcoatRoughness: 0.005,
-    reflectivity: 0.95,
+    opacity: 0.03,
+    clearcoat: 0.7,
+    clearcoatRoughness: 0.02,
+    reflectivity: 0.3,
     emissive: 0x89e4ff,
-    emissiveIntensity: 0.12,
-    envMapIntensity: 1.2,
-    specularIntensity: 1.0
+    emissiveIntensity: 0.08,
+    envMapIntensity: 0.5,
+    specularIntensity: 0.5
   });
   const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
   coreMesh.renderOrder = 1;
