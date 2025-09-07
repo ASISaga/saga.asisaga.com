@@ -305,10 +305,10 @@ class Home3DAnimation {
         }
       }
     }
-    // Spiral/ring motion for thought bubbles, vanish at sphere, and respawn
+    // Spiral/ring motion for thought bubbles, vanish at sphere, and always respawn
     for (let index = 0; index < this.particleCount; index++) {
       const sprite = this.thoughtSprites[index];
-      // If vanished, respawn at random outer position
+      // If vanished, respawn immediately
       if (!sprite.visible) {
         const theta = Math.random() * 2 * Math.PI;
         const phi = Math.acos(2 * Math.random() - 1);
@@ -323,7 +323,6 @@ class Home3DAnimation {
         this.particleStates[index] = 2;
         this.particleDelays[index] = elapsedTime + Math.random() * 1.5;
         this.particleRingStartTime[index] = elapsedTime;
-        continue;
       }
       // Use spiral/ring logic to position sprites
       let x, y, z;
