@@ -310,7 +310,15 @@ class Home3DAnimation {
       const sprite = this.thoughtSprites[index];
       // If vanished, respawn immediately
       if (!sprite.visible) {
-        const theta = Math.random() * 2 * Math.PI;
+        // Restrict spawn angles to 0-60, 120-240, and 300-360 degrees
+        let thetaDeg, theta;
+        while (true) {
+          thetaDeg = Math.random() * 360;
+          if ((thetaDeg >= 0 && thetaDeg <= 60) || (thetaDeg >= 120 && thetaDeg <= 240) || (thetaDeg >= 300 && thetaDeg <= 360)) {
+            break;
+          }
+        }
+        theta = THREE.MathUtils.degToRad(thetaDeg);
         const phi = Math.acos(2 * Math.random() - 1);
         const r = this.coreRadius * 2.2;
         sprite.position.set(
