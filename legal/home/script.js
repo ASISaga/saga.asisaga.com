@@ -293,7 +293,6 @@ class Home3DAnimation {
       for (let i = 0; i < this.neuronMeshes.length; i++) {
         this.neuronFlashTimers[i] -= 0.016;
         if (this.neuronFlashTimers[i] <= 0) {
-          // Flash!
           this.neuronMeshes[i].material.emissiveIntensity = 3.5;
           this.neuronMeshes[i].material.color.set(0xffff80);
           this.neuronFlashTimers[i] = 0.15 + Math.random() * 2.5;
@@ -306,11 +305,11 @@ class Home3DAnimation {
         }
       }
     }
-    // Slight scene drift for life
-    this.scene.rotation.y += 0.0008;
-    // Update thought balloon sprites
+    // Spiral/ring motion for thought bubbles, vanish at sphere
     for (let index = 0; index < this.particleCount; index++) {
-      // Use the same spiral logic to position sprites
+      const sprite = this.thoughtSprites[index];
+      if (!sprite.visible) continue;
+      // Use spiral/ring logic to position sprites
       let x, y, z;
       if (this.particleStates[index] === 2) {
         if (elapsedTime >= this.particleDelays[index]) this.particleStates[index] = 3;
@@ -327,7 +326,9 @@ class Home3DAnimation {
           y = targetY * (currentRadius / (this.coreRadius * 1.1)) + pulse * this.ringThickness * 0.5;
           x = currentRadius * Math.cos(currentAngle);
           z = currentRadius * Math.sin(currentAngle);
-          this.thoughtSprites[index].position.set(x, y, z);
+          sprite.position.set(x, y, z);
+          // Vanish if close to sphere
+          if (Math.sqrt(x*x + y*y + z*z) <= this.coreRadius * 1.05) sprite.visible = false;
           continue;
         } else {
           this.particleStates[index] = 0;
@@ -348,21 +349,23 @@ class Home3DAnimation {
           x = targetX * finalScale;
           y = targetY * finalScale;
           z = targetZ * finalScale;
-          this.thoughtSprites[index].position.set(x, y, z);
+          sprite.position.set(x, y, z);
+          if (Math.sqrt(x*x + y*y + z*z) <= this.coreRadius * 1.05) sprite.visible = false;
         }
         continue;
       }
       // Spiral inward state
-      const currentX = this.thoughtSprites[index].position.x;
-      const currentY = this.thoughtSprites[index].position.y;
-      const currentZ = this.thoughtSprites[index].position.z;
+      const currentX = sprite.position.x;
+      const currentY = sprite.position.y;
+      const currentZ = sprite.position.z;
       const targetX = this.particleTargets[index * 3 + 0];
       const targetY = this.particleTargets[index * 3 + 1];
       const targetZ = this.particleTargets[index * 3 + 2];
       this.radialVector.set(targetX - currentX, targetY - currentY, targetZ - currentZ);
       const radialDistance = this.radialVector.length();
-      if (radialDistance <= this.particleStickDistance) {
-        this.thoughtSprites[index].position.set(targetX, targetY, targetZ);
+      if (radialDistance <= this.particleStickDistance || Math.sqrt(currentX*currentX + currentY*currentY + currentZ*currentZ) <= this.coreRadius * 1.05) {
+        sprite.position.set(targetX, targetY, targetZ);
+        sprite.visible = false;
         this.particleStates[index] = 1;
         this.particleDwellAt[index] = elapsedTime;
         continue;
@@ -385,7 +388,8 @@ class Home3DAnimation {
       const nextX = currentX + this.radialVector.x * inwardStep + this.tangentialVector.x * spiralStep + perpVector.x * perpStep;
       const nextY = currentY + this.radialVector.y * inwardStep + this.tangentialVector.y * spiralStep + perpVector.y * perpStep;
       const nextZ = currentZ + this.radialVector.z * inwardStep + this.tangentialVector.z * spiralStep + perpVector.z * perpStep;
-      this.thoughtSprites[index].position.set(nextX, nextY, nextZ);
+      sprite.position.set(nextX, nextY, nextZ);
+      if (Math.sqrt(nextX*nextX + nextY*nextY + nextZ*nextZ) <= this.coreRadius * 1.05) sprite.visible = false;
     }
 
     this.renderer.render(this.scene, this.camera);
