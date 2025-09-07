@@ -1,3 +1,6 @@
+// thoughts.js - Thought balloon sprite setup and animation manager for ASI Saga
+// Provides functions to create thought sprites and animate them, including neuron flashes
+
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 import { randomOnHorizontalRing } from './utils.js';
 
@@ -18,7 +21,8 @@ export function setupThoughts(scene, coreRadius, thoughtCount = 20) {
   for (let i = 0; i < thoughtCount; i++) {
     const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
     const sprite = new THREE.Sprite(spriteMaterial);
-    sprite.scale.set(0.22, 0.22, 1);
+    sprite.scale.set(0.22 + Math.random() * 0.08, 0.22 + Math.random() * 0.08, 1);
+    sprite.material.opacity = 0.85 + Math.random() * 0.15;
     scene.add(sprite);
     thoughtSprites.push(sprite);
   }
@@ -126,7 +130,7 @@ export class ThoughtsManager {
           if ((thetaDeg >= 0 && thetaDeg <= 60) || (thetaDeg >= 120 && thetaDeg <= 240) || (thetaDeg >= 300 && thetaDeg <= 360)) {
             theta = THREE.MathUtils.degToRad(thetaDeg);
             phi = Math.acos(2 * Math.random() - 1);
-            r = this.coreRadius * 2.2;
+            r = this.coreRadius * (2.2 + Math.random() * 0.5); // More spread from edge
             pos3D = new THREE.Vector3(
               r * Math.sin(phi) * Math.cos(theta),
               r * Math.sin(phi) * Math.sin(theta),
@@ -152,7 +156,7 @@ export class ThoughtsManager {
         if (!onScreen) {
           theta = THREE.MathUtils.degToRad(thetaDeg);
           phi = Math.acos(2 * Math.random() - 1);
-          r = this.coreRadius * 2.2;
+          r = this.coreRadius * (2.2 + Math.random() * 0.5);
           sprite.position.set(
             r * Math.sin(phi) * Math.cos(theta),
             r * Math.sin(phi) * Math.sin(theta),

@@ -1,3 +1,6 @@
+// brain.js - Brain outline and neuron mesh setup for ASI Saga
+// Provides function to add a stylized brain outline and neuron spheres to the scene
+
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 export function setupBrain(scene, coreRadius) {
@@ -18,30 +21,30 @@ export function setupBrain(scene, coreRadius) {
     new THREE.Vector3(-0.55, -0.38, -0.12),// cerebellum lower
     new THREE.Vector3(-0.65, 0.18, 0.0)    // close loop
   ];
-  for (let v of brainCurve) v.z += 0.15;
-  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 0.6)));
-  const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: false, opacity: 1.0 }));
+  for (let v of brainCurve) v.z += 0.0; // Keep brain centered in core
+  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 0.55)));
+  const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: true, opacity: 0.7, linewidth: 2 }));
   brainLine.renderOrder = 100;
   scene.add(brainLine);
 
   // Neuron positions (on curve)
   const neuronCount = 12;
-  const neuronRadius = 0.11;
+  const neuronRadius = 0.09;
   const neuronMeshes = [];
   for (let i = 0; i < neuronCount; i++) {
     const t = i / neuronCount;
     const idx = Math.floor(t * (brainCurve.length - 1));
-    const pos = brainCurve[idx].clone().multiplyScalar(coreRadius * 0.6);
+    const pos = brainCurve[idx].clone().multiplyScalar(coreRadius * 0.55);
     const mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(neuronRadius, 16, 16),
+      new THREE.SphereGeometry(neuronRadius, 18, 18),
       new THREE.MeshStandardMaterial({
-        color: 0xffffe0,
-        emissive: 0xffff80,
+        color: 0xeeeeff,
+        emissive: 0x99ccff,
         emissiveIntensity: 0.0,
-        metalness: 0.4,
-        roughness: 0.2,
-        transparent: false,
-        opacity: 1.0
+        metalness: 0.7,
+        roughness: 0.1,
+        transparent: true,
+        opacity: 0.85
       })
     );
     mesh.position.copy(pos);
@@ -53,9 +56,9 @@ export function setupBrain(scene, coreRadius) {
   for (let i = 0; i < neuronCount - 1; i++) {
     const a = neuronMeshes[i].position.clone();
     const b = neuronMeshes[i + 1].position.clone();
-    a.z += 0.15; b.z += 0.15;
+    a.z += 0.0; b.z += 0.0;
     const geometry = new THREE.BufferGeometry().setFromPoints([a, b]);
-    const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: false, opacity: 1.0 }));
+    const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: true, opacity: 0.5 }));
     line.renderOrder = 101;
     scene.add(line);
   }
