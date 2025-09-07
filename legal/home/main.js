@@ -1,7 +1,6 @@
 import { setupScene, setupCamera, setupRenderer, setupLighting, setupCore } from './core.js';
 import { setupBrain } from './brain.js';
 import { setupThoughts, ThoughtsManager } from './thoughts.js';
-import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const scene = setupScene();
