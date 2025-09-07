@@ -1,7 +1,7 @@
 // brain.js - Brain outline and neuron mesh setup for ASI Saga
 // Provides function to add a stylized brain outline and neuron spheres to the scene
 
-import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
+import * as THREE from 'https://cdn.skypack.dev/three@0.158.0';
 
 export function setupBrain(scene, coreRadius) {
   // Brain outline for anatomical context
