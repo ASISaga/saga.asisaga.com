@@ -52,19 +52,19 @@ class Home3DAnimation {
     this.coreRadius = 1.08;
     const coreGeometry = new THREE.SphereGeometry(this.coreRadius * 0.96, 48, 48);
     const coreMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x11131a,
-      metalness: 0.8,
-      roughness: 0.01,
+      color: 0xffffff,
+      metalness: 0.2,
+      roughness: 0.05,
       transmission: 1.0,
-      thickness: 0.8,
-      ior: 1.6,
+      thickness: 1.0,
+      ior: 1.45,
       transparent: true,
-      opacity: 0.05, // nearly invisible
+      opacity: 0.12, // clear glass
       clearcoat: 1.0,
       clearcoatRoughness: 0.01,
-      reflectivity: 0.9,
-      emissive: 0x000000,
-      emissiveIntensity: 0.0
+      reflectivity: 0.7,
+      emissive: 0x89e4ff,
+      emissiveIntensity: 0.08
     });
     this.coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     this.coreMesh.renderOrder = 1;
@@ -123,7 +123,7 @@ class Home3DAnimation {
   }
 
   setupParticleParams() {
-    this.particleCount = 2000;
+  this.particleCount = 1000;
     this.particleStartRadiusMin = 3.0;
     this.particleStartRadiusMax = 7.0;
     this.particleStickDistance = 0.02;
