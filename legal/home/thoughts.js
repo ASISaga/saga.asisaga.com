@@ -1,7 +1,7 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 import { randomOnHorizontalRing } from './utils.js';
 
-export function setupThoughts(scene, coreRadius, thoughtCount = 100) {
+export function setupThoughts(scene, coreRadius, thoughtCount = 20) {
   // Setup thought balloon emojis
   const thoughtSprites = [];
   const emoji = '💭';
