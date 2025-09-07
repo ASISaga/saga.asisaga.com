@@ -20,7 +20,9 @@ export function setupBrain(scene, coreRadius) {
   ];
   for (let v of brainCurve) v.z += 0.15;
   const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 0.6)));
-  const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: false, opacity: 1.0 }));
+  // Use fat line material for better visibility
+  const brainLineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: false, opacity: 1.0, linewidth: 4 });
+  const brainLine = new THREE.Line(brainGeometry, brainLineMaterial);
   brainLine.renderOrder = 100;
   scene.add(brainLine);
 

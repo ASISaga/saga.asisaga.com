@@ -13,5 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const thoughtsManager = new ThoughtsManager(scene, coreRadius, thoughtSprites, neuronMeshes);
   thoughtsManager.setRenderer(renderer);
   thoughtsManager.setCamera(camera);
-  //thoughtsManager.animate(coreMesh);
+  thoughtsManager.animate(coreMesh);
 });
