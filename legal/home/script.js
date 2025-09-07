@@ -51,14 +51,20 @@ class Home3DAnimation {
   setupCore() {
     this.coreRadius = 1.08;
     const coreGeometry = new THREE.SphereGeometry(this.coreRadius * 0.96, 48, 48);
-    const coreMaterial = new THREE.MeshStandardMaterial({
+    const coreMaterial = new THREE.MeshPhysicalMaterial({
       color: 0x1a2440,
-      emissive: 0x89e4ff,
-      emissiveIntensity: 0.25,
-      metalness: 0.3, // Slightly more metallic for puzzle-piece effect
-      roughness: 0.8, // Slightly smoother
+      metalness: 0.7,
+      roughness: 0.05,
+      transmission: 0.92, // glass effect
+      thickness: 0.6,
+      ior: 1.5,
       transparent: true,
-      opacity: 0.95
+      opacity: 0.7,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05,
+      reflectivity: 0.8,
+      emissive: 0x89e4ff,
+      emissiveIntensity: 0.18
     });
     this.coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     this.scene.add(this.coreMesh);
