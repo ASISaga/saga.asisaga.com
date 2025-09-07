@@ -52,40 +52,41 @@ class Home3DAnimation {
     this.coreRadius = 1.08;
     const coreGeometry = new THREE.SphereGeometry(this.coreRadius * 0.96, 48, 48);
     const coreMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x1a2440,
-      metalness: 0.7,
-      roughness: 0.05,
-      transmission: 0.98, // more glass effect
-      thickness: 0.6,
-      ior: 1.5,
+      color: 0x11131a,
+      metalness: 0.8,
+      roughness: 0.01,
+      transmission: 1.0,
+      thickness: 0.8,
+      ior: 1.6,
       transparent: true,
-      opacity: 0.15, // almost fully transparent
+      opacity: 0.05, // nearly invisible
       clearcoat: 1.0,
-      clearcoatRoughness: 0.05,
-      reflectivity: 0.8,
-      emissive: 0x89e4ff,
-      emissiveIntensity: 0.12
+      clearcoatRoughness: 0.01,
+      reflectivity: 0.9,
+      emissive: 0x000000,
+      emissiveIntensity: 0.0
     });
     this.coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
+    this.coreMesh.renderOrder = 1;
     this.scene.add(this.coreMesh);
   }
 
   // Brain setup: neurons and lines inside core sphere
   setupBrain() {
-    this.neuronCount = 18;
-    this.neuronRadius = 0.08;
+  this.neuronCount = 28;
+  this.neuronRadius = 0.13;
     this.brainRadius = this.coreRadius * 0.55;
     this.neurons = [];
     this.neuronMeshes = [];
     this.neuronLines = [];
     const neuronMaterial = new THREE.MeshStandardMaterial({
-      color: 0xfff8a0,
-      emissive: 0xffcc00,
-      emissiveIntensity: 0.7,
-      metalness: 0.2,
-      roughness: 0.5,
-      transparent: true,
-      opacity: 0.95
+      color: 0xffffe0,
+      emissive: 0xffff80,
+      emissiveIntensity: 2.5,
+      metalness: 0.4,
+      roughness: 0.2,
+      transparent: false,
+      opacity: 1.0
     });
     // Randomly distribute neurons inside a sphere
     for (let i = 0; i < this.neuronCount; i++) {
@@ -100,9 +101,10 @@ class Home3DAnimation {
         new THREE.SphereGeometry(this.neuronRadius, 16, 16),
         neuronMaterial.clone()
       );
-      mesh.position.set(x, y, z);
-      this.scene.add(mesh);
-      this.neuronMeshes.push(mesh);
+  mesh.position.set(x, y, z);
+  mesh.renderOrder = 2;
+  this.scene.add(mesh);
+  this.neuronMeshes.push(mesh);
     }
     // Connect some neurons with lines
     const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.5 });
