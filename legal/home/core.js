@@ -32,28 +32,6 @@ export function setupLighting(scene) {
 
 export function setupCore(scene) {
   const coreRadius = 1.08;
-  // Slightly larger geometry to ensure brain fits inside
-  const coreGeometry = new THREE.SphereGeometry(coreRadius, 64, 64);
-  // Enhanced glass-like material
-  const coreMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff,
-    metalness: 0.1,
-    roughness: 0.2,
-    transmission: 0.0,
-    thickness: 0.1,
-    ior: 1.0,
-    transparent: true,
-    opacity: 0.01,
-    clearcoat: 0.2,
-    clearcoatRoughness: 0.05,
-    reflectivity: 0.1,
-    emissive: 0x89e4ff,
-    emissiveIntensity: 0.04,
-    envMapIntensity: 0.0,
-    specularIntensity: 0.0
-  });
-  const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
-  coreMesh.renderOrder = 1;
-  scene.add(coreMesh);
-  return { coreMesh, coreRadius };
+  // No core mesh for maximum visibility
+  return { coreMesh: null, coreRadius };
 }
