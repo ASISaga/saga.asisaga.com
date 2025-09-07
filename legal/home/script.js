@@ -85,11 +85,12 @@ class Home3DAnimation {
       new THREE.Vector3(0.2, -0.2, -0.1),
       new THREE.Vector3(0.3, 0.2, 0.0)
     ];
-  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(this.coreRadius * 0.6)));
-  const brainLineMaterial = new THREE.LineBasicMaterial({ color: 0x3366ff, linewidth: 8, transparent: true, opacity: 1.0 });
-  const brainLine = new THREE.Line(brainGeometry, brainLineMaterial);
-  brainLine.renderOrder = 10;
-  this.scene.add(brainLine);
+    // Offset curve slightly in Z to avoid occlusion
+    for (let v of brainCurve) v.z += 0.15;
+    const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(this.coreRadius * 0.6)));
+    const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: false, opacity: 1.0 }));
+    brainLine.renderOrder = 100;
+    this.scene.add(brainLine);
 
     // Neuron positions (on curve)
     this.neuronCount = 12;
@@ -113,20 +114,19 @@ class Home3DAnimation {
         })
       );
       mesh.position.copy(pos);
-      mesh.renderOrder = 4;
+      mesh.renderOrder = 101;
       this.scene.add(mesh);
       this.neuronMeshes.push(mesh);
       this.neuronFlashTimers.push(Math.random() * 2.5);
     }
     // Connect neurons with lines
     for (let i = 0; i < this.neuronCount - 1; i++) {
-      const geometry = new THREE.BufferGeometry().setFromPoints([
-        this.neuronMeshes[i].position,
-        this.neuronMeshes[i + 1].position
-      ]);
-      const neuronLineMaterial = new THREE.LineBasicMaterial({ color: 0xffd700, linewidth: 6, transparent: false, opacity: 1.0 });
-      const line = new THREE.Line(geometry, neuronLineMaterial);
-      line.renderOrder = 11;
+      const a = this.neuronMeshes[i].position.clone();
+      const b = this.neuronMeshes[i + 1].position.clone();
+      a.z += 0.15; b.z += 0.15;
+      const geometry = new THREE.BufferGeometry().setFromPoints([a, b]);
+      const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: false, opacity: 1.0 }));
+      line.renderOrder = 101;
       this.scene.add(line);
     }
   }
