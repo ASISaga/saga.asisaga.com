@@ -308,7 +308,7 @@ class Home3DAnimation {
     // Spiral/ring motion for thought bubbles, vanish at sphere, and always respawn
     for (let index = 0; index < this.particleCount; index++) {
       const sprite = this.thoughtSprites[index];
-      // If vanished, respawn immediately
+      // If vanished, respawn immediately 
       if (!sprite.visible) {
         // Restrict spawn angles to 0-60, 120-240, and 300-360 degrees
         let thetaDeg, theta;
