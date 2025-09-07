@@ -73,52 +73,59 @@ class Home3DAnimation {
 
   // Brain setup: neurons and lines inside core sphere
   setupBrain() {
-  this.neuronCount = 28;
-  this.neuronRadius = 0.13;
-    this.brainRadius = this.coreRadius * 0.55;
-    this.neurons = [];
+    // Stylized brain outline (simple closed curve)
+    const brainCurve = [
+      new THREE.Vector3(0.3, 0.2, 0.0),
+      new THREE.Vector3(0.5, 0.5, 0.1),
+      new THREE.Vector3(0.2, 0.7, 0.2),
+      new THREE.Vector3(-0.2, 0.7, 0.1),
+      new THREE.Vector3(-0.5, 0.5, 0.0),
+      new THREE.Vector3(-0.3, 0.2, -0.1),
+      new THREE.Vector3(-0.2, -0.2, -0.2),
+      new THREE.Vector3(0.2, -0.2, -0.1),
+      new THREE.Vector3(0.3, 0.2, 0.0)
+    ];
+    const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(this.coreRadius * 0.6)));
+    const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x88aaff, linewidth: 2, transparent: true, opacity: 0.7 }));
+    brainLine.renderOrder = 3;
+    this.scene.add(brainLine);
+
+    // Neuron positions (on curve)
+    this.neuronCount = 12;
+    this.neuronRadius = 0.11;
     this.neuronMeshes = [];
-    this.neuronLines = [];
-    const neuronMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffffe0,
-      emissive: 0xffff80,
-      emissiveIntensity: 2.5,
-      metalness: 0.4,
-      roughness: 0.2,
-      transparent: false,
-      opacity: 1.0
-    });
-    // Randomly distribute neurons inside a sphere
+    this.neuronFlashTimers = [];
     for (let i = 0; i < this.neuronCount; i++) {
-      const phi = Math.acos(2 * Math.random() - 1);
-      const theta = Math.random() * 2 * Math.PI;
-      const r = this.brainRadius * (0.7 + 0.3 * Math.random());
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
-      this.neurons.push(new THREE.Vector3(x, y, z));
+      const t = i / this.neuronCount;
+      const idx = Math.floor(t * (brainCurve.length - 1));
+      const pos = brainCurve[idx].clone().multiplyScalar(this.coreRadius * 0.6);
       const mesh = new THREE.Mesh(
         new THREE.SphereGeometry(this.neuronRadius, 16, 16),
-        neuronMaterial.clone()
+        new THREE.MeshStandardMaterial({
+          color: 0xffffe0,
+          emissive: 0xffff80,
+          emissiveIntensity: 0.0,
+          metalness: 0.4,
+          roughness: 0.2,
+          transparent: false,
+          opacity: 1.0
+        })
       );
-  mesh.position.set(x, y, z);
-  mesh.renderOrder = 2;
-  this.scene.add(mesh);
-  this.neuronMeshes.push(mesh);
+      mesh.position.copy(pos);
+      mesh.renderOrder = 4;
+      this.scene.add(mesh);
+      this.neuronMeshes.push(mesh);
+      this.neuronFlashTimers.push(Math.random() * 2.5);
     }
-    // Connect some neurons with lines
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.5 });
-    for (let i = 0; i < this.neuronCount; i++) {
-      for (let j = i + 1; j < this.neuronCount; j++) {
-        if (Math.random() < 0.22) { // sparse connections
-          const geometry = new THREE.BufferGeometry().setFromPoints([
-            this.neurons[i], this.neurons[j]
-          ]);
-          const line = new THREE.Line(geometry, lineMaterial);
-          this.scene.add(line);
-          this.neuronLines.push(line);
-        }
-      }
+    // Connect neurons with lines
+    for (let i = 0; i < this.neuronCount - 1; i++) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        this.neuronMeshes[i].position,
+        this.neuronMeshes[i + 1].position
+      ]);
+      const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.5 }));
+      line.renderOrder = 4;
+      this.scene.add(line);
     }
   }
 
@@ -279,16 +286,22 @@ class Home3DAnimation {
     // Core breathing effect
     const coreBreathScale = 1 + Math.sin(elapsedTime * 1.6) * 0.025;
     this.coreMesh.scale.setScalar(coreBreathScale);
-    // Animate neuron glow
+    // Animate neuron flashes
     if (this.neuronMeshes) {
       for (let i = 0; i < this.neuronMeshes.length; i++) {
-        const mesh = this.neuronMeshes[i];
-        const phase = elapsedTime * 2.2 + i * 0.7;
-        const pulse = 0.7 + 0.9 * Math.abs(Math.sin(phase));
-        mesh.material.emissiveIntensity = pulse * 2.2;
-        mesh.material.opacity = 0.7 + 0.3 * Math.abs(Math.sin(phase));
-        mesh.material.color.setHSL(0.13, 0.9, 0.5 + 0.2 * Math.abs(Math.sin(phase)));
-        mesh.scale.setScalar(1 + 0.28 * Math.abs(Math.sin(phase)));
+        this.neuronFlashTimers[i] -= 0.016;
+        if (this.neuronFlashTimers[i] <= 0) {
+          // Flash!
+          this.neuronMeshes[i].material.emissiveIntensity = 3.5;
+          this.neuronMeshes[i].material.color.set(0xffff80);
+          this.neuronFlashTimers[i] = 0.15 + Math.random() * 2.5;
+        } else if (this.neuronMeshes[i].material.emissiveIntensity > 0.1) {
+          this.neuronMeshes[i].material.emissiveIntensity *= 0.5;
+          this.neuronMeshes[i].material.color.lerp(new THREE.Color(0xffffe0), 0.5);
+        } else {
+          this.neuronMeshes[i].material.emissiveIntensity = 0.0;
+          this.neuronMeshes[i].material.color.set(0xffffe0);
+        }
       }
     }
     // Slight scene drift for life
