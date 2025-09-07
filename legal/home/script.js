@@ -123,7 +123,7 @@ class Home3DAnimation {
   }
 
   setupParticleParams() {
-  this.particleCount = 1000;
+  this.particleCount = 200;
     this.particleStartRadiusMin = 3.0;
     this.particleStartRadiusMax = 7.0;
     this.particleStickDistance = 0.02;
