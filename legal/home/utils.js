@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
+import THREE from './three-minimal.js';
 
 export function randomOnHorizontalRing(radius) {
   const theta = Math.random() * 2 * Math.PI;
