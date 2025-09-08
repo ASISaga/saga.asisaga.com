@@ -25,7 +25,6 @@ canvas {
 	text-align: center;
 	padding: 32px 16px 0 16px;
 	box-sizing: border-box;
-	z-index: 10;
 }
 
 .overlay h1 {
