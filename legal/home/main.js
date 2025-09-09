@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLighting(scene);
   // No core sphere; show the brain directly at the center
   const coreRadius = 1.08;
-  const { neuronMeshes } = setupBrain(scene, coreRadius);
+  setupBrain(scene, coreRadius);
   // Add animated thought sprites (emojis)
   const { thoughtSprites } = setupThoughts(scene, coreRadius);
-  // Create the manager for animating thoughts and neurons
-  const thoughtsManager = new ThoughtsManager(scene, coreRadius, thoughtSprites, neuronMeshes);
+  // Create the manager for animating thoughts (no neurons)
+  const thoughtsManager = new ThoughtsManager(scene, coreRadius, thoughtSprites, undefined);
   // Provide renderer and camera to the manager for animation and projection
   thoughtsManager.setRenderer(renderer);
   thoughtsManager.setCamera(camera);
