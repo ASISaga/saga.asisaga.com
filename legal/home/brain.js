@@ -12,13 +12,13 @@ export function setupBrain(scene, coreRadius) {
     new THREE.Vector3(0.45, -0.18, -0.18), new THREE.Vector3(0.0, -0.38, -0.22), new THREE.Vector3(-0.35, -0.45, -0.18),
     new THREE.Vector3(-0.55, -0.38, -0.12), new THREE.Vector3(-0.65, 0.18, 0.0)
   ];
-  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 0.55)));
+  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 2.20)));
   const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: false, opacity: 1.0, linewidth: 3 }));
   brainLine.renderOrder = 100;
   scene.add(brainLine);
 
-  // Complex neural network: 48 neurons randomly distributed inside the brain volume
-  const neuronCount = 48;
+  // Complex neural network: 12 neurons randomly distributed inside the brain volume
+  const neuronCount = 12;
   const neuronRadius = 0.07;
   const neuronMeshes = [];
   const neurons = [];
@@ -38,7 +38,7 @@ export function setupBrain(scene, coreRadius) {
         minX + Math.random() * (maxX - minX),
         minY + Math.random() * (maxY - minY),
         minZ + Math.random() * (maxZ - minZ)
-      ).multiplyScalar(coreRadius * 0.55);
+  ).multiplyScalar(coreRadius * 2.20);
       // Only accept if inside convex hull (approximate by distance to center)
       attempts++;
     } while (pos.length() > coreRadius * 0.6 && attempts < 10);
