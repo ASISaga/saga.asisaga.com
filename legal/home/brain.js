@@ -21,16 +21,17 @@ export function setupBrain(scene, coreRadius) {
       container.innerHTML = svgText;
       const svg = container.querySelector('svg');
       if (svg) {
-        svg.style.width = '100%';
-        svg.style.height = '100%';
+        svg.style.width = '50%';
+        svg.style.height = '50%';
         svg.style.position = 'absolute';
         svg.style.top = '0';
         svg.style.left = '0';
+        svg.style.transformOrigin = 'top left';
         // Example animation: pulse effect
         svg.animate([
-          { transform: 'scale(1)' },
-          { transform: 'scale(1.05)' },
-          { transform: 'scale(1)' }
+          { transform: 'scale(0.5)' },
+          { transform: 'scale(0.55)' },
+          { transform: 'scale(0.5)' }
         ], {
           duration: 2000,
           iterations: Infinity
