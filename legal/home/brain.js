@@ -4,18 +4,39 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 
 export function setupBrain(scene, coreRadius) {
-  // Brain outline for anatomical context
-  const brainCurve = [
-    new THREE.Vector3(-0.65, 0.18, 0.0), new THREE.Vector3(-0.75, 0.38, 0.08), new THREE.Vector3(-0.68, 0.65, 0.18),
-    new THREE.Vector3(-0.45, 0.78, 0.22), new THREE.Vector3(0.0, 0.82, 0.18), new THREE.Vector3(0.45, 0.75, 0.12),
-    new THREE.Vector3(0.68, 0.55, 0.05), new THREE.Vector3(0.75, 0.28, -0.05), new THREE.Vector3(0.65, 0.05, -0.12),
-    new THREE.Vector3(0.45, -0.18, -0.18), new THREE.Vector3(0.0, -0.38, -0.22), new THREE.Vector3(-0.35, -0.45, -0.18),
-    new THREE.Vector3(-0.55, -0.38, -0.12), new THREE.Vector3(-0.65, 0.18, 0.0)
-  ];
-  const brainGeometry = new THREE.BufferGeometry().setFromPoints(brainCurve.map(v => v.clone().multiplyScalar(coreRadius * 2.20)));
-  const brainLine = new THREE.Line(brainGeometry, new THREE.LineBasicMaterial({ color: 0x99ccff, transparent: false, opacity: 1.0, linewidth: 3 }));
-  brainLine.renderOrder = 100;
-  scene.add(brainLine);
+  // Use SVG brain in animation
+  const svgUrl = 'brain.svg';
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.top = '0';
+  container.style.left = '0';
+  container.style.width = '100%';
+  container.style.height = '100%';
+  container.style.pointerEvents = 'none';
+  document.body.appendChild(container);
+
+  fetch(svgUrl)
+    .then(response => response.text())
+    .then(svgText => {
+      container.innerHTML = svgText;
+      const svg = container.querySelector('svg');
+      if (svg) {
+        svg.style.width = '100%';
+        svg.style.height = '100%';
+        svg.style.position = 'absolute';
+        svg.style.top = '0';
+        svg.style.left = '0';
+        // Example animation: pulse effect
+        svg.animate([
+          { transform: 'scale(1)' },
+          { transform: 'scale(1.05)' },
+          { transform: 'scale(1)' }
+        ], {
+          duration: 2000,
+          iterations: Infinity
+        });
+      }
+    });
 
   // Complex neural network: 12 neurons randomly distributed inside the brain volume
   const neuronCount = 12;
