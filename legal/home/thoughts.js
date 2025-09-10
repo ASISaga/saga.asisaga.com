@@ -41,7 +41,33 @@ export class ThoughtsManager {
     } else {
       this.svgNeurons = [];
     }
-    this.thoughtCount = thoughtSprites.length;
+  this.thoughtCount = (thoughtSprites && thoughtSprites.length) ? thoughtSprites.length : 0;
+  // Defensive: always initialize particle arrays even if thoughtCount is 0
+  this.particleStartRadiusMin = 3.0;
+  this.particleStartRadiusMax = 7.0;
+  this.particleStickDistance = 0.02;
+  this.particleDwellTime = 0.8;
+  this.particleSpiralFactor = 0.85;
+  this.particleBaseInwardStep = 0.018;
+  this.particleMaxStep = 0.08;
+  this.particleVariance = 1.2;
+  this.ringOrbitTime = 0.5;
+  this.ringOrbitSpeed = 1.2;
+  this.ringThickness = 0.2;
+  this.continuousSpawnRate = 0.98;
+  this.particlePositions = new Float32Array(this.thoughtCount * 3);
+  this.particleTargets = new Float32Array(this.thoughtCount * 3);
+  this.particleSpeeds = new Float32Array(this.thoughtCount);
+  this.particleDelays = new Float32Array(this.thoughtCount);
+  this.particleStates = new Uint8Array(this.thoughtCount);
+  this.particleDwellAt = new Float32Array(this.thoughtCount);
+  this.particleRingAngles = new Float32Array(this.thoughtCount);
+  this.particleRingRadii = new Float32Array(this.thoughtCount);
+  this.particleRingStartTime = new Float32Array(this.thoughtCount);
+  this.particleSpawnTime = new Float32Array(this.thoughtCount);
+  this.radialVector = new THREE.Vector3();
+  this.tangentialVector = new THREE.Vector3();
+  this.upVector = new THREE.Vector3(0, 1, 0);
     this.neuronFlashTimers = Array(this.svgNeurons.length).fill(0).map(() => Math.random() * 2.5);
     this.animationClock = new THREE.Clock();
     this.initParticles();
