@@ -19,6 +19,7 @@ export function setupRenderer() {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
+    renderer.setClearColor(0x000000, 0); // Transparent background
   document.body.appendChild(renderer.domElement);
   return renderer;
 }
