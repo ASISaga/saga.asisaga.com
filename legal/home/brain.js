@@ -8,11 +8,15 @@ export function setupBrain(scene, coreRadius) {
   const svgUrl = 'brain.svg';
   const container = document.createElement('div');
   container.style.position = 'absolute';
-  container.style.top = '0';
-  container.style.left = '0';
-  container.style.width = '100%';
-  container.style.height = '100%';
+  container.style.top = '50%';
+  container.style.left = '50%';
+  container.style.width = '100vw';
+  container.style.height = '100vh';
   container.style.pointerEvents = 'none';
+  container.style.transform = 'translate(-50%, -50%)';
+  container.style.display = 'flex';
+  container.style.alignItems = 'center';
+  container.style.justifyContent = 'center';
   document.body.appendChild(container);
 
   fetch(svgUrl)
@@ -21,17 +25,21 @@ export function setupBrain(scene, coreRadius) {
       container.innerHTML = svgText;
       const svg = container.querySelector('svg');
       if (svg) {
-        svg.style.width = '50%';
-        svg.style.height = '50%';
-        svg.style.position = 'absolute';
-        svg.style.top = '0';
+        svg.style.width = '40vw';
+        svg.style.height = '40vh';
+        svg.style.display = 'block';
+        svg.style.margin = 'auto';
+        svg.style.position = 'relative';
+        svg.style.overflow = 'visible';
+        svg.style.transform = 'none';
         svg.style.left = '0';
-        svg.style.transformOrigin = 'top left';
+        svg.style.top = '0';
+        svg.style.transformOrigin = 'center center';
         // Example animation: pulse effect
         svg.animate([
-          { transform: 'scale(0.5)' },
-          { transform: 'scale(0.55)' },
-          { transform: 'scale(0.5)' }
+          { transform: 'scale(1)' },
+          { transform: 'scale(1.05)' },
+          { transform: 'scale(1)' }
         ], {
           duration: 2000,
           iterations: Infinity
