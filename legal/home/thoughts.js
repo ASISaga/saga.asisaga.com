@@ -30,38 +30,19 @@ export function setupThoughts(scene, coreRadius, thoughtCount = 20) {
 }
 
 export class ThoughtsManager {
-  constructor(scene, coreRadius, thoughtSprites, neuronMeshes) {
+  constructor(scene, coreRadius, thoughtSprites) {
     this.scene = scene;
     this.coreRadius = coreRadius;
     this.thoughtSprites = thoughtSprites;
-    this.neuronMeshes = neuronMeshes;
+    // Parse SVG for neuron elements (paths, circles, ellipses, etc. with id containing 'neuron')
+    const svg = document.querySelector('svg');
+    if (svg) {
+      this.svgNeurons = Array.from(svg.querySelectorAll('[id*="neuron"]'));
+    } else {
+      this.svgNeurons = [];
+    }
     this.thoughtCount = thoughtSprites.length;
-    this.particleStartRadiusMin = 3.0;
-    this.particleStartRadiusMax = 7.0;
-    this.particleStickDistance = 0.02;
-    this.particleDwellTime = 0.8;
-    this.particleSpiralFactor = 0.85;
-    this.particleBaseInwardStep = 0.018;
-    this.particleMaxStep = 0.08;
-    this.particleVariance = 1.2;
-    this.ringOrbitTime = 0.5;
-    this.ringOrbitSpeed = 1.2;
-    this.ringThickness = 0.2;
-    this.continuousSpawnRate = 0.98;
-    this.particlePositions = new Float32Array(this.thoughtCount * 3);
-    this.particleTargets = new Float32Array(this.thoughtCount * 3);
-    this.particleSpeeds = new Float32Array(this.thoughtCount);
-    this.particleDelays = new Float32Array(this.thoughtCount);
-    this.particleStates = new Uint8Array(this.thoughtCount);
-    this.particleDwellAt = new Float32Array(this.thoughtCount);
-    this.particleRingAngles = new Float32Array(this.thoughtCount);
-    this.particleRingRadii = new Float32Array(this.thoughtCount);
-    this.particleRingStartTime = new Float32Array(this.thoughtCount);
-    this.particleSpawnTime = new Float32Array(this.thoughtCount);
-    this.radialVector = new THREE.Vector3();
-    this.tangentialVector = new THREE.Vector3();
-    this.upVector = new THREE.Vector3(0, 1, 0);
-    this.neuronFlashTimers = Array(this.neuronMeshes.length).fill(0).map(() => Math.random() * 2.5);
+    this.neuronFlashTimers = Array(this.svgNeurons.length).fill(0).map(() => Math.random() * 2.5);
     this.animationClock = new THREE.Clock();
     this.initParticles();
   }
@@ -98,20 +79,20 @@ export class ThoughtsManager {
   animate() {
     requestAnimationFrame(() => this.animate());
     const elapsedTime = this.animationClock.getElapsedTime();
-    // Animate neuron flashes
-    if (this.neuronMeshes) {
-      for (let i = 0; i < this.neuronMeshes.length; i++) {
+    // Animate SVG neuron flashes
+    if (this.svgNeurons && this.svgNeurons.length) {
+      for (let i = 0; i < this.svgNeurons.length; i++) {
         this.neuronFlashTimers[i] -= 0.016;
         if (this.neuronFlashTimers[i] <= 0) {
-          this.neuronMeshes[i].material.emissiveIntensity = 3.5;
-          this.neuronMeshes[i].material.color.set(0xffff80);
+          const neuron = this.svgNeurons[i];
+          neuron.style.transition = 'fill 0.2s, opacity 0.2s';
+          neuron.style.fill = '#ffff00';
+          neuron.style.opacity = '1';
+          setTimeout(() => {
+            neuron.style.fill = '';
+            neuron.style.opacity = '';
+          }, 200);
           this.neuronFlashTimers[i] = 0.15 + Math.random() * 2.5;
-        } else if (this.neuronMeshes[i].material.emissiveIntensity > 0.1) {
-          this.neuronMeshes[i].material.emissiveIntensity *= 0.5;
-          this.neuronMeshes[i].material.color.lerp(new THREE.Color(0xffffe0), 0.5);
-        } else {
-          this.neuronMeshes[i].material.emissiveIntensity = 0.0;
-          this.neuronMeshes[i].material.color.set(0xffffe0);
         }
       }
     }
