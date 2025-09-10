@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupBrain(scene, coreRadius);
   // Add animated thought sprites (emojis)
   const { thoughtSprites } = setupThoughts(scene, coreRadius);
-  // Create the manager for animating thoughts (no neurons)
-  const thoughtsManager = new ThoughtsManager(scene, coreRadius, thoughtSprites, undefined);
+  // Create the manager for animating thoughts (SVG neurons only)
+  const thoughtsManager = new ThoughtsManager(scene, coreRadius, thoughtSprites);
   // Provide renderer and camera to the manager for animation and projection
   thoughtsManager.setRenderer(renderer);
   thoughtsManager.setCamera(camera);
