@@ -38,14 +38,14 @@ export function setupBrain(scene, coreRadius) {
         svg.style.border = 'none';
         svg.style.background = 'transparent';
         // Example animation: pulse effect
-        svg.animate([
-          { transform: 'scale(1)' },
-          { transform: 'scale(1.05)' },
-          { transform: 'scale(1)' }
-        ], {
-          duration: 2000,
-          iterations: Infinity
-        });
+//        svg.animate([
+  //        { transform: 'scale(1)' },
+    //      { transform: 'scale(1.05)' },
+      //    { transform: 'scale(1)' }
+        //], {
+          //duration: 2000,
+         // iterations: Infinity
+        //});
       }
     });
 
