@@ -35,6 +35,8 @@ export function setupBrain(scene, coreRadius) {
         svg.style.left = '0';
         svg.style.top = '0';
         svg.style.transformOrigin = 'center center';
+        svg.style.border = 'none';
+        svg.style.background = 'transparent';
         // Example animation: pulse effect
         svg.animate([
           { transform: 'scale(1)' },
