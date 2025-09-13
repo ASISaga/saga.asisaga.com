@@ -19,8 +19,11 @@ export function setupRenderer() {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
-    renderer.setClearColor(0x000000, 0); // Transparent background
+  renderer.setClearColor(0x000000, 0); // Transparent background
   document.body.appendChild(renderer.domElement);
+  // Ensure canvas visually matches window size
+  renderer.domElement.style.width = '100vw';
+  renderer.domElement.style.height = '100vh';
   return renderer;
 }
 
