@@ -61,9 +61,8 @@ export class ThoughtsManager {
   this.radialVector = new THREE.Vector3();
   this.tangentialVector = new THREE.Vector3();
   this.upVector = new THREE.Vector3(0, 1, 0);
-    this.neuronFlashTimers = Array(this.svgNeurons.length).fill(0).map(() => Math.random() * 2.5);
-    this.animationClock = new THREE.Clock();
-    this.initthoughts();
+  this.animationClock = new THREE.Clock();
+  this.initthoughts();
   }
 
   seedthought(index, now) {
