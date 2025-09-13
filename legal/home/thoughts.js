@@ -116,17 +116,6 @@ export class ThoughtManager {
     // ...existing code...
   }
 
-  renderScene() {
-    this.renderer.render(this.scene, this.camera);
-  }
-
-  setRenderer(renderer) {
-    this.renderer = renderer;
-  }
-
-  setCamera(camera) {
-    this.camera = camera;
-  }
 
   seedthought(index, now) {
     const ringRadius = this.thoughtStartRadiusMin + Math.random() * (this.thoughtStartRadiusMax - this.thoughtStartRadiusMin);
