@@ -48,6 +48,28 @@ export function setupBrain(scene, coreRadius) {
           duration: 2000,
           iterations: Infinity
         });
+
+        // SVG neuron flash animation logic (moved from thoughts.js)
+        const svgNeurons = Array.from(svg.querySelectorAll('[id*="neuron"]'));
+        const neuronFlashTimers = Array(svgNeurons.length).fill(0).map(() => Math.random() * 2.5);
+        function animateNeurons() {
+          for (let i = 0; i < svgNeurons.length; i++) {
+            neuronFlashTimers[i] -= 0.016;
+            if (neuronFlashTimers[i] <= 0) {
+              const neuron = svgNeurons[i];
+              neuron.style.transition = 'fill 0.2s, opacity 0.2s';
+              neuron.style.fill = '#ffff00';
+              neuron.style.opacity = '1';
+              setTimeout(() => {
+                neuron.style.fill = '';
+                neuron.style.opacity = '';
+              }, 200);
+              neuronFlashTimers[i] = 0.15 + Math.random() * 2.5;
+            }
+          }
+          requestAnimationFrame(animateNeurons);
+        }
+        if (svgNeurons.length) animateNeurons();
       }
     });
 

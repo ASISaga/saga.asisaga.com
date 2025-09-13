@@ -34,94 +34,70 @@ export class ThoughtsManager {
     this.scene = scene;
     this.coreRadius = coreRadius;
     this.thoughtSprites = thoughtSprites;
-    // Parse SVG for neuron elements (paths, circles, ellipses, etc. with id containing 'neuron')
-    const svg = document.querySelector('svg');
-    if (svg) {
-      this.svgNeurons = Array.from(svg.querySelectorAll('[id*="neuron"]'));
-    } else {
-      this.svgNeurons = [];
-    }
-  this.thoughtCount = (thoughtSprites && thoughtSprites.length) ? thoughtSprites.length : 0;
-  // Defensive: always initialize particle arrays even if thoughtCount is 0
-  this.particleStartRadiusMin = 3.0;
-  this.particleStartRadiusMax = 7.0;
-  this.particleStickDistance = 0.02;
-  this.particleDwellTime = 0.8;
-  this.particleSpiralFactor = 0.85;
-  this.particleBaseInwardStep = 0.018;
-  this.particleMaxStep = 0.08;
-  this.particleVariance = 1.2;
+    this.thoughtCount = (thoughtSprites && thoughtSprites.length) ? thoughtSprites.length : 0;
+  // Defensive: always initialize thought arrays even if thoughtCount is 0
+  this.thoughtStartRadiusMin = 3.0;
+  this.thoughtStartRadiusMax = 7.0;
+  this.thoughtStickDistance = 0.02;
+  this.thoughtDwellTime = 0.8;
+  this.thoughtSpiralFactor = 0.85;
+  this.thoughtBaseInwardStep = 0.018;
+  this.thoughtMaxStep = 0.08;
+  this.thoughtVariance = 1.2;
   this.ringOrbitTime = 0.5;
   this.ringOrbitSpeed = 1.2;
   this.ringThickness = 0.2;
   this.continuousSpawnRate = 0.98;
-  this.particlePositions = new Float32Array(this.thoughtCount * 3);
-  this.particleTargets = new Float32Array(this.thoughtCount * 3);
-  this.particleSpeeds = new Float32Array(this.thoughtCount);
-  this.particleDelays = new Float32Array(this.thoughtCount);
-  this.particleStates = new Uint8Array(this.thoughtCount);
-  this.particleDwellAt = new Float32Array(this.thoughtCount);
-  this.particleRingAngles = new Float32Array(this.thoughtCount);
-  this.particleRingRadii = new Float32Array(this.thoughtCount);
-  this.particleRingStartTime = new Float32Array(this.thoughtCount);
-  this.particleSpawnTime = new Float32Array(this.thoughtCount);
+  this.thoughtPositions = new Float32Array(this.thoughtCount * 3);
+  this.thoughtTargets = new Float32Array(this.thoughtCount * 3);
+  this.thoughtSpeeds = new Float32Array(this.thoughtCount);
+  this.thoughtDelays = new Float32Array(this.thoughtCount);
+  this.thoughtStates = new Uint8Array(this.thoughtCount);
+  this.thoughtDwellAt = new Float32Array(this.thoughtCount);
+  this.thoughtRingAngles = new Float32Array(this.thoughtCount);
+  this.thoughtRingRadii = new Float32Array(this.thoughtCount);
+  this.thoughtRingStartTime = new Float32Array(this.thoughtCount);
+  this.thoughtSpawnTime = new Float32Array(this.thoughtCount);
   this.radialVector = new THREE.Vector3();
   this.tangentialVector = new THREE.Vector3();
   this.upVector = new THREE.Vector3(0, 1, 0);
     this.neuronFlashTimers = Array(this.svgNeurons.length).fill(0).map(() => Math.random() * 2.5);
     this.animationClock = new THREE.Clock();
-    this.initParticles();
+    this.initthoughts();
   }
 
-  seedParticle(index, now) {
-    const ringRadius = this.particleStartRadiusMin + Math.random() * (this.particleStartRadiusMax - this.particleStartRadiusMin);
-    this.particleRingAngles[index] = Math.random() * 2 * Math.PI;
-    this.particleRingRadii[index] = ringRadius;
-    this.particleRingStartTime[index] = now;
-    this.particleSpawnTime[index] = now;
+  seedthought(index, now) {
+    const ringRadius = this.thoughtStartRadiusMin + Math.random() * (this.thoughtStartRadiusMax - this.thoughtStartRadiusMin);
+    this.thoughtRingAngles[index] = Math.random() * 2 * Math.PI;
+    this.thoughtRingRadii[index] = ringRadius;
+    this.thoughtRingStartTime[index] = now;
+    this.thoughtSpawnTime[index] = now;
     const sphereRadius = this.coreRadius * 1.1;
     const targetVector = randomOnHorizontalRing(sphereRadius);
-    this.particleTargets[index * 3 + 0] = targetVector.x;
-    this.particleTargets[index * 3 + 1] = targetVector.y;
-    this.particleTargets[index * 3 + 2] = targetVector.z;
-    const ringAngle = this.particleRingAngles[index];
+    this.thoughtTargets[index * 3 + 0] = targetVector.x;
+    this.thoughtTargets[index * 3 + 1] = targetVector.y;
+    this.thoughtTargets[index * 3 + 2] = targetVector.z;
+    const ringAngle = this.thoughtRingAngles[index];
     const ringY = targetVector.y * (ringRadius / sphereRadius);
     const ringX = ringRadius * Math.cos(ringAngle);
     const ringZ = ringRadius * Math.sin(ringAngle);
-    this.particlePositions[index * 3 + 0] = ringX;
-    this.particlePositions[index * 3 + 1] = ringY;
-    this.particlePositions[index * 3 + 2] = ringZ;
-    this.particleSpeeds[index] = (0.8 + Math.random() * 0.6) * 0.6;
-    this.particleDelays[index] = Math.random() * 1.5;
-    this.particleStates[index] = 2;
-    this.particleDwellAt[index] = 0;
-    if (now > this.particleDelays[index]) this.particleStates[index] = 3;
+    this.thoughtPositions[index * 3 + 0] = ringX;
+    this.thoughtPositions[index * 3 + 1] = ringY;
+    this.thoughtPositions[index * 3 + 2] = ringZ;
+    this.thoughtSpeeds[index] = (0.8 + Math.random() * 0.6) * 0.6;
+    this.thoughtDelays[index] = Math.random() * 1.5;
+    this.thoughtStates[index] = 2;
+    this.thoughtDwellAt[index] = 0;
+    if (now > this.thoughtDelays[index]) this.thoughtStates[index] = 3;
   }
 
-  initParticles() {
-    for (let index = 0; index < this.thoughtCount; index++) this.seedParticle(index, 0);
+  initthoughts() {
+    for (let index = 0; index < this.thoughtCount; index++) this.seedthought(index, 0);
   }
 
   animate() {
     requestAnimationFrame(() => this.animate());
     const elapsedTime = this.animationClock.getElapsedTime();
-    // Animate SVG neuron flashes
-    if (this.svgNeurons && this.svgNeurons.length) {
-      for (let i = 0; i < this.svgNeurons.length; i++) {
-        this.neuronFlashTimers[i] -= 0.016;
-        if (this.neuronFlashTimers[i] <= 0) {
-          const neuron = this.svgNeurons[i];
-          neuron.style.transition = 'fill 0.2s, opacity 0.2s';
-          neuron.style.fill = '#ffff00';
-          neuron.style.opacity = '1';
-          setTimeout(() => {
-            neuron.style.fill = '';
-            neuron.style.opacity = '';
-          }, 200);
-          this.neuronFlashTimers[i] = 0.15 + Math.random() * 2.5;
-        }
-      }
-    }
     // Spiral/ring motion for thought bubbles, vanish at sphere, and always respawn
     for (let index = 0; index < this.thoughtCount; index++) {
       const sprite = this.thoughtSprites[index];
@@ -149,9 +125,9 @@ export class ThoughtsManager {
               sprite.position.copy(pos3D);
               sprite.userData.target = sprite.position.clone().normalize().multiplyScalar(this.coreRadius * 1.05);
               sprite.visible = true;
-              this.particleStates[index] = 2;
-              this.particleDelays[index] = elapsedTime + Math.random() * 1.5;
-              this.particleRingStartTime[index] = elapsedTime;
+              this.thoughtStates[index] = 2;
+              this.thoughtDelays[index] = elapsedTime + Math.random() * 1.5;
+              this.thoughtRingStartTime[index] = elapsedTime;
             }
           }
           attempts++;
@@ -168,23 +144,23 @@ export class ThoughtsManager {
           );
           sprite.userData.target = sprite.position.clone().normalize().multiplyScalar(this.coreRadius * 1.05);
           sprite.visible = true;
-          this.particleStates[index] = 2;
-          this.particleDelays[index] = elapsedTime + Math.random() * 1.5;
-          this.particleRingStartTime[index] = elapsedTime;
+          this.thoughtStates[index] = 2;
+          this.thoughtDelays[index] = elapsedTime + Math.random() * 1.5;
+          this.thoughtRingStartTime[index] = elapsedTime;
         }
       }
       let x, y, z;
-      if (this.particleStates[index] === 2) {
-        if (elapsedTime >= this.particleDelays[index]) this.particleStates[index] = 3;
+      if (this.thoughtStates[index] === 2) {
+        if (elapsedTime >= this.thoughtDelays[index]) this.thoughtStates[index] = 3;
       }
-      if (this.particleStates[index] === 3) {
-        const timeInRing = elapsedTime - this.particleRingStartTime[index];
+      if (this.thoughtStates[index] === 3) {
+        const timeInRing = elapsedTime - this.thoughtRingStartTime[index];
         if (timeInRing < this.ringOrbitTime) {
-          this.particleRingAngles[index] += this.ringOrbitSpeed * 0.016;
+          this.thoughtRingAngles[index] += this.ringOrbitSpeed * 0.016;
           const pulse = 0.08 * Math.sin(elapsedTime * 2.5 + index * 0.3);
-          const currentRadius = this.particleRingRadii[index] * (1 + pulse * 0.03);
-          const currentAngle = this.particleRingAngles[index];
-          const targetY = this.particleTargets[index * 3 + 1];
+          const currentRadius = this.thoughtRingRadii[index] * (1 + pulse * 0.03);
+          const currentAngle = this.thoughtRingAngles[index];
+          const targetY = this.thoughtTargets[index * 3 + 1];
           y = targetY * (currentRadius / (this.coreRadius * 1.1)) + pulse * this.ringThickness * 0.5;
           x = currentRadius * Math.cos(currentAngle);
           z = currentRadius * Math.sin(currentAngle);
@@ -192,17 +168,17 @@ export class ThoughtsManager {
           if (Math.sqrt(x*x + y*y + z*z) <= this.coreRadius * 1.05) sprite.visible = false;
           continue;
         } else {
-          this.particleStates[index] = 0;
+          this.thoughtStates[index] = 0;
         }
       }
-      if (this.particleStates[index] === 1) {
-        if (elapsedTime - this.particleDwellAt[index] > this.particleDwellTime) {
+      if (this.thoughtStates[index] === 1) {
+        if (elapsedTime - this.thoughtDwellAt[index] > this.thoughtDwellTime) {
           if (Math.random() < this.continuousSpawnRate) {
-            this.seedParticle(index, elapsedTime);
+            this.seedthought(index, elapsedTime);
           }
         } else {
-          const targetX = this.particleTargets[index * 3 + 0], targetY = this.particleTargets[index * 3 + 1], targetZ = this.particleTargets[index * 3 + 2];
-          const attachmentTime = elapsedTime - this.particleDwellAt[index];
+          const targetX = this.thoughtTargets[index * 3 + 0], targetY = this.thoughtTargets[index * 3 + 1], targetZ = this.thoughtTargets[index * 3 + 2];
+          const attachmentTime = elapsedTime - this.thoughtDwellAt[index];
           const settlePulse = Math.exp(-attachmentTime * 2) * 0.03;
           const magneticPulse = 1 + 0.015 * Math.sin(elapsedTime * 3.5 + index * 0.4);
           const microWobble = 0.002 * Math.sin(elapsedTime * 6 + index * 0.23);
@@ -219,16 +195,16 @@ export class ThoughtsManager {
       const currentX = sprite.position.x;
       const currentY = sprite.position.y;
       const currentZ = sprite.position.z;
-      const targetX = this.particleTargets[index * 3 + 0];
-      const targetY = this.particleTargets[index * 3 + 1];
-      const targetZ = this.particleTargets[index * 3 + 2];
+      const targetX = this.thoughtTargets[index * 3 + 0];
+      const targetY = this.thoughtTargets[index * 3 + 1];
+      const targetZ = this.thoughtTargets[index * 3 + 2];
       this.radialVector.set(targetX - currentX, targetY - currentY, targetZ - currentZ);
       const radialDistance = this.radialVector.length();
-      if (radialDistance <= this.particleStickDistance || Math.sqrt(currentX*currentX + currentY*currentY + currentZ*currentZ) <= this.coreRadius * 1.05) {
+      if (radialDistance <= this.thoughtStickDistance || Math.sqrt(currentX*currentX + currentY*currentY + currentZ*currentZ) <= this.coreRadius * 1.05) {
         sprite.position.set(targetX, targetY, targetZ);
         sprite.visible = false;
-        this.particleStates[index] = 1;
-        this.particleDwellAt[index] = elapsedTime;
+        this.thoughtStates[index] = 1;
+        this.thoughtDwellAt[index] = elapsedTime;
       }
       this.radialVector.normalize();
       this.tangentialVector.copy(this.upVector).cross(this.radialVector);
@@ -236,13 +212,13 @@ export class ThoughtsManager {
         this.tangentialVector.set(1, 0, 0);
       }
       this.tangentialVector.normalize();
-      const baseInwardStep = this.particleBaseInwardStep * this.particleSpeeds[index];
+      const baseInwardStep = this.thoughtBaseInwardStep * this.thoughtSpeeds[index];
       const distanceEase = Math.min(1, radialDistance / 2.0);
-      const inwardStep = Math.min(this.particleMaxStep, baseInwardStep * (0.4 + distanceEase * 0.6));
+      const inwardStep = Math.min(this.thoughtMaxStep, baseInwardStep * (0.4 + distanceEase * 0.6));
       const spiralIntensity = Math.max(0.4, distanceEase);
       const timeFactor = Math.sin(elapsedTime * 0.8 + index * 0.91) * 0.3 + 0.7;
-      const spiralStep = inwardStep * this.particleSpiralFactor * spiralIntensity * timeFactor *
-                        (0.85 + this.particleVariance * (Math.sin(elapsedTime * 1.4 + index * 0.67) * 0.4 + 0.6));
+      const spiralStep = inwardStep * this.thoughtSpiralFactor * spiralIntensity * timeFactor *
+                        (0.85 + this.thoughtVariance * (Math.sin(elapsedTime * 1.4 + index * 0.67) * 0.4 + 0.6));
       const perpVector = new THREE.Vector3().crossVectors(this.radialVector, this.tangentialVector);
       const perpStep = spiralStep * 0.3 * Math.sin(elapsedTime * 2.1 + index * 0.45);
       const nextX = currentX + this.radialVector.x * inwardStep + this.tangentialVector.x * spiralStep + perpVector.x * perpStep;
