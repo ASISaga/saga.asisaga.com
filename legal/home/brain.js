@@ -27,6 +27,8 @@ export function setupBrain(scene, coreRadius) {
       if (svg) {
         svg.style.width = '40vw';
         svg.style.height = '40vh';
+        svg.setAttribute('width', '40vw');
+        svg.setAttribute('height', '40vh');
         svg.style.display = 'block';
         svg.style.margin = 'auto';
         svg.style.position = 'relative';
