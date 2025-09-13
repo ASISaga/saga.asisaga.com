@@ -16,10 +16,10 @@
 // Imports:
 //   - setupScene, setupCamera, setupRenderer, setupLighting, setupCore: scene and core setup
 //   - setupBrain: brain outline and neurons
-//   - setupThoughts, ThoughtsManager: thought sprites and animation manager
-import { setupScene, setupCamera, setupRenderer, setupLighting, setupCore } from './core.js';
+//   - ThoughtsManager: thought sprites and animation manager
+import { setupScene, setupCamera, setupRenderer, setupLighting} from './scene.js';
 import { setupBrain } from './brain.js';
-import { setupThoughts, ThoughtsManager } from './thoughts.js';
+import { ThoughtManager } from './thoughts.js';
 
 // Wait for DOM to be ready before initializing Three.js scene
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLighting(scene);
   // No core sphere; show the brain directly at the center
   const coreRadius = 1.08;
+
   setupBrain(scene, coreRadius);
-  // Add animated thought sprites (emojis)
-  const { thoughtSprites } = setupThoughts(scene, coreRadius);
+  
   // Create the manager for animating thoughts (SVG neurons only)
-  const thoughtsManager = new ThoughtsManager(scene, coreRadius, thoughtSprites);
+  const thoughtManager = new ThoughtManager(scene, coreRadius);
   // Provide renderer and camera to the manager for animation and projection
-  thoughtsManager.setRenderer(renderer);
-  thoughtsManager.setCamera(camera);
+  thoughtManager.setRenderer(renderer);
+  thoughtManager.setCamera(camera);
   // Start the animation loop
-  thoughtsManager.animate();
+  thoughtManager.animate();
 });
