@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupBrain(scene, coreRadius);
 
   // Create the manager for animating thoughts (SVG neurons only)
-  const thoughtManager = new ThoughtManager(scene, coreRadius);
-  thoughtManager.animate();
+    const thoughtManager = new ThoughtManager(scene, coreRadius);
+    thoughtManager.setCamera(camera);
+    thoughtManager.setRenderer(renderer);
+    thoughtManager.animate();
 });
