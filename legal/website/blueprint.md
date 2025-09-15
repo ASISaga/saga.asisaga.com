@@ -171,7 +171,3 @@ Section 9 — Closing Invitation & CTA
 - Pitch.com — for modern, minimal storytelling layouts.
 
 ---
-
-Shabeer — if you want, I can now map this blueprint into a wireframe layout in Markdown, showing exactly how each section stacks visually, so your dev team can start building immediately without guessing. That would make this spec even more actionable.  
-
-Do you want me to prepare that wireframe next?
