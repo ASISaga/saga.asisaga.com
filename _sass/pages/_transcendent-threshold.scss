@@ -13,10 +13,7 @@ Styling for the Transcendent Threshold page that embodies the sacred crossing in
       &::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0 0 0 0;
         background: radial-gradient(circle at center, rgba($luminous-gold, 0.1) 0%, transparent 70%);
         animation: threshold-pulse 8s ease-in-out infinite;
       }

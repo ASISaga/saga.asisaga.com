@@ -50,10 +50,7 @@ Styling for the Continuous Self-Improvement page that embodies endless evolution
         
         .growth-rings {
           position: absolute;
-          top: 10%;
-          left: 10%;
-          right: 10%;
-          bottom: 10%;
+          inset: 10% 10% 10% 10%;
           border: 2px solid rgba($transformation-purple, 0.4);
           border-radius: 50%;
           animation: consciousness-pulse 4s ease-in-out infinite;
@@ -61,20 +58,14 @@ Styling for the Continuous Self-Improvement page that embodies endless evolution
           &::before, &::after {
             content: '';
             position: absolute;
-            top: 15%;
-            left: 15%;
-            right: 15%;
-            bottom: 15%;
+            inset: 15% 15% 15% 15%;
             border: 2px solid rgba($luminous-gold, 0.3);
             border-radius: 50%;
             animation: consciousness-pulse 4s ease-in-out infinite 1s;
           }
           
           &::after {
-            top: 30%;
-            left: 30%;
-            right: 30%;
-            bottom: 30%;
+            inset: 30% 30% 30% 30%;
             border-color: rgba($border-color, 0.3);
             animation-delay: 2s;
           }
@@ -92,10 +83,7 @@ Styling for the Continuous Self-Improvement page that embodies endless evolution
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0 0 0 0;
       background: radial-gradient(circle at 50% 50%, rgba($transformation-purple, 0.1) 0%, transparent 70%);
       pointer-events: none;
     }
