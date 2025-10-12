@@ -15,16 +15,16 @@ $feed-link-hover: darken($feed-link, 15%);
   margin: 2rem 0;
   
   .feed {
-    flex: 1 1 320px;
-    background: $feed-bg;
-    border: 1px solid $feed-border;
-    border-radius: 4px;
-    padding: 1rem;
+  flex: 1 1 320px;
+  @include bg-light;
+  border: 1px solid $feed-border;
+  @include border-radius(4px);
+  @include pad(2);
 
     &__title {
-      margin: 0 0 1rem;
-      font-size: 1.25rem;
-      color: $feed-heading;
+  margin: 0 0 1rem;
+  @include font-size(1.25rem);
+  @include color($feed-heading);
     }
 
     &__list {
@@ -33,19 +33,19 @@ $feed-link-hover: darken($feed-link, 15%);
       padding: 0;
 
       & > li {
-        padding: 0.5rem 0;
-        border-bottom: 1px solid $feed-border;
+  @include pad-y(1);
+  border-bottom: 1px solid $feed-border;
 
         &:last-child {
           border-bottom: none;
         }
 
         a {
-          color: $feed-link;
+          @include color($feed-link);
           text-decoration: none;
 
           &:hover {
-            color: $feed-link-hover;
+            @include color($feed-link-hover);
             text-decoration: underline;
           }
         }

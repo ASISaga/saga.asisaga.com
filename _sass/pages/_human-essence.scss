@@ -148,25 +148,33 @@ Styling for the Human Essence Embedding page that captures the sacred process of
       
       // Component-specific styling
       &.values-ethics {
-        .component-icon { color: $luminous-gold; }
+        .component-icon {
+          color: $luminous-gold; // No Bootstrap text utility for this color
+        }
         border-color: rgba($luminous-gold, 0.2);
         &:hover { border-color: rgba($luminous-gold, 0.4); }
       }
       
       &.creativity-innovation {
-        .component-icon { color: $transformation-purple; }
+        .component-icon {
+          color: $transformation-purple; // No Bootstrap text utility for this color
+        }
         border-color: rgba($transformation-purple, 0.2);
         &:hover { border-color: rgba($transformation-purple, 0.4); }
       }
       
       &.empathy-compassion {
-        .component-icon { color: $border-color; }
+        .component-icon {
+          color: $border-color; // No Bootstrap text utility for this color
+        }
         border-color: rgba($border-color, 0.2);
         &:hover { border-color: rgba($border-color, 0.4); }
       }
       
       &.wisdom-experience {
-        .component-icon { color: $cosmic-light-blue; }
+        .component-icon {
+          color: $cosmic-light-blue; // No Bootstrap text utility for this color
+        }
         border-color: rgba($cosmic-light-blue, 0.2);
         &:hover { border-color: rgba($cosmic-light-blue, 0.4); }
       }

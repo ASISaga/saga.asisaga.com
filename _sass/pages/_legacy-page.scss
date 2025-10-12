@@ -16,11 +16,11 @@
     padding: $spacing-md 0 $spacing-lg;
     
     .legacy-intro {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      color: $text-color;
+  @include text-center;
+  @include max-width(800px);
+  @include mar-x(auto);
+  @include font-size(1.2rem);
+  @include color($text-color);
     }
   }
   
@@ -44,13 +44,13 @@
       }
       
       &-item {
-        position: relative;
-        border-radius: $border-radius;
-        overflow: hidden;
-        box-shadow: $box-shadow;
+  position: relative;
+  @include border-radius($border-radius);
+  overflow: hidden;
+  @include box-shadow($box-shadow);
         
         &-lg {
-          flex: 0 0 calc(66% - #{$spacing-md});
+          @include flex(0 0 calc(66% - #{$spacing-md}));
           height: 400px;
           
           @include media-breakpoint-down(md) {
@@ -59,7 +59,7 @@
         }
         
         &-sm {
-          flex: 0 0 calc(33% - #{$spacing-md});
+          @include flex(0 0 calc(33% - #{$spacing-md}));
           height: 400px;
           
           @include media-breakpoint-down(md) {

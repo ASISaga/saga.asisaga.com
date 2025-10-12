@@ -56,14 +56,14 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
     }
     
     .genesis-pillar {
-      @include consciousness-card;
-      background: rgba($transcendent-white, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba($luminous-gold, 0.2);
-      border-radius: $border-radius-lg;
-      padding: $genesis-spacing-lg;
-      text-align: center;
-      transition: all 0.4s $consciousness-timing;
+  @include consciousness-card;
+  background: rgba($transcendent-white, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($luminous-gold, 0.2);
+  @include border-radius($border-radius-lg);
+  @include pad($genesis-spacing-lg);
+  @include text-center;
+  transition: all 0.4s $consciousness-timing;
       
       &:hover {
         transform: translateY(-10px) scale(1.02);
