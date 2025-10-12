@@ -81,7 +81,7 @@
   }
   
   &-cards-row {
-    @extend .mt-4;
+    @include margin-top($spacing-lg);
     display: flex;
     flex-wrap: wrap;
     @include gap($spacing-md);

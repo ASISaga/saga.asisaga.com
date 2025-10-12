@@ -13,7 +13,7 @@
     @include padding-y($spacing-xl);
     
     .saga-storytelling-panel {
-  @include mar-b($spacing-xl);
+  @include margin-bottom($spacing-xl);
   height: 500px;
   position: relative;
   overflow: hidden;
@@ -46,7 +46,7 @@
       .saga-storytelling-content {
   position: relative;
   @include color($white);
-  @include pad($spacing-lg);
+  @include padding($spacing-lg);
   @include max-width(600px);
   height: 100%;
   @include d-flex;
@@ -55,7 +55,7 @@
         
         .saga-storytelling-title {
           @include font-size-2xl;
-          @include mar-b($spacing-md);
+          @include margin-bottom($spacing-md);
           @include text-white;
           @include text-shadow-dark;
           
@@ -85,26 +85,28 @@
   
   // Legacy styles using BEM notation
   &__title {
-    @extend .display-4;
-    @include margin-bottom(2rem);
+  @include font-size(2.5rem);
+  @include font-weight(700);
+  @include margin-bottom(2rem);
   }
 
   &__chapters {
-    @extend .g-4;
+  @include gap($spacing-lg);
   }
 
   &__chapter {
-    @extend .mb-4;
+  @include margin-bottom(1.5rem);
   }
 
   &__chapter-title {
-    @extend .h4;
-    @include text-primary;
-    @include margin-bottom(1rem);
+  @include font-size(1.5rem);
+  @include font-weight(600);
+  @include text-primary;
+  @include margin-bottom(1rem);
   }
 
   &__chapter-content {
-    @extend .text-muted;
-    @include line-height-relaxed;
+  @include text-muted;
+  @include line-height-relaxed;
   }
 }
