@@ -4,13 +4,13 @@
 .saga-page {
   // Timeline section
   .saga-timeline-section {
-    padding: $spacing-xl 0;
-    background-color: $light;
+    @include padding-y($spacing-xl);
+    @include bg-light;
   }
   
   // Storytelling panels section with parallax backgrounds
   .saga-storytelling-section {
-    padding: $spacing-xl 0;
+    @include padding-y($spacing-xl);
     
     .saga-storytelling-panel {
   @include mar-b($spacing-xl);
@@ -24,8 +24,8 @@
       }
       
       .saga-storytelling-background {
-        width: 100%;
-        height: 100%;
+        @include width-full;
+        @include height-full;
         background-size: cover;
         background-position: center;
         position: absolute;
@@ -37,9 +37,9 @@
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+          @include width-full;
+          @include height-full;
+          @include bg-gradient-dark-overlay;
         }
       }
       
@@ -54,31 +54,31 @@
   @include justify-content(center);
         
         .saga-storytelling-title {
-          @include font-size(2.5rem);
+          @include font-size-2xl;
           @include mar-b($spacing-md);
-          @include color($white);
-          text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+          @include text-white;
+          @include text-shadow-dark;
           
           @include media-breakpoint-down(md) {
-            font-size: 2rem;
+            @include font-size-xl;
           }
         }
         
         .saga-storytelling-text {
           p {
-            margin-bottom: $spacing-md;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            @include margin-bottom($spacing-md);
+            @include text-shadow-soft;
           }
         }
         
         @include media-breakpoint-down(md) {
-          max-width: 100%;
+          @include max-width-full;
         }
       }
       
       @include media-breakpoint-down(md) {
-        height: auto;
-        min-height: 400px;
+        @include height-auto;
+        @include min-height(400px);
       }
     }
   }
@@ -86,7 +86,7 @@
   // Legacy styles using BEM notation
   &__title {
     @extend .display-4;
-    margin-bottom: 2rem;
+    @include margin-bottom(2rem);
   }
 
   &__chapters {
@@ -99,12 +99,12 @@
 
   &__chapter-title {
     @extend .h4;
-    color: $primary;
-    margin-bottom: 1rem;
+    @include text-primary;
+    @include margin-bottom(1rem);
   }
 
   &__chapter-content {
     @extend .text-muted;
-    line-height: 1.8;
+    @include line-height-relaxed;
   }
 }

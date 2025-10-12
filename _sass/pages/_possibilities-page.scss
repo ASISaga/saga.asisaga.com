@@ -13,69 +13,69 @@
   }
   
   &-carousel-section {
-    padding: $spacing-lg 0;
+    @include padding-y($spacing-lg);
     
     .possibilities-carousel {
-      margin-bottom: $spacing-xl;
+      @include margin-bottom($spacing-xl);
       border-radius: $border-radius;
       overflow: hidden;
-      box-shadow: $box-shadow;
+      @include shadow-medium;
       
       .carousel-item {
-        height: 500px;
+        @include height(500px);
         
         img {
-          height: 100%;
+          @include height-full;
           object-fit: cover;
         }
         
         .carousel-caption {
-          background-color: rgba(0, 0, 0, 0.6);
+          @include bg-dark-overlay;
           border-radius: $border-radius;
-          padding: $spacing-md;
-          max-width: 80%;
-          margin: 0 auto;
+          @include padding($spacing-md);
+          @include max-width(80%);
+          @include margin-x-auto;
           
           h3 {
-            font-weight: $font-weight-semibold;
+            @include font-weight-semibold;
           }
         }
         
         @include media-breakpoint-down(md) {
-          height: 300px;
+          @include height(300px);
         }
       }
     }
   }
   
   &-intro-section {
-    padding: $spacing-md 0 $spacing-lg;
+    @include padding($spacing-md, 0, $spacing-lg, 0);
     
     .possibilities-intro {
       text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      color: $text-color;
+      @include max-width(800px);
+      @include margin-x-auto;
+      @include font-size-lg;
+      @include text-body-color;
     }
   }
   
   &-modules-section {
-    padding: $spacing-lg 0 $spacing-xl;
-    background-color: $light;
+    @include padding($spacing-lg, 0, $spacing-xl, 0);
+    @include bg-light;
     
     .section-title {
-      margin-bottom: $spacing-md;
+      @include margin-bottom($spacing-md);
     }
     
     .section-subtitle {
-      margin-bottom: $spacing-lg;
-      color: $text-muted;
+      @include margin-bottom($spacing-lg);
+      @include text-muted;
     }
     
     .possibilities-modules {
       .col-md-4 {
-        margin-bottom: $spacing-lg;
+        @include margin-bottom($spacing-lg);
       }
     }
   }
@@ -84,6 +84,6 @@
     @extend .mt-4;
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-md;
+    @include gap($spacing-md);
   }
 }
