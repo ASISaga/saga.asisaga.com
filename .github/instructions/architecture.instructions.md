@@ -48,6 +48,32 @@ Agents should consult the domain-specific instruction files listed above when pe
 - Validate site structure and that overrides are intentional and documented.
 - Ensure cross-repo coordination for breaking changes to shared theme artifacts.
 - Invoke Buddhi/MCP tooling for heavy audits and provide an invocation artifact under `.github/prompts/` when required.
+- **Ontological SCSS compliance**: Verify subdomain SCSS contains zero raw CSS properties and uses only Genesis Ontological mixins.
+- **Evolution facilitation**: When semantic gaps are identified, guide creation of Ontological Propositions to theme repository.
+
+## Genesis Ontological Design System - Evolution Mechanism
+
+This subdomain uses the **Genesis Semantic SCSS Engine** from the theme repository. The system operates as a "Living Genome" that evolves through AI-human collaboration.
+
+### Subdomain Role in Evolution
+
+When the existing ontology doesn't cover a semantic pattern:
+
+1. **Identify gaps** - Recognize when NO combination of existing mixins achieves semantic intent
+2. **Propose evolution** - Create well-formed Ontological Proposition PRs to theme repository
+3. **Implement approved variants** - Use new semantic variants once theme approves and implements
+
+### Agent Ecosystem
+
+- **Subdomain Evolution Agent** (`.github/agents/subdomain-evolution-agent.md`) - Creates ontological propositions
+- **SCSS Refactor Agent** (`.github/agents/scss-refactor-agent.md`) - Migrates legacy CSS to ontological system
+- **Theme Genome Agent** (theme repository) - Reviews propositions, maintains semantic purity
+
+### Key Resources
+
+- **Theme INTEGRATION-GUIDE.md** - Complete API reference for all 31 ontological variants
+- **Theme AGENTS.MD** - Full agent ecosystem architecture and workflows
+- **Theme GENOME.md** - Evolutionary history of design system variants
 
 ## Change coordination guidance
 

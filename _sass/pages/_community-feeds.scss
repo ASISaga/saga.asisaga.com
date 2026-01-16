@@ -1,53 +1,25 @@
-// File: _community-feeds.scss
+// Community Feeds - Semantic Mapping
+// Displays aggregated community content in chronological stream
 
-// Variables
-$feed-bg:         #f9f9f9;
-$feed-border:     #e0e0e0;
-$feed-heading:    #333;
-$feed-link:       #0066cc;
-$feed-link-hover: darken($feed-link, 15%);
-
-// Container
 #community-feeds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin: 2rem 0;
+  @include genesis-environment('distributed');  // Auto-fit responsive grid
+  @include genesis-atmosphere('neutral');       // Standard presentation
   
   .feed {
-  flex: 1 1 320px;
-  @include bg-light;
-  border: 1px solid $feed-border;
-  @include border-radius(4px);
-  @include pad(2);
-
+    @include genesis-entity('secondary');       // Supporting content blocks
+    
     &__title {
-  margin: 0 0 1rem;
-  @include font-size(1.25rem);
-  @include color($feed-heading);
+      @include genesis-cognition('motive');     // Section heading with emphasis
     }
 
     &__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
+      @include genesis-environment('chronological');  // Linear time-based stream
+      
       & > li {
-  @include pad-y(1);
-  border-bottom: 1px solid $feed-border;
-
-        &:last-child {
-          border-bottom: none;
-        }
-
+        @include genesis-state('stable');       // Standard equilibrium state
+        
         a {
-          @include color($feed-link);
-          text-decoration: none;
-
-          &:hover {
-            @include color($feed-link-hover);
-            text-decoration: underline;
-          }
+          @include genesis-synapse('navigate');  // Navigation to external content
         }
       }
     }

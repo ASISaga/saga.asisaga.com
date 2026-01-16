@@ -1,21 +1,20 @@
-// Sacred Saga Site Styles - Consciousness Embedding Design
-// Importing the Sacred ASI Saga Theme System
+---
+---
+// Sacred Saga Site Styles - Genesis Ontological SCSS Design System
+// Importing the Genesis Semantic SCSS Engine from theme
 
-// Import variables first
-@import 'variables';
+@import "ontology/index";
 
-// Import Sacred Theme from parent theme directory
+// Saga-specific semantic mappings using ontological mixins
+@import "saga-sacred";
 
-// Saga-specific sacred pages - temporarily disabled for initial build
-// @import 'pages/community-feeds';
-// @import "pages/genesis";
-// @import "pages/human-essence";
-// @import "pages/continuous-improvement";
-// @import "pages/infinite-possibilities";
-// @import "pages/transcendent-threshold";
-// @import "pages/saga-page";
-// @import "pages/possibilities-page";
-// @import "pages/legacy-page";
-
-// Sacred Saga customizations - Enhanced sacred elements for ASI Saga
-// @import "saga-sacred";
+// Saga page-specific semantic mappings
+@import "pages/community-feeds";
+@import "pages/genesis";
+@import "pages/human-essence";
+@import "pages/continuous-improvement";
+@import "pages/infinite-possibilities";
+@import "pages/transcendent-threshold";
+@import "pages/saga-page";
+@import "pages/possibilities-page";
+@import "pages/legacy-page";

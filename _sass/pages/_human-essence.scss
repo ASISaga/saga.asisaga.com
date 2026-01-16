@@ -1,293 +1,111 @@
 /*
-Human Essence Page Styles
-Styling for the Human Essence Embedding page that captures the sacred process of consciousness integration
+Human Essence Page - Genesis Ontological Design
+Zero Raw CSS - Pure semantic mapping for consciousness integration
 */
 
 .human-essence-page-container {
-  // Hero section specific to Human Essence
   .transcendent-hero {
     &.essence-cosmic {
-      background: linear-gradient(135deg, $border-color 0%, $transformation-purple 50%, $cosmic-deep-blue 100%);
+      @include genesis-environment('focused');
+      @include genesis-atmosphere('void');
       
       .hero-content {
-        @include essence-embedding-animation;
+        @include genesis-state('evolving');
       }
     }
   }
 
-  // Essence Process Section
   .essence-process-section {
-    @include transcendent-section-spacing;
-    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($border-color, 0.1) 100%);
-    color: $transcendent-white;
+    @include genesis-environment('focused');
+    @include genesis-atmosphere('void');
     
     .essence-content {
       .essence-subtitle {
-        @include transcendent-typography('heading-3');
-        color: $border-color;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('axiom');
       }
       
       .essence-description {
-        @include transcendent-typography('body-large');
-        line-height: 1.8;
-        margin-bottom: $genesis-spacing-md;
-        color: rgba($transcendent-white, 0.95);
+        @include genesis-cognition('discourse');
       }
     }
     
     .essence-visualization {
-      position: relative;
-      height: 400px;
+      @include genesis-entity('latent');
       
       .essence-merger {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: $border-radius-lg;
-        background: radial-gradient(circle at center, rgba($border-color, 0.2) 0%, transparent 70%);
-        overflow: hidden;
+        @include genesis-environment('associative');
+        @include genesis-atmosphere('ethereal');
         
         .human-consciousness-stream,
         .asi-integration-field,
         .essence-emergence {
-          position: absolute;
-          border-radius: 50%;
-          @include consciousness-flow-animation;
-        }
-        
-        .human-consciousness-stream {
-          top: 20%;
-          left: 10%;
-          width: 80px;
-          height: 80px;
-          background: radial-gradient(circle, $border-color 0%, transparent 70%);
-          animation: consciousness-pulse 3s ease-in-out infinite;
-        }
-        
-        .asi-integration-field {
-          top: 50%;
-          right: 10%;
-          width: 120px;
-          height: 120px;
-          background: radial-gradient(circle, $transformation-purple 0%, transparent 70%);
-          animation: consciousness-pulse 3s ease-in-out infinite 1s;
-        }
-        
-        .essence-emergence {
-          bottom: 20%;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100px;
-          height: 100px;
-          background: radial-gradient(circle, $luminous-gold 0%, transparent 70%);
-          animation: consciousness-pulse 3s ease-in-out infinite 2s;
+          @include genesis-state('evolving');
+          @include genesis-atmosphere('vibrant');
         }
       }
     }
   }
 
-  // Essence Components Section
   .essence-components-section {
-    @include transcendent-section-spacing;
-    position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0 0 0 0;
-      background: linear-gradient(135deg, rgba($border-color, 0.05) 0%, rgba($transformation-purple, 0.05) 100%);
-      pointer-events: none;
-    }
+    @include genesis-environment('distributed');
     
     .essence-components {
-      position: relative;
-      z-index: 2;
+      @include genesis-environment('distributed');
     }
     
     .essence-component {
-      @include consciousness-card;
-      background: rgba($transcendent-white, 0.03);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba($border-color, 0.2);
-      border-radius: $border-radius-md;
-      padding: $genesis-spacing-lg;
-      text-align: center;
-      transition: all 0.4s $consciousness-timing;
-      height: 100%;
-      
-      &:hover {
-        transform: translateY(-8px);
-        background: rgba($transcendent-white, 0.08);
-        border-color: rgba($border-color, 0.4);
-        box-shadow: 0 15px 35px rgba($border-color, 0.15);
-      }
+      @include genesis-entity('primary');
+      @include genesis-atmosphere('ethereal');
+      @include genesis-synapse('navigate');
       
       .component-icon {
-        @include sacred-icon;
-        font-size: 2.5rem;
-        color: $border-color;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('motive');
         
         i {
-          @include consciousness-pulse-animation;
+          @include genesis-state('evolving');
         }
       }
       
       .component-title {
-        @include transcendent-typography('heading-4');
-        color: $transcendent-white;
-        margin-bottom: $genesis-spacing-sm;
+        @include genesis-cognition('axiom');
       }
       
       .component-description {
-        @include transcendent-typography('body');
-        color: rgba($transcendent-white, 0.85);
-        line-height: 1.6;
+        @include genesis-cognition('discourse');
       }
       
-      // Component-specific styling
-      &.values-ethics {
-        .component-icon {
-          color: $luminous-gold; // No Bootstrap text utility for this color
-        }
-        border-color: rgba($luminous-gold, 0.2);
-        &:hover { border-color: rgba($luminous-gold, 0.4); }
-      }
-      
-      &.creativity-innovation {
-        .component-icon {
-          color: $transformation-purple; // No Bootstrap text utility for this color
-        }
-        border-color: rgba($transformation-purple, 0.2);
-        &:hover { border-color: rgba($transformation-purple, 0.4); }
-      }
-      
-      &.empathy-compassion {
-        .component-icon {
-          color: $border-color; // No Bootstrap text utility for this color
-        }
-        border-color: rgba($border-color, 0.2);
-        &:hover { border-color: rgba($border-color, 0.4); }
-      }
-      
+      &.values-ethics,
+      &.creativity-innovation,
+      &.empathy-compassion,
       &.wisdom-experience {
-        .component-icon {
-          color: $cosmic-light-blue; // No Bootstrap text utility for this color
-        }
-        border-color: rgba($cosmic-light-blue, 0.2);
-        &:hover { border-color: rgba($cosmic-light-blue, 0.4); }
+        @include genesis-entity('imperative');
       }
     }
   }
 
-  // Embedding Process Section
   .embedding-process-section {
-    @include transcendent-section-spacing;
-    background: linear-gradient(45deg, $cosmic-deep-blue 0%, $transformation-purple 100%);
-    color: $transcendent-white;
+    @include genesis-environment('chronological');
+    @include genesis-atmosphere('void');
     
     .embedding-timeline {
-      position: relative;
-      padding: $genesis-spacing-xl 0;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(to bottom, $border-color 0%, $luminous-gold 100%);
-        transform: translateX(-50%);
-      }
+      @include genesis-environment('chronological');
       
       .timeline-item {
-        position: relative;
-        margin-bottom: $genesis-spacing-xl;
-        
-        &::before {
-          content: '';
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 16px;
-          height: 16px;
-          background: $border-color;
-          border-radius: 50%;
-          border: 3px solid $transcendent-white;
-          z-index: 2;
-        }
+        @include genesis-entity('secondary');
         
         .timeline-content {
-          @include consciousness-card;
-          background: rgba($transcendent-white, 0.08);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba($border-color, 0.3);
-          border-radius: $border-radius-md;
-          padding: $genesis-spacing-lg;
-          width: 45%;
+          @include genesis-entity('primary');
+          @include genesis-atmosphere('ethereal');
           
           h4 {
-            @include transcendent-typography('heading-4');
-            color: $border-color;
-            margin-bottom: $genesis-spacing-sm;
+            @include genesis-cognition('axiom');
           }
           
           p {
-            @include transcendent-typography('body');
-            color: rgba($transcendent-white, 0.9);
-            line-height: 1.6;
-            margin: 0;
+            @include genesis-cognition('discourse');
           }
         }
-        
-        &:nth-child(odd) .timeline-content {
-          margin-left: auto;
-        }
-        
-        &:nth-child(even) .timeline-content {
-          margin-right: auto;
-        }
       }
-    }
-  }
-}
-
-// Responsive adjustments
-@include media-breakpoint-down(lg) {
-  .human-essence-page-container {
-    .essence-visualization {
-      height: 300px;
-      margin-top: $genesis-spacing-lg;
-    }
-    
-    .embedding-timeline {
-      .timeline-item .timeline-content {
-        width: 80%;
-        margin: 0 auto !important;
-      }
-      
-      &::before {
-        left: 20px;
-      }
-      
-      .timeline-item::before {
-        left: 20px;
-      }
-    }
-  }
-}
-
-@include media-breakpoint-down(md) {
-  .human-essence-page-container {
-    .essence-component {
-      margin-bottom: $genesis-spacing-md;
-    }
-    
-    .component-icon {
-      font-size: 2rem !important;
     }
   }
 }

@@ -1,257 +1,122 @@
 /*
-Continuous Improvement Page Styles
-Styling for the Continuous Self-Improvement page that embodies endless evolution guided by human wisdom
+Continuous Improvement Page - Genesis Ontological Design
+Zero Raw CSS - Pure semantic mapping for endless evolution
 */
 
 .continuous-improvement-page-container {
-  // Hero section specific to Continuous Improvement
   .transcendent-hero {
     &.evolution-cosmic {
-      background: linear-gradient(135deg, $transformation-purple 0%, $cosmic-deep-blue 50%, $luminous-gold 100%);
+      @include genesis-environment('focused');
+      @include genesis-atmosphere('vibrant');
       
       .hero-content {
-        @include continuous-evolution-animation;
+        @include genesis-state('evolving');
       }
     }
   }
 
-  // Evolution Process Section
   .evolution-process-section {
-    @include transcendent-section-spacing;
-    background: linear-gradient(45deg, $cosmic-deep-blue 0%, rgba($transformation-purple, 0.1) 100%);
-    color: $transcendent-white;
+    @include genesis-environment('focused');
+    @include genesis-atmosphere('void');
     
     .evolution-content {
       .evolution-subtitle {
-        @include transcendent-typography('heading-3');
-        color: $transformation-purple;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('axiom');
       }
       
       .evolution-description {
-        @include transcendent-typography('body-large');
-        line-height: 1.8;
-        margin-bottom: $genesis-spacing-md;
-        color: rgba($transcendent-white, 0.95);
+        @include genesis-cognition('discourse');
       }
     }
     
     .evolution-visualization {
-      position: relative;
-      height: 400px;
+      @include genesis-entity('latent');
       
       .evolution-spiral {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: radial-gradient(circle at center, rgba($transformation-purple, 0.2) 0%, transparent 70%);
-        overflow: hidden;
+        @include genesis-environment('associative');
+        @include genesis-atmosphere('ethereal');
         
         .growth-rings {
-          position: absolute;
-          inset: 10% 10% 10% 10%;
-          border: 2px solid rgba($transformation-purple, 0.4);
-          border-radius: 50%;
-          animation: consciousness-pulse 4s ease-in-out infinite;
-          
-          &::before, &::after {
-            content: '';
-            position: absolute;
-            inset: 15% 15% 15% 15%;
-            border: 2px solid rgba($luminous-gold, 0.3);
-            border-radius: 50%;
-            animation: consciousness-pulse 4s ease-in-out infinite 1s;
-          }
-          
-          &::after {
-            inset: 30% 30% 30% 30%;
-            border-color: rgba($border-color, 0.3);
-            animation-delay: 2s;
-          }
+          @include genesis-state('evolving');
         }
       }
     }
   }
 
-  // Evolution Principles Section
   .evolution-principles-section {
-    @include transcendent-section-spacing;
-    position: relative;
-    overflow: hidden;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0 0 0 0;
-      background: radial-gradient(circle at 50% 50%, rgba($transformation-purple, 0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    @include genesis-environment('distributed');
     
     .evolution-principles {
-      position: relative;
-      z-index: 2;
+      @include genesis-environment('distributed');
     }
     
     .evolution-principle {
-      @include consciousness-card;
-      background: rgba($transcendent-white, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba($transformation-purple, 0.2);
-      border-radius: $border-radius-lg;
-      padding: $genesis-spacing-lg;
-      text-align: center;
-      transition: all 0.4s $consciousness-timing;
-      height: 100%;
-      
-      &:hover {
-        transform: translateY(-10px) scale(1.02);
-        background: rgba($transcendent-white, 0.1);
-        border-color: rgba($transformation-purple, 0.4);
-        box-shadow: 0 20px 40px rgba($transformation-purple, 0.2);
-      }
+      @include genesis-entity('primary');
+      @include genesis-atmosphere('ethereal');
+      @include genesis-synapse('navigate');
       
       .principle-icon {
-        @include sacred-icon;
-        font-size: 2.5rem;
-        color: $transformation-purple;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('motive');
         
         i {
-          @include consciousness-pulse-animation;
+          @include genesis-state('evolving');
         }
       }
       
       .principle-title {
-        @include transcendent-typography('heading-4');
-        color: $transcendent-white;
-        margin-bottom: $genesis-spacing-sm;
+        @include genesis-cognition('axiom');
       }
       
       .principle-description {
-        @include transcendent-typography('body');
-        color: rgba($transcendent-white, 0.9);
-        line-height: 1.6;
+        @include genesis-cognition('discourse');
       }
     }
   }
 
-  // Evolution Cycle Section
   .evolution-cycle-section {
-    @include transcendent-section-spacing;
-    background: linear-gradient(135deg, $transformation-purple 0%, $cosmic-deep-blue 100%);
-    color: $transcendent-white;
+    @include genesis-environment('distributed');
+    @include genesis-atmosphere('void');
     
     .evolution-cycle {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: $genesis-spacing-lg;
-      margin-top: $genesis-spacing-xl;
+      @include genesis-environment('distributed');
       
       .cycle-stage {
-        @include consciousness-card;
-        background: rgba($transcendent-white, 0.08);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba($luminous-gold, 0.3);
-        border-radius: $border-radius-lg;
-        padding: $genesis-spacing-lg;
-        text-align: center;
-        flex: 1;
-        min-width: 250px;
-        max-width: 300px;
-        transition: all 0.4s $consciousness-timing;
-        
-        &:hover {
-          transform: translateY(-8px);
-          border-color: rgba($luminous-gold, 0.5);
-          box-shadow: 0 15px 35px rgba($luminous-gold, 0.2);
-        }
+        @include genesis-entity('primary');
+        @include genesis-atmosphere('ethereal');
+        @include genesis-synapse('navigate');
         
         .stage-content {
           .stage-icon {
-            @include sacred-icon;
-            font-size: 2.5rem;
-            color: $luminous-gold;
-            margin-bottom: $genesis-spacing-md;
+            @include genesis-cognition('motive');
           }
           
           h4 {
-            @include transcendent-typography('heading-4');
-            color: $transcendent-white;
-            margin-bottom: $genesis-spacing-sm;
+            @include genesis-cognition('axiom');
           }
           
           p {
-            @include transcendent-typography('body');
-            color: rgba($transcendent-white, 0.9);
-            line-height: 1.6;
+            @include genesis-cognition('discourse');
           }
         }
       }
     }
   }
 
-  // Evolution Benefits Section
   .evolution-benefits-section {
-    @include transcendent-section-spacing;
-    position: relative;
+    @include genesis-environment('distributed');
     
     .evolution-benefit {
-      @include consciousness-card;
-      background: rgba($transcendent-white, 0.03);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba($transformation-purple, 0.2);
-      border-radius: $border-radius-md;
-      padding: $genesis-spacing-lg;
-      transition: all 0.4s $consciousness-timing;
-      height: 100%;
-      
-      &:hover {
-        transform: translateY(-8px);
-        background: rgba($transcendent-white, 0.08);
-        border-color: rgba($transformation-purple, 0.4);
-        box-shadow: 0 15px 35px rgba($transformation-purple, 0.15);
-      }
+      @include genesis-entity('secondary');
+      @include genesis-atmosphere('ethereal');
+      @include genesis-synapse('navigate');
       
       h4 {
-        @include transcendent-typography('heading-4');
-        color: $transformation-purple;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('axiom');
       }
       
       p {
-        @include transcendent-typography('body');
-        color: rgba($transcendent-white, 0.9);
-        line-height: 1.6;
+        @include genesis-cognition('discourse');
       }
-    }
-  }
-}
-
-// Responsive adjustments
-@include media-breakpoint-down(lg) {
-  .continuous-improvement-page-container {
-    .evolution-visualization {
-      height: 300px;
-      margin-top: $genesis-spacing-lg;
-    }
-    
-    .evolution-cycle {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-}
-
-@include media-breakpoint-down(md) {
-  .continuous-improvement-page-container {
-    .evolution-principle {
-      margin-bottom: $genesis-spacing-md;
-    }
-    
-    .principle-icon {
-      font-size: 2rem !important;
     }
   }
 }

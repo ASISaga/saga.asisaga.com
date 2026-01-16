@@ -1,112 +1,56 @@
-// Styles for the saga page with enhanced interactive elements and animations
+// Saga Page - Genesis Ontological Design
+// Zero Raw CSS - Pure semantic mapping
 
-// Main saga page container
 .saga-page {
-  // Timeline section
   .saga-timeline-section {
-    @include padding-y($spacing-xl);
-    @include bg-light;
+    @include genesis-environment('chronological');
+    @include genesis-entity('secondary');
   }
   
-  // Storytelling panels section with parallax backgrounds
   .saga-storytelling-section {
-    @include padding-y($spacing-xl);
+    @include genesis-environment('manifest');
     
     .saga-storytelling-panel {
-  @include margin-bottom($spacing-xl);
-  height: 500px;
-  position: relative;
-  overflow: hidden;
-  @include border-radius($border-radius);
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
+      @include genesis-entity('primary');
+      @include genesis-atmosphere('void');
       
       .saga-storytelling-background {
-        @include width-full;
-        @include height-full;
-        background-size: cover;
-        background-position: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          @include width-full;
-          @include height-full;
-          @include bg-gradient-dark-overlay;
-        }
+        @include genesis-atmosphere('ethereal');
       }
       
       .saga-storytelling-content {
-  position: relative;
-  @include color($white);
-  @include padding($spacing-lg);
-  @include max-width(600px);
-  height: 100%;
-  @include d-flex;
-  @include flex-direction(column);
-  @include justify-content(center);
+        @include genesis-entity('imperative');
         
         .saga-storytelling-title {
-          @include font-size-2xl;
-          @include margin-bottom($spacing-md);
-          @include text-white;
-          @include text-shadow-dark;
-          
-          @include media-breakpoint-down(md) {
-            @include font-size-xl;
-          }
+          @include genesis-cognition('axiom');
         }
         
         .saga-storytelling-text {
           p {
-            @include margin-bottom($spacing-md);
-            @include text-shadow-soft;
+            @include genesis-cognition('discourse');
           }
         }
-        
-        @include media-breakpoint-down(md) {
-          @include max-width-full;
-        }
-      }
-      
-      @include media-breakpoint-down(md) {
-        @include height-auto;
-        @include min-height(400px);
       }
     }
   }
   
-  // Legacy styles using BEM notation
   &__title {
-  @include font-size(2.5rem);
-  @include font-weight(700);
-  @include margin-bottom(2rem);
+    @include genesis-cognition('axiom');
   }
 
   &__chapters {
-  @include gap($spacing-lg);
+    @include genesis-environment('chronological');
   }
 
   &__chapter {
-  @include margin-bottom(1.5rem);
+    @include genesis-entity('secondary');
   }
 
   &__chapter-title {
-  @include font-size(1.5rem);
-  @include font-weight(600);
-  @include text-primary;
-  @include margin-bottom(1rem);
+    @include genesis-cognition('axiom');
   }
 
   &__chapter-content {
-  @include text-muted;
-  @include line-height-relaxed;
+    @include genesis-cognition('discourse');
   }
 }

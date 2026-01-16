@@ -1,36 +1,36 @@
-/*
-Genesis Page Styles
-Styling for the Genesis page that embodies the sacred beginning of human transcendence
-*/
+/**
+ * Genesis Page - Semantic Mapping
+ * Represents the sacred beginning of human transcendence
+ * Uses ontological mixins to express consciousness emergence
+ */
 
 .genesis-page-container {
+  @include genesis-environment('focused');      // Reading-optimized narrative flow
+  @include genesis-atmosphere('ethereal');      // Light, transcendent vibe
+  
   // Hero section specific to Genesis
   .transcendent-hero {
     &.genesis-cosmic {
-      @extend .cosmic-consciousness-gradient;
+      @include genesis-entity('primary');       // Elevated presence
+      @include genesis-state('stable');         // Foundational equilibrium
       
       .hero-content {
-        @include consciousness-emergence-animation;
+        @include genesis-state('evolving');     // Emerging consciousness animation
       }
     }
   }
 
   // Genesis Origin Section
   .genesis-origin-section {
-    @include transcendent-section-spacing;
-    background: linear-gradient(135deg, $cosmic-deep-blue 0%, $transformation-purple 100%);
-    color: $transcendent-white;
+    @include genesis-entity('primary');         // Fundamental content block
+    @include genesis-atmosphere('void');        // Deep cosmic atmosphere
     
     .genesis-content {
       .genesis-description {
-        @include transcendent-typography('body-large');
-        line-height: 1.8;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('discourse');  // Body text narrative
         
         &.lead {
-          @include transcendent-typography('lead');
-          color: $luminous-gold;
-          font-weight: 300;
+          @include genesis-cognition('motive');   // Persuasive lead text
         }
       }
     }
@@ -38,133 +38,45 @@ Styling for the Genesis page that embodies the sacred beginning of human transce
 
   // Genesis Pillars Section
   .genesis-pillars-section {
-    @include transcendent-section-spacing;
-    position: relative;
-    overflow: hidden;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0 0 0 0;
-      background: radial-gradient(circle at 50% 50%, rgba($luminous-gold, 0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    @include genesis-environment('distributed');  // Autonomous pillar grid
+    @include genesis-atmosphere('ethereal');      // Sacred light atmosphere
     
     .genesis-pillars {
-      position: relative;
-      z-index: 2;
+      @include genesis-entity('aggregate');       // Container for multiple entities
     }
     
     .genesis-pillar {
-  @include consciousness-card;
-  background: rgba($transcendent-white, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba($luminous-gold, 0.2);
-  @include border-radius($border-radius-lg);
-  @include pad($genesis-spacing-lg);
-  @include text-center;
-  transition: all 0.4s $consciousness-timing;
-      
-      &:hover {
-        transform: translateY(-10px) scale(1.02);
-        background: rgba($transcendent-white, 0.1);
-        border-color: rgba($luminous-gold, 0.4);
-        box-shadow: 0 20px 40px rgba($luminous-gold, 0.2);
-      }
+      @include genesis-entity('primary');         // Elevated glassmorphic card
+      @include genesis-state('stable');           // Foundational principle state
       
       .pillar-icon {
-        @include sacred-icon;
-        font-size: 3rem;
-        color: $luminous-gold;
-        margin-bottom: $genesis-spacing-md;
-        
-        i {
-          @include consciousness-pulse-animation;
-        }
+        @include genesis-cognition('quantum');    // High-density symbolic fragment
+        @include genesis-state('evolving');       // Pulsing animation state
       }
       
       .pillar-title {
-        @include transcendent-typography('heading-3');
-        color: $transcendent-white;
-        margin-bottom: $genesis-spacing-sm;
+        @include genesis-cognition('axiom');      // Foundational headline
       }
       
       .pillar-description {
-        @include transcendent-typography('body');
-        color: rgba($transcendent-white, 0.9);
-        line-height: 1.6;
-        margin-bottom: $genesis-spacing-md;
+        @include genesis-cognition('discourse');  // Explanatory prose
       }
       
       .pillar-link {
-        @include transcendent-button;
-        @include consciousness-button-hover;
+        @include genesis-synapse('navigate');     // Navigation to pillar detail
       }
       
-      // Pillar-specific styling
+      // Pillar-specific semantic variants
       &.consciousness-embedding {
-        border-color: rgba($border-color, 0.3);
-        
-        &:hover {
-          border-color: rgba($border-color, 0.6);
-          box-shadow: 0 20px 40px rgba($border-color, 0.2);
-        }
-        
-        .pillar-icon {
-          color: $border-color;
-        }
+        @include genesis-entity('primary');       // Maintains primary entity
       }
       
       &.transcendent-evolution {
-        border-color: rgba($transformation-purple, 0.3);
-        
-        &:hover {
-          border-color: rgba($transformation-purple, 0.6);
-          box-shadow: 0 20px 40px rgba($transformation-purple, 0.2);
-        }
-        
-        .pillar-icon {
-          color: $transformation-purple;
-        }
+        @include genesis-entity('primary');       // Maintains primary entity
       }
       
       &.infinite-potential {
-        border-color: rgba($luminous-gold, 0.3);
-        
-        &:hover {
-          border-color: rgba($luminous-gold, 0.6);
-          box-shadow: 0 20px 40px rgba($luminous-gold, 0.2);
-        }
-        
-        .pillar-icon {
-          color: $luminous-gold;
-        }
-      }
-    }
-  }
-}
-
-// Responsive adjustments
-@include media-breakpoint-down(md) {
-  .genesis-page-container {
-    .genesis-pillar {
-      margin-bottom: $genesis-spacing-md;
-    }
-    
-    .pillar-icon {
-      font-size: 2.5rem !important;
-    }
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .genesis-page-container {
-    .genesis-origin-section {
-      .genesis-content {
-        .genesis-description {
-          font-size: 1rem;
-          line-height: 1.6;
-        }
+        @include genesis-entity('primary');       // Maintains primary entity
       }
     }
   }
