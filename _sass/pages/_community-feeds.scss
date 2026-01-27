@@ -5,23 +5,90 @@
   @include genesis-environment('distributed');  // Auto-fit responsive grid
   @include genesis-atmosphere('neutral');       // Standard presentation
   
-  .feed {
-    @include genesis-entity('secondary');       // Supporting content blocks
+  .section-title {
+    @include genesis-cognition('axiom');        // Primary section heading
+  }
+  
+  .section-subtitle {
+    @include genesis-cognition('gloss');        // Explanatory subtitle
+  }
+  
+  .community-feed-section {
+    @include genesis-entity('primary');         // Main content container
+    @include genesis-atmosphere('ethereal');    // Subtle elevated appearance
+    @include genesis-synapse('navigate');       // Interactive container
     
-    &__title {
+    h2 {
       @include genesis-cognition('motive');     // Section heading with emphasis
-    }
-
-    &__list {
-      @include genesis-environment('chronological');  // Linear time-based stream
       
-      & > li {
-        @include genesis-state('stable');       // Standard equilibrium state
-        
+      .feed-icon {
+        @include genesis-cognition('motive');   // Iconic emphasis
+        @include genesis-atmosphere('vibrant'); // Visual highlight
+      }
+    }
+  }
+  
+  .sacred-feed-list {
+    @include genesis-environment('chronological');  // Linear time-based stream
+    
+    .feed-item {
+      @include genesis-entity('secondary');     // Individual feed items
+      @include genesis-state('stable');         // Standard equilibrium
+      @include genesis-synapse('navigate');     // Interactive items
+      
+      .feed-content {
         a {
-          @include genesis-synapse('navigate');  // Navigation to external content
+          @include genesis-cognition('discourse');  // Body text content
+          @include genesis-synapse('navigate');     // Navigation link
         }
       }
+      
+      .feed-meta {
+        @include genesis-environment('distributed'); // Flexible spacing
+        
+        span {
+          @include genesis-cognition('gloss');   // Metadata labels
+          @include genesis-entity('latent');     // Subtle emphasis
+        }
+      }
+    }
+  }
+  
+  .sacred-actions-grid {
+    @include genesis-environment('distributed');  // Responsive grid layout
+    
+    .sacred-action-card {
+      @include genesis-entity('primary');        // Primary action cards
+      @include genesis-atmosphere('ethereal');   // Elevated appearance
+      @include genesis-synapse('execute');       // Call-to-action interaction
+      
+      .action-icon {
+        @include genesis-cognition('motive');    // Iconic emphasis
+        @include genesis-atmosphere('vibrant');  // Visual highlight
+      }
+      
+      h4 {
+        @include genesis-cognition('axiom');     // Action title
+      }
+      
+      p {
+        @include genesis-cognition('gloss');     // Action description
+      }
+    }
+  }
+  
+  // Responsive adjustments
+  @include media-breakpoint-down(md) {
+    .community-feed-section {
+      @include genesis-entity('primary');        // Maintain structure
+    }
+    
+    .sacred-actions-grid {
+      @include genesis-environment('focused');   // Single column on mobile
+    }
+    
+    .feed-meta {
+      @include genesis-environment('focused');   // Stack metadata on mobile
     }
   }
 }
