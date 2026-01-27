@@ -22,7 +22,6 @@
       @include genesis-cognition('motive');     // Section heading with emphasis
       
       .feed-icon {
-        @include genesis-cognition('motive');   // Iconic emphasis
         @include genesis-atmosphere('vibrant'); // Visual highlight
       }
     }
@@ -63,7 +62,6 @@
       @include genesis-synapse('execute');       // Call-to-action interaction
       
       .action-icon {
-        @include genesis-cognition('motive');    // Iconic emphasis
         @include genesis-atmosphere('vibrant');  // Visual highlight
       }
       
@@ -79,10 +77,6 @@
   
   // Responsive adjustments
   @include media-breakpoint-down(md) {
-    .community-feed-section {
-      @include genesis-entity('primary');        // Maintain structure
-    }
-    
     .sacred-actions-grid {
       @include genesis-environment('focused');   // Single column on mobile
     }
