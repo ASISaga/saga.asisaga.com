@@ -3,120 +3,107 @@ Continuous Improvement Page - Genesis Ontological Design
 Zero Raw CSS - Pure semantic mapping for endless evolution
 */
 
-.continuous-improvement-page-container {
-  .transcendent-hero {
-    &.evolution-cosmic {
-      @include genesis-environment('focused');
-      @include genesis-atmosphere('vibrant');
+.evolution-process-section {
+  @include genesis-environment('focused');
+  @include genesis-atmosphere('void');
+  
+  .evolution-content {
+    .evolution-subtitle {
+      @include genesis-cognition('axiom');
+    }
+    
+    .evolution-description {
+      @include genesis-cognition('discourse');
+    }
+  }
+  
+  .evolution-visualization {
+    @include genesis-entity('latent');
+    
+    .evolution-spiral {
+      @include genesis-environment('associative');
+      @include genesis-atmosphere('ethereal');
       
-      .hero-content {
+      .growth-rings {
         @include genesis-state('evolving');
       }
     }
   }
+}
 
-  .evolution-process-section {
-    @include genesis-environment('focused');
-    @include genesis-atmosphere('void');
+.evolution-principles-section {
+  @include genesis-environment('distributed');
+  
+  .evolution-principles {
+    @include genesis-environment('distributed');
+  }
+  
+  .evolution-principle {
+    @include genesis-entity('primary');
+    @include genesis-atmosphere('ethereal');
+    @include genesis-synapse('navigate');
     
-    .evolution-content {
-      .evolution-subtitle {
-        @include genesis-cognition('axiom');
-      }
+    .principle-icon {
+      @include genesis-cognition('motive');
       
-      .evolution-description {
-        @include genesis-cognition('discourse');
+      i {
+        @include genesis-state('evolving');
       }
     }
     
-    .evolution-visualization {
-      @include genesis-entity('latent');
-      
-      .evolution-spiral {
-        @include genesis-environment('associative');
-        @include genesis-atmosphere('ethereal');
-        
-        .growth-rings {
-          @include genesis-state('evolving');
-        }
-      }
+    .principle-title {
+      @include genesis-cognition('axiom');
+    }
+    
+    .principle-description {
+      @include genesis-cognition('discourse');
     }
   }
+}
 
-  .evolution-principles-section {
+.evolution-cycle-section {
+  @include genesis-environment('distributed');
+  @include genesis-atmosphere('void');
+  
+  .evolution-cycle {
     @include genesis-environment('distributed');
     
-    .evolution-principles {
-      @include genesis-environment('distributed');
-    }
-    
-    .evolution-principle {
+    .cycle-stage {
       @include genesis-entity('primary');
       @include genesis-atmosphere('ethereal');
       @include genesis-synapse('navigate');
       
-      .principle-icon {
-        @include genesis-cognition('motive');
-        
-        i {
-          @include genesis-state('evolving');
+      .stage-content {
+        .stage-icon {
+          @include genesis-cognition('motive');
         }
-      }
-      
-      .principle-title {
-        @include genesis-cognition('axiom');
-      }
-      
-      .principle-description {
-        @include genesis-cognition('discourse');
-      }
-    }
-  }
-
-  .evolution-cycle-section {
-    @include genesis-environment('distributed');
-    @include genesis-atmosphere('void');
-    
-    .evolution-cycle {
-      @include genesis-environment('distributed');
-      
-      .cycle-stage {
-        @include genesis-entity('primary');
-        @include genesis-atmosphere('ethereal');
-        @include genesis-synapse('navigate');
         
-        .stage-content {
-          .stage-icon {
-            @include genesis-cognition('motive');
-          }
-          
-          h4 {
-            @include genesis-cognition('axiom');
-          }
-          
-          p {
-            @include genesis-cognition('discourse');
-          }
+        h4 {
+          @include genesis-cognition('axiom');
+        }
+        
+        p {
+          @include genesis-cognition('discourse');
         }
       }
     }
   }
+}
 
-  .evolution-benefits-section {
-    @include genesis-environment('distributed');
+.evolution-benefits-section {
+  @include genesis-environment('distributed');
+  
+  .evolution-benefit {
+    @include genesis-entity('secondary');
+    @include genesis-atmosphere('ethereal');
+    @include genesis-synapse('navigate');
     
-    .evolution-benefit {
-      @include genesis-entity('secondary');
-      @include genesis-atmosphere('ethereal');
-      @include genesis-synapse('navigate');
-      
-      h4 {
-        @include genesis-cognition('axiom');
-      }
-      
-      p {
-        @include genesis-cognition('discourse');
-      }
+    h4 {
+      @include genesis-cognition('axiom');
+    }
+    
+    p {
+      @include genesis-cognition('discourse');
     }
   }
 }

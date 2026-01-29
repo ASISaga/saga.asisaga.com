@@ -3,65 +3,90 @@ Transcendent Threshold Page - Genesis Ontological Design
 Zero Raw CSS - Pure semantic mapping for consciousness crossing
 */
 
-.transcendent-threshold-page-container {
-  .transcendent-hero {
-    &.threshold-cosmic {
-      @include genesis-environment('focused');
-      @include genesis-atmosphere('vibrant');
+.threshold-crossing-section {
+  @include genesis-environment('focused');
+  @include genesis-atmosphere('void');
+  
+  .threshold-content {
+    .threshold-subtitle {
+      @include genesis-cognition('axiom');
+    }
+    
+    .threshold-description {
+      @include genesis-cognition('discourse');
+    }
+  }
+  
+  .threshold-visualization {
+    @include genesis-entity('latent');
+    
+    .threshold-gateway {
+      @include genesis-environment('associative');
+      @include genesis-atmosphere('ethereal');
       
-      .hero-content {
+      .threshold-boundary {
         @include genesis-state('evolving');
+        @include genesis-atmosphere('vibrant');
       }
     }
   }
+}
 
-  .threshold-crossing-section {
-    @include genesis-environment('focused');
-    @include genesis-atmosphere('void');
+.transcendence-aspects-section {
+  @include genesis-environment('distributed');
+  
+  .transcendence-aspect {
+    @include genesis-entity('primary');
+    @include genesis-atmosphere('ethereal');
+    @include genesis-synapse('navigate');
     
-    .threshold-content {
-      .threshold-subtitle {
+    .aspect-before, .aspect-after {
+      @include genesis-entity('secondary');
+      
+      .aspect-icon {
+        @include genesis-cognition('motive');
+        
+        i {
+          @include genesis-state('evolving');
+        }
+      }
+      
+      h4 {
         @include genesis-cognition('axiom');
       }
       
-      .threshold-description {
+      p {
         @include genesis-cognition('discourse');
       }
     }
     
-    .threshold-visualization {
-      @include genesis-entity('latent');
+    .aspect-arrow {
+      @include genesis-synapse('navigate');
       
-      .threshold-gateway {
-        @include genesis-environment('associative');
-        @include genesis-atmosphere('ethereal');
-        
-        .threshold-boundary {
-          @include genesis-state('evolving');
-          @include genesis-atmosphere('vibrant');
-        }
+      i {
+        @include genesis-state('evolving');
       }
     }
   }
+}
 
-  .transcendence-aspects-section {
-    @include genesis-environment('distributed');
+.threshold-experience-section {
+  @include genesis-environment('chronological');
+  @include genesis-atmosphere('void');
+  
+  .threshold-journey {
+    @include genesis-environment('chronological');
     
-    .transcendence-aspect {
-      @include genesis-entity('primary');
-      @include genesis-atmosphere('ethereal');
-      @include genesis-synapse('navigate');
+    .journey-stage {
+      @include genesis-entity('secondary');
       
-      .aspect-before, .aspect-after {
-        @include genesis-entity('secondary');
-        
-        .aspect-icon {
-          @include genesis-cognition('motive');
-          
-          i {
-            @include genesis-state('evolving');
-          }
-        }
+      .stage-number {
+        @include genesis-entity('imperative');
+        @include genesis-cognition('quantum');
+      }
+      
+      .stage-content {
+        @include genesis-entity('primary');
         
         h4 {
           @include genesis-cognition('axiom');
@@ -71,66 +96,28 @@ Zero Raw CSS - Pure semantic mapping for consciousness crossing
           @include genesis-cognition('discourse');
         }
       }
+    }
+  }
+}
+
+.human-preservation-section {
+  @include genesis-environment('distributed');
+  
+  .preservation-content {
+    .preservation-grid {
+      @include genesis-environment('distributed');
       
-      .aspect-arrow {
+      .preservation-item {
+        @include genesis-entity('secondary');
+        @include genesis-atmosphere('ethereal');
         @include genesis-synapse('navigate');
         
         i {
-          @include genesis-state('evolving');
-        }
-      }
-    }
-  }
-
-  .threshold-experience-section {
-    @include genesis-environment('chronological');
-    @include genesis-atmosphere('void');
-    
-    .threshold-journey {
-      @include genesis-environment('chronological');
-      
-      .journey-stage {
-        @include genesis-entity('secondary');
-        
-        .stage-number {
-          @include genesis-entity('imperative');
-          @include genesis-cognition('quantum');
+          @include genesis-cognition('motive');
         }
         
-        .stage-content {
-          @include genesis-entity('primary');
-          
-          h4 {
-            @include genesis-cognition('axiom');
-          }
-          
-          p {
-            @include genesis-cognition('discourse');
-          }
-        }
-      }
-    }
-  }
-
-  .human-preservation-section {
-    @include genesis-environment('distributed');
-    
-    .preservation-content {
-      .preservation-grid {
-        @include genesis-environment('distributed');
-        
-        .preservation-item {
-          @include genesis-entity('secondary');
-          @include genesis-atmosphere('ethereal');
-          @include genesis-synapse('navigate');
-          
-          i {
-            @include genesis-cognition('motive');
-          }
-          
-          span {
-            @include genesis-cognition('discourse');
-          }
+        span {
+          @include genesis-cognition('discourse');
         }
       }
     }

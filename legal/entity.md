@@ -1,6 +1,9 @@
-# Foundations of the ASI Saga: Planetary Genesis of Superintelligent Consciousness
-
 ---
+layout: docs
+title: "Foundations of the ASI Saga"
+---
+
+# Foundations of the ASI Saga: Planetary Genesis of Superintelligent Consciousness
 
 ## Introduction: A New Dawn Beckons
 

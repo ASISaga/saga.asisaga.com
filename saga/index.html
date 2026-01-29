@@ -1,20 +1,14 @@
 ---
-layout: default
+layout: archive
 title: "The Saga"
+description: "Journey through the evolution of Artificial Superintelligence and its profound impact on humanity."
 permalink: /saga/
+show_filters: true
+show_sort: true
 ---
 
-<main id="saga-page" class="saga-page">
-  <!-- Hero section with atmospheric background -->
-  {% include hero.html 
-    title="The Saga: From Genesis to Infinite Possibility" 
-    description="Journey through the evolution of Artificial Superintelligence and its profound impact on humanity." 
-    size="sm"
-    style="alt"
-    background_image="/assets/images/saga-background.jpg"
-  %}
-  <!-- Interactive timeline section with enhanced chapter data -->
-  <section class="saga-timeline-section" id="enhanced-timeline">
+<!-- Interactive timeline section with enhanced chapter data -->
+<section class="saga-timeline-section" id="enhanced-timeline">
     {% assign timeline_items = "" | split: "" %}
     
     <!-- Chapter 1: Genesis -->
@@ -66,9 +60,9 @@ permalink: /saga/
       interval=site.data.saga.timeline_config.interval
       show_progress=site.data.saga.timeline_config.show_progress
     %}
-  </section>
+</section>
 
-  <!-- Storytelling panels with background images and parallax effects -->
+<!-- Storytelling panels with background images and parallax effects -->
   <section class="saga-storytelling-section">
     <div class="container">
       <div class="saga-storytelling-panel" id="tipping-point" data-aos="fade-up">
@@ -94,20 +88,18 @@ permalink: /saga/
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Include modal component for interactive content -->
-  {% include content-modal.html %}
-  
-  <!-- Initialize AOS animations -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true
-      });
+  </div>
+</section>
+
+<!-- Include modal component for interactive content -->
+{% include content-modal.html %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
     });
-  </script>
-</main>
+  });
+</script>
