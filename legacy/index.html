@@ -1,27 +1,18 @@
 ---
-layout: default
+layout: gallery
 title: "Human Legacy"
+description: "Celebrating the enduring impact of human creativity, innovation, and passion."
 permalink: /legacy/
 ---
 
-<main id="legacy-page" class="legacy-page">
-  <!-- Hero section with evocative background -->
-  {% include hero.html 
-    title="The Human Legacy" 
-    description="Celebrating the enduring impact of human creativity, innovation, and passion." 
-    size="sm"
-    style="alt"
-    background_image="/assets/images/legacy-background.jpg"
-  %}
-  
-  <!-- Introduction section with animated text -->
-  <section class="legacy-intro-section">
-    <div class="container">
-      <div class="legacy-intro reveal-on-scroll" data-aos="fade-up">
-        <p>{{ site.data.legacy.intro_content }}</p>
-      </div>
+<!-- Introduction section with animated text -->
+<section class="legacy-intro-section">
+  <div class="container">
+    <div class="legacy-intro reveal-on-scroll" data-aos="fade-up">
+      <p>{{ site.data.legacy.intro_content }}</p>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Visual collage section with parallax scrolling effects -->
   <section class="legacy-collage-section">
@@ -146,7 +137,6 @@ permalink: /legacy/
     </div>
   </section>
   
-  <!-- Initialize AOS animations -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       AOS.init({
@@ -156,4 +146,3 @@ permalink: /legacy/
       });
     });
   </script>
-</main>

@@ -1,20 +1,11 @@
 ---
-layout: default
+layout: gallery
 title: "Possibilities"
+description: "Explore how ASI is expanding the boundaries of what humanity can achieve."
 permalink: /possibilities/
 ---
 
-<main id="possibilities-page" class="possibilities-page">
-  <!-- Hero section with immersive background -->
-  {% include hero.html 
-    title="Infinite Possibilities for Mankind" 
-    description="Explore how ASI is expanding the boundaries of what humanity can achieve." 
-    size="sm"
-    style="alt"
-    background_image="/assets/images/possibilities-background.jpg"
-  %}
-
-  <!-- Hero carousel showcasing inspirational visionary concepts -->
+<!-- Hero carousel showcasing inspirational visionary concepts -->
   <section class="possibilities-carousel-section">
     <div class="container">
       <div id="possibilitiesCarousel" class="carousel slide possibilities-carousel" data-bs-ride="carousel">
@@ -110,26 +101,24 @@ permalink: /possibilities/
           %}
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Include modal component for interactive content -->
-  {% include content-modal.html %}
-  
-  <!-- Initialize AOS animations -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true
-      });
-      
-      // Initialize the carousel for possibilities
-      initPossibilitiesCarousel();
-      
-      // Initialize interactive modules
-      initInteractiveModules();
+  </div>
+</section>
+
+<!-- Include modal component for interactive content -->
+{% include content-modal.html %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
     });
-  </script>
-</main>
+    
+    // Initialize the carousel for possibilities
+    initPossibilitiesCarousel();
+    
+    // Initialize interactive modules
+    initInteractiveModules();
+  });
+</script>
