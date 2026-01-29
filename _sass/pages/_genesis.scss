@@ -2,82 +2,61 @@
  * Genesis Page - Semantic Mapping
  * Represents the sacred beginning of human transcendence
  * Uses ontological mixins to express consciousness emergence
+ * Updated for landing layout structure
  */
 
-.genesis-page-container {
-  @include genesis-environment('focused');      // Reading-optimized narrative flow
-  @include genesis-atmosphere('ethereal');      // Light, transcendent vibe
+// Genesis Origin Section
+.genesis-origin-section {
+  @include genesis-entity('primary');         // Fundamental content block
+  @include genesis-atmosphere('void');        // Deep cosmic atmosphere
   
-  // Hero section specific to Genesis
-  .transcendent-hero {
-    &.genesis-cosmic {
-      @include genesis-entity('primary');       // Elevated presence
-      @include genesis-state('stable');         // Foundational equilibrium
+  .genesis-content {
+    .genesis-description {
+      @include genesis-cognition('discourse');  // Body text narrative
       
-      .hero-content {
-        @include genesis-state('evolving');     // Emerging consciousness animation
-      }
-    }
-  }
-
-  // Genesis Origin Section
-  .genesis-origin-section {
-    @include genesis-entity('primary');         // Fundamental content block
-    @include genesis-atmosphere('void');        // Deep cosmic atmosphere
-    
-    .genesis-content {
-      .genesis-description {
-        @include genesis-cognition('discourse');  // Body text narrative
-        
-        &.lead {
-          @include genesis-cognition('motive');   // Persuasive lead text
-        }
-      }
-    }
-  }
-
-  // Genesis Pillars Section
-  .genesis-pillars-section {
-    @include genesis-environment('distributed');  // Autonomous pillar grid
-    @include genesis-atmosphere('ethereal');      // Sacred light atmosphere
-    
-    .genesis-pillars {
-      @include genesis-entity('aggregate');       // Container for multiple entities
-    }
-    
-    .genesis-pillar {
-      @include genesis-entity('primary');         // Elevated glassmorphic card
-      @include genesis-state('stable');           // Foundational principle state
-      
-      .pillar-icon {
-        @include genesis-cognition('quantum');    // High-density symbolic fragment
-        @include genesis-state('evolving');       // Pulsing animation state
-      }
-      
-      .pillar-title {
-        @include genesis-cognition('axiom');      // Foundational headline
-      }
-      
-      .pillar-description {
-        @include genesis-cognition('discourse');  // Explanatory prose
-      }
-      
-      .pillar-link {
-        @include genesis-synapse('navigate');     // Navigation to pillar detail
-      }
-      
-      // Pillar-specific semantic variants
-      &.consciousness-embedding {
-        @include genesis-entity('primary');       // Maintains primary entity
-      }
-      
-      &.transcendent-evolution {
-        @include genesis-entity('primary');       // Maintains primary entity
-      }
-      
-      &.infinite-potential {
-        @include genesis-entity('primary');       // Maintains primary entity
+      &.lead {
+        @include genesis-cognition('motive');   // Persuasive lead text
       }
     }
   }
 }
+
+// Genesis Pillars Section
+.genesis-pillars-section {
+  @include genesis-environment('distributed');  // Autonomous pillar grid
+  @include genesis-atmosphere('ethereal');      // Sacred light atmosphere
+  
+  .genesis-pillars {
+    @include genesis-entity('aggregate');       // Container for multiple entities
+  }
+  
+  .genesis-pillar {
+    @include genesis-entity('primary');         // Elevated glassmorphic card
+    @include genesis-state('stable');           // Foundational principle state
+    
+    .pillar-icon {
+      @include genesis-cognition('quantum');    // High-density symbolic fragment
+      @include genesis-state('evolving');       // Pulsing animation state
+    }
+    
+    .pillar-title {
+      @include genesis-cognition('axiom');      // Foundational headline
+    }
+    
+    .pillar-description {
+      @include genesis-cognition('discourse');  // Explanatory prose
+    }
+    
+    .pillar-link {
+      @include genesis-synapse('navigate');     // Navigation to pillar detail
+    }
+    
+    // Pillar-specific semantic variants
+    &.consciousness-embedding,
+    &.transcendent-evolution,
+    &.infinite-potential {
+      @include genesis-entity('primary');       // Maintains primary entity
+    }
+  }
+}
+

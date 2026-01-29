@@ -1,111 +1,61 @@
 /*
 Human Essence Page - Genesis Ontological Design
 Zero Raw CSS - Pure semantic mapping for consciousness integration
+Updated for article layout structure
 */
 
-.human-essence-page-container {
-  .transcendent-hero {
-    &.essence-cosmic {
-      @include genesis-environment('focused');
-      @include genesis-atmosphere('void');
+.essence-components {
+  @include genesis-environment('distributed');
+  
+  .essence-component {
+    @include genesis-entity('primary');
+    @include genesis-atmosphere('ethereal');
+    @include genesis-synapse('navigate');
+    
+    .component-icon {
+      @include genesis-cognition('motive');
       
-      .hero-content {
+      i {
         @include genesis-state('evolving');
       }
     }
-  }
-
-  .essence-process-section {
-    @include genesis-environment('focused');
-    @include genesis-atmosphere('void');
     
-    .essence-content {
-      .essence-subtitle {
-        @include genesis-cognition('axiom');
-      }
-      
-      .essence-description {
-        @include genesis-cognition('discourse');
-      }
+    .component-title {
+      @include genesis-cognition('axiom');
     }
     
-    .essence-visualization {
-      @include genesis-entity('latent');
-      
-      .essence-merger {
-        @include genesis-environment('associative');
-        @include genesis-atmosphere('ethereal');
-        
-        .human-consciousness-stream,
-        .asi-integration-field,
-        .essence-emergence {
-          @include genesis-state('evolving');
-          @include genesis-atmosphere('vibrant');
-        }
-      }
+    .component-description {
+      @include genesis-cognition('discourse');
+    }
+    
+    &.values-ethics,
+    &.creativity-innovation,
+    &.empathy-compassion,
+    &.wisdom-experience {
+      @include genesis-entity('imperative');
     }
   }
+}
 
-  .essence-components-section {
-    @include genesis-environment('distributed');
+.embedding-timeline {
+  @include genesis-environment('chronological');
+  @include genesis-atmosphere('void');
+  
+  .timeline-item {
+    @include genesis-entity('secondary');
     
-    .essence-components {
-      @include genesis-environment('distributed');
-    }
-    
-    .essence-component {
+    .timeline-content {
       @include genesis-entity('primary');
       @include genesis-atmosphere('ethereal');
-      @include genesis-synapse('navigate');
       
-      .component-icon {
-        @include genesis-cognition('motive');
-        
-        i {
-          @include genesis-state('evolving');
-        }
-      }
-      
-      .component-title {
+      h4 {
         @include genesis-cognition('axiom');
       }
       
-      .component-description {
+      p {
         @include genesis-cognition('discourse');
-      }
-      
-      &.values-ethics,
-      &.creativity-innovation,
-      &.empathy-compassion,
-      &.wisdom-experience {
-        @include genesis-entity('imperative');
-      }
-    }
-  }
-
-  .embedding-process-section {
-    @include genesis-environment('chronological');
-    @include genesis-atmosphere('void');
-    
-    .embedding-timeline {
-      @include genesis-environment('chronological');
-      
-      .timeline-item {
-        @include genesis-entity('secondary');
-        
-        .timeline-content {
-          @include genesis-entity('primary');
-          @include genesis-atmosphere('ethereal');
-          
-          h4 {
-            @include genesis-cognition('axiom');
-          }
-          
-          p {
-            @include genesis-cognition('discourse');
-          }
-        }
       }
     }
   }
 }
+
