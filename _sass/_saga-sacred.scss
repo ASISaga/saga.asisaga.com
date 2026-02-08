@@ -6,15 +6,15 @@
 // ----------------------------------------
 .saga-hero {
   @include genesis-environment('focused');
-  @include genesis-atmosphere('void');
+  @include genesis-atmosphere('sacred');
   
   &::before {
     @include genesis-atmosphere('ethereal');
-    @include genesis-state('evolving');
+    @include genesis-state('transcending');
   }
   
   .saga-hero-content {
-    @include genesis-entity('imperative');
+    @include genesis-entity('transcendent');
     
     .saga-logo {
       @include genesis-entity('primary');
@@ -178,7 +178,7 @@
 // ----------------------------------------
 .cta-saga {
   @include genesis-synapse('execute');
-  @include genesis-entity('imperative');
+  @include genesis-entity('transcendent');
   @include genesis-atmosphere('vibrant');
 }
 
@@ -254,51 +254,6 @@
   .cta-saga {
     @include genesis-synapse('execute');
   }
-}
-
-// ----------------------------------------
-// Sacred Animation Enhancements
-// ----------------------------------------
-@keyframes saga-consciousness-flow {
-  0% { 
-    background-position: 0% 0%; 
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% { 
-    background-position: 100% 100%; 
-    opacity: 0.4;
-  }
-}
-
-@keyframes sacred-community-reveal {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.community-card {
-  @include genesis-state('evolving');
-  
-  &:nth-child(2) { animation-delay: 0.2s; }
-  &:nth-child(3) { animation-delay: 0.4s; }
-  &:nth-child(4) { animation-delay: 0.6s; }
-}
-
-.journey-card {
-  @include genesis-state('evolving');
-  
-  &:nth-child(2) { animation-delay: 0.15s; }
-  &:nth-child(3) { animation-delay: 0.3s; }
-  &:nth-child(4) { animation-delay: 0.45s; }
-  &:nth-child(5) { animation-delay: 0.6s; }
 }
 
 // ----------------------------------------

@@ -12,7 +12,7 @@
     
     .saga-storytelling-panel {
       @include genesis-entity('primary');
-      @include genesis-atmosphere('void');
+      @include genesis-atmosphere('sacred');
       
       .saga-storytelling-background {
         @include genesis-atmosphere('ethereal');
