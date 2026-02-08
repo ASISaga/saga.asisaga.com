@@ -1,298 +1,62 @@
 // Saga Sacred - Genesis Ontological Design
-// Zero Raw CSS - Pure semantic mapping for consciousness community hub
+// Zero Raw CSS - Pure semantic mapping
+// Hero, community hub, and journey nav are now handled by theme includes.
+// This file contains only subdomain-specific community feeds styling.
 
 // ----------------------------------------
-// Sacred Saga Hero Section
-// ----------------------------------------
-.saga-hero {
-  @include genesis-environment('focused');
-  @include genesis-atmosphere('sacred');
-  
-  &::before {
-    @include genesis-atmosphere('ethereal');
-    @include genesis-state('transcending');
-  }
-  
-  .saga-hero-content {
-    @include genesis-entity('transcendent');
-    
-    .saga-logo {
-      @include genesis-entity('primary');
-      
-      .glyph-consciousness-infinity {
-        @include genesis-cognition('motive');
-        @include genesis-state('evolving');
-      }
-      
-      .saga-title {
-        @include genesis-cognition('axiom');
-      }
-      
-      .saga-subtitle {
-        @include genesis-cognition('gloss');
-      }
-    }
-    
-    .saga-mission {
-      @include genesis-cognition('discourse');
-    }
-    
-    .saga-cta-group {
-      @include genesis-environment('distributed');
-    }
-  }
-  
-  .sacred-scroll-indicator {
-    @include genesis-synapse('navigate');
-    
-    .scroll-arrow {
-      @include genesis-synapse('navigate');
-      @include genesis-state('evolving');
-    }
-  }
-}
-
-// ----------------------------------------
-// Sacred Community Hub
-// ----------------------------------------
-.saga-community-hub {
-  @include genesis-environment('distributed');
-  @include genesis-atmosphere('ethereal');
-  
-  .community-grid {
-    @include genesis-environment('distributed');
-  }
-  
-  .community-card {
-    @include genesis-entity('primary');
-    @include genesis-synapse('navigate');
-    
-    .community-header {
-      @include genesis-entity('secondary');
-      
-      .community-icon {
-        @include genesis-cognition('motive');
-        @include genesis-atmosphere('vibrant');
-        
-        &.genesis-icon,
-        &.wisdom-icon {
-          @include genesis-atmosphere('void');
-        }
-      }
-      
-      .community-title {
-        @include genesis-cognition('axiom');
-      }
-    }
-    
-    .community-description {
-      @include genesis-cognition('discourse');
-    }
-    
-    .community-stats {
-      @include genesis-environment('distributed');
-      
-      .stat {
-        @include genesis-entity('latent');
-        
-        .stat-number {
-          @include genesis-cognition('quantum');
-        }
-        
-        .stat-label {
-          @include genesis-cognition('gloss');
-        }
-      }
-    }
-    
-    .community-action {
-      .sacred-btn-primary {
-        @include genesis-synapse('execute');
-      }
-    }
-  }
-}
-
-// ----------------------------------------
-// Sacred Community Feeds Enhancement
+// Community Feeds (subdomain-specific data)
 // ----------------------------------------
 #community-feeds {
   @include genesis-environment('chronological');
-  
-  h2 {
-    @include genesis-cognition('axiom');
+
+  .community-feeds-grid {
+    @include genesis-environment('distributed');
   }
-  
-  ul {
+
+  .community-feed-section {
+    @include genesis-entity('primary');
+    @include genesis-atmosphere('ethereal');
+
+    h3 {
+      @include genesis-cognition('motive');
+
+      .feed-icon {
+        @include genesis-atmosphere('vibrant');
+      }
+    }
+  }
+
+  .sacred-feed-list {
     @include genesis-environment('chronological');
-    
-    li {
+
+    .feed-item {
       @include genesis-entity('secondary');
       @include genesis-synapse('navigate');
-      
+
       a {
         @include genesis-cognition('discourse');
         @include genesis-synapse('navigate');
       }
-    }
-  }
-}
 
-// ----------------------------------------
-// Sacred Journey Navigation
-// ----------------------------------------
-.saga-journey-nav {
-  @include genesis-environment('distributed');
-  @include genesis-atmosphere('void');
-  
-  .journey-grid {
-    @include genesis-environment('distributed');
-  }
-  
-  .journey-card {
-    @include genesis-entity('primary');
-    @include genesis-atmosphere('ethereal');
-    @include genesis-synapse('navigate');
-    
-    .journey-icon {
-      @include genesis-cognition('motive');
-      @include genesis-state('evolving');
-    }
-    
-    .journey-title {
-      @include genesis-cognition('axiom');
-    }
-    
-    .journey-description {
-      @include genesis-cognition('discourse');
-    }
-    
-    .journey-link {
-      @include genesis-synapse('navigate');
-    }
-  }
-}
+      .feed-meta {
+        @include genesis-environment('distributed');
 
-// ----------------------------------------
-// Sacred CTA Enhancements
-// ----------------------------------------
-.cta-saga {
-  @include genesis-synapse('execute');
-  @include genesis-entity('transcendent');
-  @include genesis-atmosphere('vibrant');
-}
-
-// ----------------------------------------
-// Sacred Responsive Design
-// ----------------------------------------
-@include media-breakpoint-down(lg) {
-  .saga-hero {
-    .saga-hero-content {
-      .saga-logo {
-        .saga-title {
-          @include genesis-cognition('axiom');
-        }
-        
-        .saga-subtitle {
+        span {
           @include genesis-cognition('gloss');
+          @include genesis-entity('latent');
         }
       }
     }
-  }
-  
-  .saga-cta-group {
-    @include genesis-environment('focused');
-  }
-}
-
-@include media-breakpoint-down(md) {
-  .saga-hero {
-    .saga-hero-content {
-      .saga-logo {
-        .glyph-consciousness-infinity {
-          @include genesis-cognition('motive');
-        }
-        
-        .saga-title {
-          @include genesis-cognition('axiom');
-        }
-        
-        .saga-subtitle {
-          @include genesis-cognition('gloss');
-        }
-      }
-      
-      .saga-mission {
-        @include genesis-cognition('discourse');
-      }
-    }
-  }
-  
-  .community-grid,
-  .journey-grid {
-    @include genesis-environment('focused');
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .saga-hero {
-    @include genesis-environment('focused');
-    
-    .saga-hero-content {
-      .saga-logo {
-        .glyph-consciousness-infinity {
-          @include genesis-cognition('motive');
-        }
-        
-        .saga-title {
-          @include genesis-cognition('axiom');
-        }
-      }
-    }
-  }
-  
-  .cta-saga {
-    @include genesis-synapse('execute');
   }
 }
 
 // ----------------------------------------
-// Sacred Accessibility Enhancements
+// Accessibility
 // ----------------------------------------
-@media (prefers-contrast: high) {
-  .saga-hero {
-    @include genesis-environment('focused');
-    @include genesis-atmosphere('void');
-    
-    &::before {
-      @include genesis-state('stable');
-    }
-  }
-  
-  .saga-logo .glyph-consciousness-infinity {
-    @include genesis-cognition('motive');
-  }
-  
-  .cta-saga {
-    @include genesis-synapse('execute');
-    @include genesis-atmosphere('vibrant');
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .saga-logo .glyph-consciousness-infinity,
   .consciousness-pulse,
   .sacred-rhythm,
   .transcendence-spiral {
-    @include genesis-state('stable');
-  }
-  
-  .saga-hero::before {
-    @include genesis-state('stable');
-  }
-  
-  .community-card,
-  .journey-card {
     @include genesis-state('stable');
   }
 }

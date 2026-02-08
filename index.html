@@ -72,11 +72,49 @@ journey_paths:
 %}
 
 {% comment %} Community Feeds — subdomain-specific (uses site.data) {% endcomment %}
-<genesis-environment logic="chronological">
-  <section class="saga-community-feeds" aria-label="Community Updates">
-    {% include community.html %}
-  </section>
-</genesis-environment>
+{% include section-header.html
+   title="Community Pulse"
+   subtitle="Stay connected with the consciousness community"
+   alignment="center"
+%}
+
+<section id="community-feeds" aria-label="Community Updates">
+  <div class="community-feeds-grid">
+    <div class="community-feed-section">
+      <h3><span class="feed-icon">💼</span> LinkedIn Updates</h3>
+      <ul class="sacred-feed-list">
+        {% for post in site.data.linkedin.elements %}
+        <li class="feed-item">
+          <a href="{{ post.permalink }}" target="_blank" rel="noopener noreferrer">
+            {{ post.text.text | truncate: 200 }}
+          </a>
+          <div class="feed-meta">
+            <span class="feed-date">{{ post.created_at | date: "%B %d, %Y" }}</span>
+            <span class="feed-platform">LinkedIn</span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="community-feed-section">
+      <h3><span class="feed-icon">🔥</span> Reddit Discussions</h3>
+      <ul class="sacred-feed-list">
+        {% for child in site.data.reddit.data.children %}
+        <li class="feed-item">
+          <a href="https://reddit.com{{ child.data.permalink }}" target="_blank" rel="noopener noreferrer">
+            {{ child.data.title }}
+          </a>
+          <div class="feed-meta">
+            <span class="feed-score">⬆ {{ child.data.score }} points</span>
+            <span class="feed-comments">💬 {{ child.data.num_comments }} comments</span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
 
 {% comment %} Journey Paths — theme section-header + feature-grid {% endcomment %}
 {% include section-header.html
