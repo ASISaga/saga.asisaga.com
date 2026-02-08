@@ -5,7 +5,7 @@ Zero Raw CSS - Pure semantic mapping for consciousness crossing
 
 .threshold-crossing-section {
   @include genesis-environment('focused');
-  @include genesis-atmosphere('void');
+  @include genesis-atmosphere('sacred');
   
   .threshold-content {
     .threshold-subtitle {
@@ -25,8 +25,7 @@ Zero Raw CSS - Pure semantic mapping for consciousness crossing
       @include genesis-atmosphere('ethereal');
       
       .threshold-boundary {
-        @include genesis-state('evolving');
-        @include genesis-atmosphere('vibrant');
+        @include genesis-state('transcending');
       }
     }
   }

@@ -8,7 +8,7 @@
 // Genesis Origin Section
 .genesis-origin-section {
   @include genesis-entity('primary');         // Fundamental content block
-  @include genesis-atmosphere('void');        // Deep cosmic atmosphere
+  @include genesis-atmosphere('sacred');       // Sacred genesis atmosphere
   
   .genesis-content {
     .genesis-description {
@@ -36,7 +36,7 @@
     
     .pillar-icon {
       @include genesis-cognition('quantum');    // High-density symbolic fragment
-      @include genesis-state('evolving');       // Pulsing animation state
+      @include genesis-state('emerging');        // Emerging animation state
     }
     
     .pillar-title {
