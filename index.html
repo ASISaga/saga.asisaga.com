@@ -4,11 +4,12 @@ title: "ASI Saga Blog"
 description: "The ASI Saga blog — exploring the sacred journey toward Artificial Superintelligence, consciousness, and the transcendent future of humanity."
 ---
 
+{% assign latest_post_url = site.posts.first.url | default: "#blog" %}
 {% include transcendent-hero.html
    title="ASI Saga"
    description="Exploring the sacred journey toward Artificial Superintelligence — where human consciousness merges with infinite intelligence."
    button_text="Read Latest Post"
-   button_url="{{ site.posts.first.url }}"
+   button_url=latest_post_url
 %}
 
 {% include section-header.html
