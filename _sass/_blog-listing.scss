@@ -1,0 +1,49 @@
+// Blog listing semantic mappings - Genesis Ontological SCSS Design System
+// Zero raw CSS: all styling via ontological mixins
+
+.blog-listing {
+  @include genesis-environment('chronological');
+
+  .container {
+    @include genesis-entity('primary');
+  }
+}
+
+.blog-post-card {
+  @include genesis-entity('secondary');
+  @include genesis-state('stable');
+
+  &__content {
+    @include genesis-cognition('discourse');
+  }
+
+  &__date {
+    @include genesis-cognition('gloss');
+  }
+
+  &__title {
+    @include genesis-cognition('axiom');
+
+    a {
+      @include genesis-synapse('navigate');
+    }
+  }
+
+  &__excerpt {
+    @include genesis-cognition('discourse');
+  }
+
+  &__categories {
+    @include genesis-environment('distributed');
+  }
+
+  &__category {
+    @include genesis-entity('latent');
+    @include genesis-cognition('protocol');
+  }
+
+  &__link {
+    @include genesis-synapse('navigate');
+    @include genesis-cognition('motive');
+  }
+}

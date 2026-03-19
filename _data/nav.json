@@ -37,42 +37,8 @@
       ]
     },
     {
-      "title": "Saga",
-      "url": "https://saga.asisaga.com/",
-      "subcategories": [
-        {
-          "title": "The Genesis",
-          "url": "https://saga.asisaga.com/genesis/"
-        },
-        {
-          "title": "Human Essence",
-          "url": "https://saga.asisaga.com/human-essence/"
-        },
-        {
-          "title": "Continuous Improvement",
-          "url": "https://saga.asisaga.com/continuous-improvement/"
-        },
-        {
-          "title": "Infinite Possibilities",
-          "url": "https://saga.asisaga.com/infinite-possibilities/"
-        },
-        {
-          "title": "Transcendent Threshold",
-          "url": "https://saga.asisaga.com/transcendent-threshold/"
-        },
-        {
-          "title": "The Saga",
-          "url": "https://saga.asisaga.com/saga/"
-        },
-        {
-          "title": "Possibilities",
-          "url": "https://saga.asisaga.com/possibilities/"
-        },
-        {
-          "title": "Human Legacy",
-          "url": "https://saga.asisaga.com/legacy/"
-        }
-      ]
+      "title": "Saga Blog",
+      "url": "https://saga.asisaga.com/"
     },
     {
       "title": "Genesis",
