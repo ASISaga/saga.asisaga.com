@@ -1,18 +1,7 @@
-// Sacred Saga Site Styles - Genesis Ontological SCSS Design System
+// Sacred Saga Blog Styles - Genesis Ontological SCSS Design System
 // Importing the Genesis Semantic SCSS Engine from theme
 
 @import "ontology/index";
 
-// Saga-specific semantic mappings using ontological mixins
-@import "saga-sacred";
-
-// Saga page-specific semantic mappings
-@import "pages/community-feeds";
-@import "pages/genesis";
-@import "pages/human-essence";
-@import "pages/continuous-improvement";
-@import "pages/infinite-possibilities";
-@import "pages/transcendent-threshold";
-@import "pages/saga-page";
-@import "pages/possibilities-page";
-@import "pages/legacy-page";
+// Blog-specific semantic mappings using ontological mixins
+@import "blog-listing";

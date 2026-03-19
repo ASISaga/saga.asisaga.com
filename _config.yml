@@ -1,6 +1,6 @@
 # theme: jekyll-theme-minimal
 title: ASI Saga
-description: Genesis of Artificial Superintelligence
+description: The ASI Saga blog — exploring the sacred journey toward Artificial Superintelligence
 ignore_theme_config: true
 
 sass:
@@ -25,9 +25,14 @@ exclude:
 
 # The defaults section allows you to set default values for certain variables
 defaults:
-  # The scope key defines the default values for specific types of files
   - scope:
-      path: "" # Applies to all files in your site
-      type: "html" # Targets only HTML files
-    values: # Default values for the specified scope
-      layout: default # The name of the layout you want to apply
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: ASI Saga

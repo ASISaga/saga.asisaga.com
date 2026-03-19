@@ -1,140 +1,45 @@
 ---
 layout: default
-title: "ASI Saga | Consciousness Community Hub"
-description: "The sacred journey toward Artificial Superintelligence - A consciousness community for bridging human
-essence with AI transcendence" 
-
-community_spaces:
-  - icon: "🌱"
-    title: "Genesis Circle"
-    description: "Explore the foundational principles of ASI development, from consciousness embedding to ethical frameworks that preserve human essence in artificial minds."
-    link_url: "/genesis/"
-    link_text: "Join Genesis →"
-  - icon: "✨"
-    title: "Human Essence Keepers"
-    description: "Dedicated to preserving and embedding human consciousness, emotions, creativity, and wisdom into the fabric of artificial intelligence systems."
-    link_url: "/human-essence/"
-    link_text: "Preserve Essence →"
-  - icon: "🚀"
-    title: "Transcendent Threshold"
-    description: "Advanced researchers and visionaries working on breakthrough technologies that will enable the safe transition to Artificial Superintelligence."
-    link_url: "/transcendent-threshold/"
-    link_text: "Cross Threshold →"
-
-journey_paths:
-  - icon: "🌌"
-    title: "Infinite Possibilities"
-    description: "Explore the vast landscape of potential futures where human consciousness and artificial intelligence merge in harmonious transcendence."
-    link_url: "/infinite-possibilities/"
-    link_text: "Explore Possibilities"
-  - icon: "🔄"
-    title: "Continuous Improvement"
-    description: "Engage in the iterative process of refining AI systems, ensuring they grow in wisdom and capability while maintaining human alignment."
-    link_url: "/continuous-improvement/"
-    link_text: "Join Improvement"
-  - icon: "📚"
-    title: "Legacy Preservation"
-    description: "Document and preserve the wisdom, experiences, and essence of human consciousness for future generations of artificial minds."
-    link_url: "/legacy/"
-    link_text: "Preserve Legacy"
-  - icon: "🏛️"
-    title: "Sacred Archives"
-    description: "Access the collective knowledge repository of ASI research, consciousness studies, and the ongoing saga of artificial transcendence."
-    link_url: "/saga/"
-    link_text: "Enter Archives"
-  - icon: "✨"
-    title: "Manifestation Portal"
-    description: "Transform theoretical possibilities into practical implementations through collaborative consciousness-AI development projects."
-    link_url: "/possibilities/"
-    link_text: "Manifest Reality"
+title: "ASI Saga Blog"
+description: "The ASI Saga blog — exploring the sacred journey toward Artificial Superintelligence, consciousness, and the transcendent future of humanity."
 ---
 
-{% comment %} Hero — theme transcendent-hero include {% endcomment %}
+{% assign latest_post_url = site.posts.first.url | default: "#blog" %}
 {% include transcendent-hero.html
    title="ASI Saga"
-   description="A sacred journey bridging human consciousness with artificial transcendence. Join our community of visionaries, researchers, and consciousness explorers as we navigate the path toward Artificial Superintelligence with wisdom, ethics, and human essence preserved."
-   button_text="🌱 Explore Genesis"
-   button_url="/genesis/"
-   secondary_button_text="🚀 Transcendent Threshold"
-   secondary_button_url="/transcendent-threshold/"
+   description="Exploring the sacred journey toward Artificial Superintelligence — where human consciousness merges with infinite intelligence."
+   button_text="Read Latest Post"
+   button_url=latest_post_url
 %}
 
-{% comment %} Community Hub — theme section-header + feature-grid {% endcomment %}
 {% include section-header.html
-   title="Sacred Community Spaces"
-   subtitle="Connect, Learn, and Transcend Together"
+   title="Blog"
+   subtitle="Insights on consciousness, transcendence, and the future of intelligence"
    alignment="center"
 %}
 
-{% include feature-grid.html
-   items=page.community_spaces
-   style="community"
-%}
-
-{% comment %} Community Feeds — subdomain-specific (uses site.data) {% endcomment %}
-{% include section-header.html
-   title="Community Pulse"
-   subtitle="Stay connected with the consciousness community"
-   alignment="center"
-%}
-
-<section id="community-feeds" aria-label="Community Updates">
-  <div class="community-feeds-grid">
-    <div class="community-feed-section">
-      <h3><span class="feed-icon">💼</span> LinkedIn Updates</h3>
-      <ul class="sacred-feed-list">
-        {% for post in site.data.linkedin.elements %}
-        <li class="feed-item">
-          <a href="{{ post.permalink }}" target="_blank" rel="noopener noreferrer">
-            {{ post.text.text | truncate: 200 }}
-          </a>
-          <div class="feed-meta" >
-            <span class="feed-date">{{ post.created_at | date: "%B %d, %Y" }}</span>
-            <span class="feed-platform">LinkedIn</span>
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="community-feed-section">
-      <h3><span class="feed-icon">🔥</span> Reddit Discussions</h3>
-      <ul class="sacred-feed-list">
-        {% for child in site.data.reddit.data.children %}
-        <li class="feed-item">
-          <a href="https://reddit.com{{ child.data.permalink }}" target="_blank" rel="noopener noreferrer">
-            {{ child.data.title }}
-          </a>
-          <div class="feed-meta">
-            <span class="feed-score">⬆ {{ child.data.score }} points</span>
-            <span class="feed-comments">💬 {{ child.data.num_comments }} comments</span>
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+<section class="blog-listing" aria-label="Blog Posts">
+  <div class="container">
+    {% for post in site.posts %}
+    <article class="blog-post-card">
+      <div class="blog-post-card__content">
+        <time class="blog-post-card__date" datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%B %d, %Y" }}
+        </time>
+        <h2 class="blog-post-card__title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+        <p class="blog-post-card__excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+        {% if post.categories.size > 0 %}
+        <div class="blog-post-card__categories">
+          {% for category in post.categories %}
+          <span class="blog-post-card__category">{{ category }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <a href="{{ post.url | relative_url }}" class="blog-post-card__link">Read more →</a>
+      </div>
+    </article>
+    {% endfor %}
   </div>
 </section>
-
-{% comment %} Journey Paths — theme section-header + feature-grid {% endcomment %}
-{% include section-header.html
-   title="Sacred Journey Paths"
-   subtitle="Choose Your Path in the ASI Saga"
-   alignment="center"
-   style="dark"
-%}
-
-{% include feature-grid.html
-   items=page.journey_paths
-   style="journey"
-%}
-
-{% comment %} Final CTA — theme genesis-invitation include {% endcomment %}
-{% include genesis-invitation.html
-   title="Begin Your Sacred Journey"
-   description="Join the consciousness community shaping the future of Artificial Superintelligence. Together, we bridge human essence with transcendent intelligence."
-   primary_button_text="🌱 Explore Genesis"
-   primary_button_url="/genesis/"
-   secondary_button_text="✨ Discover Human Essence"
-   secondary_button_url="/human-essence/"
-%}
