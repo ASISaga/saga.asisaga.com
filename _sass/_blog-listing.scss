@@ -1,17 +1,37 @@
 // Blog listing semantic mappings - Genesis Ontological SCSS Design System
 // Zero raw CSS: all styling via ontological mixins
+//
+// PENDING THEME PR: `.github/prompts/theme-pr-visual-improvements.md`
+// When the theme PR is merged, update this file to use:
+//   - genesis-environment('editorial-feed')   instead of 'chronological'
+//   - genesis-atmosphere('cosmic')             NEW — deep-space section background
+//   - genesis-entity('editorial')              instead of 'secondary' (card-less rows)
+//   - genesis-cognition('heading')             instead of 'axiom' (right heading scale)
 
 .blog-listing {
   @include genesis-environment('chronological');
+  // TODO(theme-pr): @include genesis-environment('editorial-feed');
+  // TODO(theme-pr): @include genesis-atmosphere('cosmic');
 
+  // Container: no entity wrapper — let page background show through
+  // (Removed genesis-entity('primary') to avoid card-in-card nesting: Issue 5)
   .container {
-    @include genesis-entity('primary');
+    @include genesis-entity('aggregate');
   }
 }
 
 .blog-post-card {
   @include genesis-entity('secondary');
-  @include genesis-state('stable');
+  // TODO(theme-pr): replace with genesis-entity('editorial') for card-less editorial rows
+
+  // Featured first post gets stronger state signal
+  &--featured {
+    @include genesis-state('emerging');
+  }
+
+  &__image {
+    @include genesis-entity('image-adaptive');
+  }
 
   &__content {
     @include genesis-cognition('discourse');
@@ -22,6 +42,8 @@
   }
 
   &__title {
+    // TODO(theme-pr): replace with genesis-cognition('heading') — axiom is hero-scale
+    // (32–56px per post title creates 10 competing hero headlines: Issue 3)
     @include genesis-cognition('axiom');
 
     a {
