@@ -4,24 +4,28 @@ title: "ASI Saga Blog"
 description: "The ASI Saga blog — exploring the sacred journey toward Artificial Superintelligence, consciousness, and the transcendent future of humanity."
 ---
 
-{% assign latest_post_url = site.posts.first.url | default: "#blog" %}
+{% assign latest_post = site.posts.first %}
+{% assign latest_post_url = latest_post.url | default: "#blog" %}
 {% include transcendent-hero.html
    title="ASI Saga"
    description="Exploring the sacred journey toward Artificial Superintelligence — where human consciousness merges with infinite intelligence."
    button_text="Read Latest Post"
    button_url=latest_post_url
-%}
-
-{% include section-header.html
-   title="Blog"
-   subtitle="Insights on consciousness, transcendence, and the future of intelligence"
-   alignment="center"
+   image=latest_post.image
+   image_alt=latest_post.title
 %}
 
 <section class="blog-listing" aria-label="Blog Posts">
   <div class="container">
     {% for post in site.posts %}
-    <article class="blog-post-card">
+    <article class="blog-post-card{% if forloop.first %} blog-post-card--featured{% endif %}">
+      {% if post.image %}
+      <div class="blog-post-card__image">
+        <a href="{{ post.url | relative_url }}" aria-hidden="true">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+        </a>
+      </div>
+      {% endif %}
       <div class="blog-post-card__content">
         <time class="blog-post-card__date" datetime="{{ post.date | date_to_xmlschema }}">
           {{ post.date | date: "%B %d, %Y" }}
